@@ -54,7 +54,7 @@ public class aulaController {
     public ModelAndView insertarAula(Aula aula){ 
         Errors errors = null;
         
-        this.aulasValidador.validate(aula, errors);
+        //this.aulasValidador.validate(aula, errors);
         aulasManager.insertAula(aula); 
         return new ModelAndView("redirect:/maestroAula.htm");
     }
@@ -82,9 +82,12 @@ public class aulaController {
     @RequestMapping(value="eliminarAula.htm",method= RequestMethod.GET)
     public ModelAndView eliminarAula(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
+        /*Map<String, Object> myModel = new HashMap<String, Object>();
         Aula aula = aulasManager.getAula(request.getParameter("id"));
-        return new ModelAndView("aula","model", aula);
+        return new ModelAndView("aula","model", aula);*/
+        
+        aulasManager.deleteAula(request.getParameter("id"));
+        return new ModelAndView("redirect:/maestroAula.htm");
     }
     
     @RequestMapping(value="eliminarAula.htm",method= RequestMethod.POST)

@@ -24,6 +24,21 @@
                 <prop key="insertarAula.htm">aulaController</prop>
                 <prop key="editarAula.htm">aulaController</prop>
                 <prop key="eliminarAula.htm">aulaController</prop>
+                
+                <prop key="maestroCurso.htm">cursoController</prop>
+                <prop key="insertarCurso.htm">cursoController</prop>
+                <prop key="editarCurso.htm">cursoController</prop>
+                <prop key="eliminarCurso.htm">cursoController</prop>
+                
+                <prop key="maestroEquipo.htm">equipoController</prop>
+                <prop key="insertarEquipo.htm">equipoController</prop>
+                <prop key="editarEquipo.htm">equipoController</prop>
+                <prop key="eliminarEquipo.htm">equipoController</prop>
+                
+                <prop key="maestroDocente.htm">docenteController</prop>
+                <prop key="insertarDocente.htm">docenteController</prop>
+                <prop key="editarDocente.htm">docenteController</prop>
+                <prop key="eliminarDocente.htm">docenteController</prop>
             </props>
         </property>
     </bean>
@@ -39,9 +54,10 @@
     -->
     
   
-     <bean name="aulaController" class="urpControlLaboratorio.Web.aulaController">         
-         
-     </bean>
+     <bean name="aulaController" class="urpControlLaboratorio.Web.aulaController"></bean>
+     <bean name="cursoController" class="urpControlLaboratorio.Web.cursoController"></bean>
+     <bean name="equipoController" class="urpControlLaboratorio.Web.equipoController"></bean>
+     <bean name="docenteController" class="urpControlLaboratorio.Web.docenteController"></bean>
     
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"

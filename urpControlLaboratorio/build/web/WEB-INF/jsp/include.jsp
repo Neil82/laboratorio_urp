@@ -27,8 +27,9 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Maestros <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="<c:url value="maestroAula.htm"/>">Aulas</a></li>
-                                  <li><a href="#">Docentes</a></li>
-                                  <li><a href="#">Curso</a></li>
+                                  <li><a href="<c:url value="maestroDocente.htm"/>">Docentes</a></li>
+                                  <li><a href="<c:url value="maestroCurso.htm"/>">Cursos</a></li>
+                                  <li><a href="<c:url value="maestroEquipo.htm"/>">Equipos</a></li>
                                   <li role="separator" class="divider"></li>
                                   <li><a href="#">Horarios</a></li>                              
                                 </ul>

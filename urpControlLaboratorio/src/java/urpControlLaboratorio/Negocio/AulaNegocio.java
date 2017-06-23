@@ -6,6 +6,7 @@ import urpControlLaboratorio.Entidades.Aula;
 import urpControlLaboratorio.Datos.JdbcAulasDao;
 public class AulaNegocio {
     private JdbcAulasDao aulasDao = new JdbcAulasDao(); // aulasDao declarada en el property del bean del applicationContext id="aulasManager"
+    private AulaValidator validador = new AulaValidator();
     
     public List<Aula> getAulas() {
         // return products;
@@ -18,7 +19,11 @@ public class AulaNegocio {
     } 
     
     public void insertAula(Aula aula) {
-        aulasDao.insertAula(aula);                  
+        
+        if(this.validador.validate(aula))
+            aulasDao.insertAula(aula);
+        //else
+            //regresar mensaje de error                  
     } 
     
     public void updateAula(Aula aula, String id) {
