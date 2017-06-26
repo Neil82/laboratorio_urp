@@ -20,6 +20,8 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">indexController</prop>
+                <prop key="login.htm">loginController</prop>
+                
                 <prop key="maestroAula.htm">aulaController</prop>
                 <prop key="insertarAula.htm">aulaController</prop>
                 <prop key="editarAula.htm">aulaController</prop>
@@ -53,7 +55,7 @@
     The index controller.
     -->
     
-  
+  <bean name="loginController" class="urpControlLaboratorio.Web.loginController"></bean>
      <bean name="aulaController" class="urpControlLaboratorio.Web.aulaController"></bean>
      <bean name="cursoController" class="urpControlLaboratorio.Web.cursoController"></bean>
      <bean name="equipoController" class="urpControlLaboratorio.Web.equipoController"></bean>
