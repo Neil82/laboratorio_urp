@@ -3,7 +3,8 @@
 
 <html>
     <head>
-        <title><fmt:message key="title"/></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Control de Laboratorio URP</title>
         <style>
             .error { color: red; }
         </style>  

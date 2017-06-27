@@ -30,15 +30,17 @@
                                   <li><a href="<c:url value="maestroDocente.htm"/>">Docentes</a></li>
                                   <li><a href="<c:url value="maestroCurso.htm"/>">Cursos</a></li>
                                   <li><a href="<c:url value="maestroEquipo.htm"/>">Equipos</a></li>
+                                  <li><a href="<c:url value="maestroAnio.htm"/>">Años Lectivos</a></li>
                                   <li role="separator" class="divider"></li>
-                                  <li><a href="#">Horarios</a></li>                              
+                                  <li><a href="<c:url value="maestroHorario.htm"/>">Horarios</a></li>                              
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="#">Marcacion manual de salida</a></li>
-                                  <li><a href="#">Recuperacion de clases</a></li>                                  
+                                  <li><a href="#">Recuperacion de clases</a></li>
+                                  <li><a href="<c:url value="maestroUsuario.htm"/>">Usuarios</a></li>                                  
                                 </ul>
                             </li>
                         </ul>

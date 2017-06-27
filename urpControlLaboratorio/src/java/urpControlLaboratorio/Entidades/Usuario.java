@@ -2,12 +2,21 @@ package urpControlLaboratorio.Entidades;
 import java.io.Serializable;
 
 public class Usuario { 
+    private String idusuario = "";
     private String dni = "";
     private String apellidos = "";
     private String nombres = "";
     private String usuario = "";
     private String password = "";
     private Boolean acreditado;
+
+    public String getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(String idusuario) {
+        this.idusuario = idusuario;
+    }
 
     public String getDni() {
         return dni;
