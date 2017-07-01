@@ -12,135 +12,125 @@
         </style>  
     </head>
     <body>
-        <form:form method="post" commandName="model"  action="insertarHorario.htm">
+        <form:form method="post" commandName="model" action="insertarCursoSemestre.htm">
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroHorario.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroCursoSemestre.htm" />">Volver<a></li>
                 </ol>
                 
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Ingresar Horario</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Cursos x Semestre</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="well">  
                                 
                                 <div class="row">
+                                    
                                     <label class="control-label col-md-2" style="text-align: right">Año</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                                <form:select class="form-control" path="id_anio" >
+                                              
+                                                 <form:select class="form-control" path="id_anio" >
                                                     <form:options items="${model.listAnio}"  
                                                     itemValue="id"
                                                     itemLabel="id"/>
                                                  </form:select>
-                                                
                                         </div>
                                     </div>
+                                                
                                                 
                                     <label class="control-label col-md-2" style="text-align: right">Semestre</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:select class="form-control" path="id_semestre" >
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                              
+                                                 <form:select class="form-control" path="id_semestre" >
                                                     <form:options items="${model.listSemestre}"  
                                                     itemValue="id"
                                                     itemLabel="descripcion"/>
                                                  </form:select>
                                         </div>
                                     </div>
-                                                
-                                </div>            
-                                
-                                <div class="row">                
-                                    <label class="control-label col-md-2" style="text-align: right">Aula</label>
-                                    <div class="col-md-3">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:select class="form-control" path="id_aula" >
-                                                    <form:options items="${model.listAula}"  
-                                                    itemValue="id"
-                                                    itemLabel="id"/>
-                                                 </form:select>
-                                            
-                                        </div>
-                                    </div>
-                                                
-                                    <label class="control-label col-md-2" style="text-align: right">Día</label>
-                                    <div class="col-md-3">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:select class="form-control" path="id_dia" >
-                                                    <form:options items="${model.listDia}"  
-                                                    itemValue="id"
-                                                    itemLabel="descripcion"/>
-                                                 </form:select>
-                                            
-                                        </div>
-                                    </div>
-                               
+                                  
                                 </div>
-                                                
-                                <div class="row">                
-                                    <label class="control-label col-md-2" style="text-align: right">Hora Inicio</label>
+                                
+                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Curso</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:select class="form-control" path="id_hinicio" >
-                                                    <form:options items="${model.listHora}"  
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                              
+                                                 <form:select class="form-control" path="id_curso" >
+                                                    <form:options items="${model.listCurso}"  
                                                     itemValue="id"
                                                     itemLabel="descripcion"/>
                                                  </form:select>
-                                            
                                         </div>
                                     </div>
                                                 
-                                    <label class="control-label col-md-2" style="text-align: right">Duración</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Grupo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:select class="form-control" path="id_duracion" >
-                                                    <form:options items="${model.listDuracion}"  
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                              
+                                                 <form:select class="form-control" path="id_grupo" >
+                                                    <form:options items="${model.listGrupo}"  
                                                     itemValue="id"
                                                     itemLabel="descripcion"/>
                                                  </form:select>
-                                            
                                         </div>
                                     </div>
-                           
-                                </div> 
                                                 
-                                <div class="row">     
-                                    
-                                    <label class="control-label col-md-2" style="text-align: right">Curso/Profesor</label>
+                                </div>
+                                
+                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">SubGrupo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:select class="form-control" path="id_cursosemestre" >
-                                                    <form:options items="${model.listCursoSemestre}"  
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                              <form:select class="form-control" path="id_subgrupo" >
+                                                    <form:options items="${model.listSubGrupo}"  
                                                     itemValue="id"
-                                                    itemLabel="cursoDocente"/>
+                                                    itemLabel="descripcion"/>
                                                  </form:select>
-                                            
+                                               
+                                        </div>
+                                    </div>
+                                                
+                                    <label class="control-label col-md-2" style="text-align: right">Docente</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                              <form:select class="form-control" path="id_docente" >
+                                                    <form:options items="${model.listDocente}"  
+                                                    itemValue="id"
+                                                    itemLabel="docente_nom"/>
+                                                 </form:select>
                                         </div>
                                     </div>
                                     
                                     <div class="col-md-2">
                                         <input type="submit" class="form-control btn-primary" align="center" value="Ingresar">                                        
                                     </div>
-                                        
-                                </div>                 
+                                                
+                                </div>
+                                
+                               
+                                    
                                  
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <form:errors path="id_anio" cssClass="error"/>   
+                                        <form:errors path="id" cssClass="error"/>   
+                                        <form:errors path="id_anio" cssClass="error"/>
                                         <form:errors path="id_semestre" cssClass="error"/>
-                                        <form:errors path="id_aula" cssClass="error"/>
-                                        <form:errors path="id_dia" cssClass="error"/>
-                                        <form:errors path="id_hinicio" cssClass="error"/>
-                                        <form:errors path="id_duracion" cssClass="error"/>
-                                        <form:errors path="id_cursosemestre" cssClass="error"/>
+                                        <form:errors path="id_curso" cssClass="error"/>
+                                        <form:errors path="id_grupo" cssClass="error"/>
+                                        <form:errors path="id_subgrupo" cssClass="error"/>
+                                        <form:errors path="id_docente" cssClass="error"/>
                                     </div>
                                 </div>
                                 
@@ -153,9 +143,5 @@
         </form:form>
 
 
-
-
-
-        
 </body>
 </html>

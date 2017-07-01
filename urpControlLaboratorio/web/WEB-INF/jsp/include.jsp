@@ -32,6 +32,7 @@
                                   <li><a href="<c:url value="maestroEquipo.htm"/>">Equipos</a></li>
                                   <li><a href="<c:url value="maestroAnio.htm"/>">Años Lectivos</a></li>
                                   <li role="separator" class="divider"></li>
+                                  <li><a href="<c:url value="maestroCursoSemestre.htm"/>">Curso x Semestre</a></li>
                                   <li><a href="<c:url value="maestroHorario.htm"/>">Horarios</a></li>                              
                                 </ul>
                             </li>

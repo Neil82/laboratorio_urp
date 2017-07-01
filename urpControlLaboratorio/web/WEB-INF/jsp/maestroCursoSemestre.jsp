@@ -14,38 +14,26 @@
     <div class="container">
         
         <div class="panel panel-primary">
-            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Horarios</div>
+            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Cursos x Semestre</div>
             <div class="panel-body">
                 
                     <div class="well">
                         <div class="form-group">
-                            <form:form method="post" commandName="model" action="addHorario.htm">
                             <table class="table table-hover">
                          
                                 <thead>
                                  
                                   <tr>
-                                    <th colspan="9">
-                                        
+                                    <th colspan="6">
+                                        <form:form method="post" commandName="model" action="addCursoSemestre.htm">
                                         <table>
                                             
                                             <tr>
-                                                <td>Aula</td>
-                                                <td>
-                                                
-                                                    <select name="selAula" class="form-control">
-                                                        <option value="-1">--Seleccione--</option>
-                                                        <c:forEach items="${model.aulas}" var="aula">
-                                                            <option value="${aula.id}">${aula.id}</option>
-                                                        </c:forEach>
-                                                    </select>
-
-                                                </td>
-                                                <td style="width:100px;"></td>
+                       
                                                 <td>Año</td>
                                                 <td>
                                                     
-                                                    <select name="selAnio" class="form-control">
+                                                    <select name="selAnio" class="form-control" path="selAnio">
                                                         <option value="-1">--Seleccione--</option>
                                                         <c:forEach items="${model.anios}" var="anio">
                                                             <option value="${anio.id}">${anio.id}</option>
@@ -57,7 +45,7 @@
                                                 
                                                 <td>Semestre</td>
                                                 <td>
-                                                    <select name="selSemestre" class="form-control">
+                                                    <select name="selSemestre" class="form-control" path="selSemestre">
                                                         <option value="-1">--Seleccione--</option>
                                                         <c:forEach items="${model.semestres}" var="semestre">
                                                             <option value="${semestre.descripcion}">${semestre.descripcion}</option>
@@ -69,57 +57,55 @@
                                                 
                                                 <td>
                                                     <!--<button type="button" class="btn-sm btn-success" id="btnNuevo">
-                                                        <a style="color:white" href="<c:url value="insertarHorario.htm"/>">
+                                                        <a style="color:white" href="<c:url value="insertarCursoSemestre.htm?id=${semestre.id}"/>">
                                                             <span class="glyphicon glyphicon-plus"></span>
                                                         </a>
                                                     </button>-->
                                                     
-                                                    <input type="submit" class="form-control btn-primary" align="center" value="Add">
+                                                    <input type="submit" class="form-control btn-primary" align="center" value="Add">        
+                                                    
                                                 </td>
                                                 
                                             </tr>
                                             
                                         </table>
-                                    
+                                        </form:form>
+                                        
                                     </th>
                                 </tr>  
                                     
                                   <tr>  
                                     <th>                            
-                                        &nbsp;&nbsp;Hora Inicio
+                                        &nbsp;&nbsp;Año
                                     </th>
-                                    <th>Hora Fin</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                    <th>Opciones</th>
+                                    <th>Semestre</th>
+                                    <th>Curso</th>
+                                    <th>Grupo</th>
+                                    <th>SubGrupo</th>
+                                    <th>Profesor</th>
+                                    <th>Acciones</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${model.horarios}" var="horario">
-                                        <tr><td><c:out value="${horario.id_anio}"/></td>
-                                            <td><c:out value="${horario.id_semestre}"/></td>
-                                            <td><c:out value="${horario.id_aula}"/></td>
-                                            <td><c:out value="${horario.id_dia}"/></td>
-                                            <td><c:out value="${horario.id_hinicio}"/></td>
-                                            <td><c:out value="${horario.id_duracion}"/></td>
-                                            <td><c:out value="${horario.id_cursosemestre}"/></td>
+                                    <c:forEach items="${model.cursoSemestres}" var="cursoSemestre">
+                                        <tr><td><c:out value="${cursoSemestre.id_anio}"/></td>
+                                            <td><c:out value="${cursoSemestre.id_semestre}"/></td>
+                                            <td><c:out value="${cursoSemestre.id_curso}"/></td>
+                                            <td><c:out value="${cursoSemestre.id_grupo}"/></td>
+                                            <td><c:out value="${cursoSemestre.id_subgrupo}"/></td>
+                                            <td><c:out value="${cursoSemestre.id_docente}"/></td>
                                             <td>
-                                                <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarHorario.htm?id=${horario.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
-                                                <button type="button" class="btn-sm btn-danger btnEliminar" ><a style="color:white" href="<c:url value="eliminarHorario.htm?id=${horario.id}" />"><span class="glyphicon glyphicon-remove"></span></a></button>
+                                                <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarCursoSemestre.htm?id=${cursoSemestre.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
+                                                <button type="button" class="btn-sm btn-danger btnEliminar" ><a style="color:white" href="<c:url value="eliminarCursoSemestre.htm?id=${cursoSemestre.id}" />"><span class="glyphicon glyphicon-remove"></span></a></button>
                                             </td>
                                         </tr>       
                                     </c:forEach>
                                 </tbody>      
                             </table>
-                           </form:form>
                             <br>                            
                         </div>
                     </div>
-                
+               
             </div>
         </div>
         
