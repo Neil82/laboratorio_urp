@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/src/java/urpControlLaboratorio/Entidades/Usuario.java</file>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/web/redirect.jsp</file>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/src/java/urpControlLaboratorio/Web/loginController.java</file>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/src/java/urpControlLaboratorio/Datos/JdbcLoginDao.java</file>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/web/WEB-INF/dispatcher-servlet.xml</file>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/web/WEB-INF/jsp/login.jsp</file>
-            <file>file:/C:/daniel/laboratorio_urp/urpControlLaboratorio/src/java/urpControlLaboratorio/Negocio/LoginNegocio.java</file>
+            <file>file:/Applications/XAMPP/htdocs/laboratorio_urp/urpControlLaboratorio/src/java/urpControlLaboratorio/Web/cursosemestreController.java</file>
+            <file>file:/Applications/XAMPP/htdocs/laboratorio_urp/urpControlLaboratorio/web/WEB-INF/jsp/maestroHorario.jsp</file>
+            <file>file:/Applications/XAMPP/htdocs/laboratorio_urp/urpControlLaboratorio/src/java/urpControlLaboratorio/Web/horarioController.java</file>
         </group>
     </open-files>
 </project-private>

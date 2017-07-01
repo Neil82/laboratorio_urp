@@ -24,25 +24,53 @@ public class JdbcHorariosDao  {
     
     public List<Horario> getHorarios() {
 
-        List<Horario> horarios = this.jdbctemplate.query("select id, nombres, apellidos from horario where estado=1", new JdbcHorariosDao.HorarioMapper());
+        List<Horario> horarios = 
+        this.jdbctemplate.query("select h.id, a.id as anio, s.descripcion as semestre, "
+                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, "
+                + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
+                + "from horario h left join anio a on a.id = h.id_anio "
+                + "left join semestre s on s.id = h.id_semestre "
+                + "left join aula au on au.id = h.id_aula "
+                + "left join dia d on d.id = h.id_dia "
+                + "left join hora hi on hi.id = h.id_hinicio "
+                + "left join duracion hf on hf.id = h.id_duracion "
+                + "left join cursoSemestre cs on cs.id = h.id_cursosemestre "
+                + "left join curso c on c.id = cs.id_curso "
+                + "left join docente do on do.id = cs.id_docente "
+                + "where h.estado=1", new JdbcHorariosDao.HorarioMapper());
         return horarios;
     } 
     
      public Horario getHorario(String id) {
         
-        List<Horario> horarios =  this.jdbctemplate.query("select id, nombres, apellidos from horario where id='"+id+"'", new JdbcHorariosDao.HorarioMapper());
+        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, s.descripcion as semestre, "
+                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, "
+                + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
+                + "from horario h left join anio a on a.id = h.id_anio "
+                + "left join semestre s on s.id = h.id_semestre "
+                + "left join aula au on au.id = h.id_aula "
+                + "left join dia d on d.id = h.id_dia "
+                + "left join hora hi on hi.id = h.id_hinicio "
+                + "left join duracion hf on hf.id = h.id_duracion "
+                + "left join cursoSemestre cs on cs.id = h.id_cursosemestre "
+                + "left join curso c on c.id = cs.id_curso "
+                + "left join docente do on do.id = cs.id_docente "
+                + "where id='"+id+"'", new JdbcHorariosDao.HorarioMapper());
         return horarios.get(0);
         
     }
     
-    public String getHorarioValidacion(String id) {
+    public String getHorarioValidacion(String id_anio, String id_semestre, String id_aula, 
+            String id_dia, String id_hinicio, String id_duracion, String id_cursosemestre) {
         
         String name;
         
         try {
-            String sql = "select nombres from horario where id = ?";
+            String sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and "
+                    + " id_duracion = ? and id_cursosemestre = ?";
             name = (String)this.jdbctemplate.queryForObject(
-			sql, new Object[] { id }, String.class);
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicio, id_duracion, id_cursosemestre }, String.class);
         } catch (final EmptyResultDataAccessException e) {
 	  name = null;
         
@@ -55,7 +83,10 @@ public class JdbcHorariosDao  {
         //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
-            "insert into horario (id, nombres, apellidos, password) values (?,?,?,?)",horario.getId(), horario.getNombres(), horario.getApellidos(), horario.getPassword());
+            "insert into horario (id_anio, id_semestre, id_aula, id_dia, id_hinicio, "
+                    + " id_duracion, id_cursosemestre) values (?,?,?,?,?,?,?)",
+                 horario.getId_anio(), horario.getId_semestre(), horario.getId_aula(), horario.getId_dia(), 
+                 horario.getId_hinicio(), horario.getId_duracion(), horario.getId_cursosemestre());
         
         //logger.info("Rows affected: " + count);
     }
@@ -65,12 +96,17 @@ public class JdbcHorariosDao  {
         
          this.jdbctemplate.update(
             "update horario "
-                    + "set nombres = ?, "
-                    + "set apellidos = ?, "
-                    + "set password = ? "
+                    + "set id_anio = ?, "
+                    + "set id_semestre = ?, "
+                    + "set id_aula = ?, "
+                    + "set id_dia = ?, "
+                    + "set id_hinicio = ?, "
+                    + "set id_duracion = ?, "
+                    + "set id_cursosemestre = ? "
                     + "where "
                     + "id = ?", 
-                 horario.getNombres(), horario.getApellidos(), horario.getPassword(), id);
+                 horario.getId_anio(), horario.getId_semestre(), horario.getId_aula(), horario.getId_dia(), 
+                 horario.getId_hinicio(), horario.getId_duracion(), horario.getId_cursosemestre(), id);
         
         //logger.info("Rows affected: " + count);
     }    
@@ -92,8 +128,13 @@ public class JdbcHorariosDao  {
         public Horario mapRow(ResultSet rs, int rowNum) throws SQLException {
             Horario horario  = new Horario();
             horario.setId(rs.getString("id"));
-            horario.setNombres(rs.getString("nombres")); 
-            horario.setApellidos(rs.getString("apellidos")); 
+            horario.setId_anio(rs.getString("anio")); 
+            horario.setId_semestre(rs.getString("semestre"));
+            horario.setId_aula(rs.getString("aula"));
+            horario.setId_dia(rs.getString("dia"));
+            horario.setId_hinicio(rs.getString("hora_inicio"));
+            horario.setId_duracion(rs.getString("duracion"));
+            horario.setId_cursosemestre(rs.getString("cursosemestre"));
             return horario;
         } 
     } 

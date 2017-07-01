@@ -6,6 +6,7 @@ public class Docente {
     private String nombres;
     private String apellidos;
     private String password;
+    private String docente_nom;
     
     public String getId() {
         return id;
@@ -35,6 +36,14 @@ public class Docente {
     public void setPassword(String password) {
         this.password = password;
     }
-        
+
+    public String getDocente_nom() {
+        return docente_nom;
+    }
+
+    public void setDocente_nom(String docente_nom) {
+        this.docente_nom = docente_nom;
+    }
+
     
 }

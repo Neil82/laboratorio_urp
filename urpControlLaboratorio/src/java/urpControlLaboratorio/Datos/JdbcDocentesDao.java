@@ -14,7 +14,7 @@ import urpControlLaboratorio.Entidades.Docente;
 
 public class JdbcDocentesDao  {
     
-    private JdbcTemplate jdbctemplate;
+    private final JdbcTemplate jdbctemplate;
     
     public JdbcDocentesDao(){
         Conexion con = new Conexion();
@@ -24,13 +24,13 @@ public class JdbcDocentesDao  {
     
     public List<Docente> getDocentes() {
 
-        List<Docente> docentes = this.jdbctemplate.query("select id, nombres, apellidos from docente where estado=1", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes = this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where estado=1", new JdbcDocentesDao.DocenteMapper());
         return docentes;
     } 
     
      public Docente getDocente(String id) {
         
-        List<Docente> docentes =  this.jdbctemplate.query("select id, nombres, apellidos from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes =  this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
         return docentes.get(0);
         
     }
@@ -94,6 +94,7 @@ public class JdbcDocentesDao  {
             docente.setId(rs.getString("id"));
             docente.setNombres(rs.getString("nombres")); 
             docente.setApellidos(rs.getString("apellidos")); 
+            docente.setDocente_nom(rs.getString("docente")); 
             return docente;
         } 
     } 

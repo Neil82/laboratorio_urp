@@ -53,7 +53,12 @@
                 <prop key="eliminarAnio.htm">anioController</prop>
                 
                 <prop key="maestroHorario.htm">horarioController</prop>
+                <prop key="addHorario.htm">horarioController</prop>
                 <prop key="insertarHorario.htm">horarioController</prop>
+                
+                <prop key="maestroCursoSemestre.htm">cursosemestreController</prop>
+                <prop key="addCursoSemestre.htm">cursosemestreController</prop>
+                <prop key="insertarCursoSemestre.htm">cursosemestreController</prop>
             </props>
         </property>
     </bean>
@@ -76,6 +81,7 @@
      <bean name="usuarioController" class="urpControlLaboratorio.Web.usuarioController"></bean>
      <bean name="anioController" class="urpControlLaboratorio.Web.anioController"></bean>
      <bean name="horarioController" class="urpControlLaboratorio.Web.horarioController"></bean>
+     <bean name="cursosemestreController" class="urpControlLaboratorio.Web.cursosemestreController"></bean>
     
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
