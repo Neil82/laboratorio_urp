@@ -20,7 +20,7 @@
                 </ol>
                 
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Ingresar Docente</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="well">  
@@ -43,7 +43,9 @@
                                             
                                         </div>
                                     </div>
-                                                
+                                </div>
+                                
+                                <div class="row">                
                                     <label class="control-label col-md-2" style="text-align: right">Apellidos</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
@@ -63,7 +65,7 @@
                                     </div>
                                                 
                                     <div class="col-md-2">
-                                        <input type="submit" class="form-control btn-primary" align="center" value="Ingresar">                                        
+                                        <input type="submit" class="form-control btn-primary" align="center" value="${model.botonAccion}">                                        
                                     </div>
                                         
                                 </div>

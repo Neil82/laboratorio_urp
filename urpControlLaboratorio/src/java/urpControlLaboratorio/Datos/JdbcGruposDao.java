@@ -24,6 +24,12 @@ public class JdbcGruposDao  {
         return grupos;
     } 
     
+    public List<Grupo> getGrupoForm(String id) {
+
+        List<Grupo> grupos = this.jdbctemplate.query("select id, descripcion from grupo where id='"+id+"'", new JdbcGruposDao.GrupoMapper());
+        return grupos;
+    } 
+    
     private static class GrupoMapper implements ParameterizedRowMapper<Grupo> { 
         public Grupo mapRow(ResultSet rs, int rowNum) throws SQLException {
             Grupo grupo  = new Grupo();

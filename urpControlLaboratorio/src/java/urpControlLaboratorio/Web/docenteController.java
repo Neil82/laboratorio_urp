@@ -45,9 +45,10 @@ public class docenteController {
     @RequestMapping(value="insertarDocente.htm",method= RequestMethod.GET)
     public ModelAndView insertarDocente(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-                
-        return new ModelAndView("docente","model", new Docente());
+        Docente docente = new Docente();
+        docente.setTipoAccion("Ingresar los Datos del Docente");
+        docente.setBotonAccion("Ingresar");        
+        return new ModelAndView("docente","model", docente);
     }
     
     @RequestMapping(value="insertarDocente.htm",method= RequestMethod.POST)
@@ -66,6 +67,8 @@ public class docenteController {
         
         Map<String, Object> myModel = new HashMap<String, Object>();
         Docente docente = docentesManager.getDocente(request.getParameter("id"));
+        docente.setTipoAccion("Editar Datos del Docente");
+        docente.setBotonAccion("Actualizar");
         return new ModelAndView("docente","model", docente);
     }
     
@@ -81,21 +84,9 @@ public class docenteController {
     
     @RequestMapping(value="eliminarDocente.htm",method= RequestMethod.GET)
     public ModelAndView eliminarDocente(HttpServletRequest request){ 
-        
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        Docente docente = docentesManager.getDocente(request.getParameter("id"));
-        return new ModelAndView("docente","model", docente);*/
-        
+
         docentesManager.deleteDocente(request.getParameter("id"));
         return new ModelAndView("redirect:/maestroDocente.htm");
     }
-    
-    @RequestMapping(value="eliminarDocente.htm",method= RequestMethod.POST)
-    public ModelAndView deleteDocente(Docente docente, HttpServletRequest request){ 
-        
-        docentesManager.deleteDocente(request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroDocente.htm");
-    }
-    
  
 }

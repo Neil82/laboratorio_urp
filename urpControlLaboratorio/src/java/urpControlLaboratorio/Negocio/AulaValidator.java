@@ -31,7 +31,7 @@ public class AulaValidator {
 
         }
 
-        if (aula.getPc().trim() == "") {
+        if (aula.getAula().trim() == "") {
             return false;
         }
         

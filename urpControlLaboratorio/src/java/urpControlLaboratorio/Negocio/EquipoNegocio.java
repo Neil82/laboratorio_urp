@@ -9,12 +9,10 @@ public class EquipoNegocio {
     private EquipoValidator validador = new EquipoValidator();
     
     public List<Equipo> getEquipos() {
-        // return products;
         return equiposDao.getEquipos();
     } 
     
     public Equipo getEquipo(String id) {
-        // return products;
         return equiposDao.getEquipo(id);
     } 
     

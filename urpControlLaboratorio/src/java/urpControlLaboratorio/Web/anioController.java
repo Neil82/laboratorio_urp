@@ -45,9 +45,10 @@ public class anioController {
     @RequestMapping(value="insertarAnio.htm",method= RequestMethod.GET)
     public ModelAndView insertarAnio(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-                
-        return new ModelAndView("anio","model", new Anio());
+        Anio anio = new Anio();
+        anio.setTipoAccion("Ingresar los Datos del Año");
+        anio.setBotonAccion("Ingresar");       
+        return new ModelAndView("anio","model", anio);
     }
     
     @RequestMapping(value="insertarAnio.htm",method= RequestMethod.POST)
@@ -64,8 +65,9 @@ public class anioController {
     @RequestMapping(value="editarAnio.htm",method= RequestMethod.GET)
     public ModelAndView editarAnio(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
         Anio anio = aniosManager.getAnio(request.getParameter("id"));
+        anio.setTipoAccion("Editar Datos del Año");
+        anio.setBotonAccion("Actualizar");
         return new ModelAndView("anio","model", anio);
     }
     
@@ -82,20 +84,9 @@ public class anioController {
     @RequestMapping(value="eliminarAnio.htm",method= RequestMethod.GET)
     public ModelAndView eliminarAnio(HttpServletRequest request){ 
         
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        Anio anio = aniosManager.getAnio(request.getParameter("id"));
-        return new ModelAndView("anio","model", anio);*/
-        
         aniosManager.deleteAnio(request.getParameter("id"));
         return new ModelAndView("redirect:/maestroAnio.htm");
     }
-    
-    @RequestMapping(value="eliminarAnio.htm",method= RequestMethod.POST)
-    public ModelAndView deleteAnio(Anio anio, HttpServletRequest request){ 
-        
-        aniosManager.deleteAnio(request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroAnio.htm");
-    }
-    
+
  
 }

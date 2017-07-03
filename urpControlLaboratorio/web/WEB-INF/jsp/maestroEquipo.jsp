@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script src="../js/maestroAula.js" type="text/javascript"></script>
+<script src="bootbox-4.4.0.js" type="text/javascript"></script>
+<script src="laboratorio.js" type="text/javascript"></script>
 <html>
 <head>
   <title>Control de Laboratorio URP</title>
@@ -27,17 +28,34 @@
                                       </button>                                      
                                       &nbsp;&nbsp;Id.Equipo
                                   </th>
-                                  <th>Descripción</th>
-                                  <th>Opciones</th>
+                                  <th>Usuario</th>
+                                  <th>Procesador</th>
+                                  <th>Velocidad GHz</th>
+                                  <th>Mem. RAM</th>
+                                  <th>Disco D</th>
+                                  <th>Tarj. Video</th>
+                                  <th>Aula</th>
+                                  <th colspan="2">Opciones</th>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${model.equipos}" var="equipo">
                                         <tr><td><c:out value="${equipo.id}"/></td>
-                                            <td><c:out value="${equipo.descripcion}"/></td>
-                                            <td>
+                                            <td><c:out value="${equipo.eqnombre}"/></td>
+                                            <td><c:out value="${equipo.procesador}"/></td>
+                                            <td><c:out value="${equipo.velocidad}"/></td>
+                                            <td><c:out value="${equipo.ram}"/></td>
+                                            <td><c:out value="${equipo.disco_d}"/></td>
+                                            <td><c:out value="${equipo.tvideo}"/></td>
+                                            <td><c:out value="${equipo.idaula}"/></td>
+                                            <td style="width: 20px;">
                                                 <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarEquipo.htm?id=${equipo.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
-                                                <button type="button" class="btn-sm btn-danger btnEliminar" ><a style="color:white" href="<c:url value="eliminarEquipo.htm?id=${equipo.id}" />"><span class="glyphicon glyphicon-remove"></span></a></button>
                                             </td>
+                                            <td style="width: 20px;">
+                                                <div id="del" class="divEliminarEquipo" title="${equipo.id}">
+                                                    <button type="button" class="btn-sm btn-danger btnEliminar" ><a href="#" style="color:white"><span class="glyphicon glyphicon-remove"></span></a></button>
+                                                    
+                                                </div>
+                                           </td>
                                         </tr>       
                                     </c:forEach>
                                 </tbody>      

@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script src="../js/maestroAnio.js" type="text/javascript"></script>
+<script src="bootbox-4.4.0.js" type="text/javascript"></script>
+<script src="laboratorio.js" type="text/javascript"></script>
 <html>
 <head>
   <title>Control de Laboratorio URP</title>
@@ -28,16 +29,21 @@
                                       &nbsp;&nbsp;Ano Lectivo
                                   </th>
                                   <th>Descripción</th>
-                                  <th>Opciones</th>
+                                  <th colspan="2">Opciones</th>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${model.anios}" var="anio">
                                         <tr><td><c:out value="${anio.id}"/></td>
                                             <td><c:out value="${anio.descripcion}"/></td>
-                                            <td>
+                                            <td style="width: 20px;">
                                                 <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarAnio.htm?id=${anio.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
-                                                <button type="button" class="btn-sm btn-danger btnEliminar" ><a style="color:white" href="<c:url value="eliminarAnio.htm?id=${anio.id}" />"><span class="glyphicon glyphicon-remove"></span></a></button>
                                             </td>
+                                            <td style="width: 20px;">
+                                                <div id="del" class="divEliminarAnio" title="${anio.id}">
+                                                    <button type="button" class="btn-sm btn-danger btnEliminar" ><a href="#" style="color:white"><span class="glyphicon glyphicon-remove"></span></a></button>
+                                                    
+                                                </div>
+                                           </td>
                                         </tr>       
                                     </c:forEach>
                                 </tbody>      

@@ -74,23 +74,25 @@ public class cursosemestreController {
 
         //Map<String, Object> myModel = new HashMap<String, Object>();
         
-       List listAnios = this.aniosManager.getAnios(); 
-       List listSemestres = this.semestresManager.getSemestres();
-       List listCursos = this.cursosManager.getCursos();
-       List listGrupos = this.gruposManager.getGrupos();
-       List listSubGrupos = this.subgruposManager.getSubGrupos();
-       List listDocentes = this.docentesManager.getDocentes();
-        
-        CursoSemestre h = new CursoSemestre();
-        h.setSelAnio(request.getParameter("selAnio"));
-        h.setSelSemestre(request.getParameter("selSemestre"));
-        h.setListAnio(listAnios);
-        h.setListSemestre(listSemestres);
-        h.setListCurso(listCursos);
-        h.setListGrupo(listGrupos);
-        h.setListSubGrupo(listSubGrupos);
-        h.setListDocente(listDocentes);
-        return new ModelAndView("cursoSemestre","model", h);
+        List listAnios = this.aniosManager.getAnios(); 
+        List listSemestres = this.semestresManager.getSemestres();
+        List listCursos = this.cursosManager.getCursos();
+        List listGrupos = this.gruposManager.getGrupos();
+        List listSubGrupos = this.subgruposManager.getSubGrupos();
+        List listDocentes = this.docentesManager.getDocentes();
+
+         CursoSemestre cursosemestre = new CursoSemestre();
+         cursosemestre.setSelAnio(request.getParameter("selAnio"));
+         cursosemestre.setSelSemestre(request.getParameter("selSemestre"));
+         cursosemestre.setListAnio(listAnios);
+         cursosemestre.setListSemestre(listSemestres);
+         cursosemestre.setListCurso(listCursos);
+         cursosemestre.setListGrupo(listGrupos);
+         cursosemestre.setListSubGrupo(listSubGrupos);
+         cursosemestre.setListDocente(listDocentes);
+         cursosemestre.setTipoAccion("Ingresar los Datos del Curso-Semestre");
+         cursosemestre.setBotonAccion("Ingresar");       
+        return new ModelAndView("cursoSemestre","model", cursosemestre);
     }
     
     @RequestMapping(value="insertarCursoSemestre.htm",method= RequestMethod.POST)
@@ -106,9 +108,28 @@ public class cursosemestreController {
     
     @RequestMapping(value="editarCursoSemestre.htm",method= RequestMethod.GET)
     public ModelAndView editarCursoSemestre(HttpServletRequest request){ 
-        
-        Map<String, Object> myModel = new HashMap<String, Object>();
+
         CursoSemestre cursoSemestre = cursoSemestresManager.getCursoSemestre(request.getParameter("id"));
+        
+        List listAnios = this.aniosManager.getAnioForm(cursoSemestre.getId_anio()); 
+        List listSemestres = this.semestresManager.getSemestreForm(cursoSemestre.getId_semestre());
+        List listCursos = this.cursosManager.getCursoForm(cursoSemestre.getId_curso());
+        List listGrupos = this.gruposManager.getGrupoForm(cursoSemestre.getId_grupo());
+        List listSubGrupos = this.subgruposManager.getSubGrupoForm(cursoSemestre.getId_subgrupo());
+        List listDocentes = this.docentesManager.getDocenteForm(cursoSemestre.getId_docente());
+
+         CursoSemestre cursosemestre = new CursoSemestre();
+         cursosemestre.setSelAnio(request.getParameter("selAnio"));
+         cursosemestre.setSelSemestre(request.getParameter("selSemestre"));
+         cursosemestre.setListAnio(listAnios);
+         cursosemestre.setListSemestre(listSemestres);
+         cursosemestre.setListCurso(listCursos);
+         cursosemestre.setListGrupo(listGrupos);
+         cursosemestre.setListSubGrupo(listSubGrupos);
+         cursosemestre.setListDocente(listDocentes);
+        
+        cursoSemestre.setTipoAccion("Editar Datos del Curso-Semestre");
+        cursoSemestre.setBotonAccion("Actualizar");
         return new ModelAndView("cursoSemestre","model", cursoSemestre);
     }
     
@@ -124,21 +145,11 @@ public class cursosemestreController {
     
     @RequestMapping(value="eliminarCursoSemestre.htm",method= RequestMethod.GET)
     public ModelAndView eliminarCursoSemestre(HttpServletRequest request){ 
-        
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        CursoSemestre cursoSemestre = cursoSemestresManager.getCursoSemestre(request.getParameter("id"));
-        return new ModelAndView("cursoSemestre","model", cursoSemestre);*/
+
         
         cursoSemestresManager.deleteCursoSemestre(request.getParameter("id"));
         return new ModelAndView("redirect:/maestroCursoSemestre.htm");
     }
     
-    @RequestMapping(value="eliminarCursoSemestre.htm",method= RequestMethod.POST)
-    public ModelAndView deleteCursoSemestre(CursoSemestre cursoSemestre, HttpServletRequest request){ 
-        
-        cursoSemestresManager.deleteCursoSemestre(request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroCursoSemestre.htm");
-    }
-    
- 
+
 }

@@ -59,6 +59,8 @@
                 <prop key="maestroCursoSemestre.htm">cursosemestreController</prop>
                 <prop key="addCursoSemestre.htm">cursosemestreController</prop>
                 <prop key="insertarCursoSemestre.htm">cursosemestreController</prop>
+                <prop key="editarCursoSemestre.htm">cursosemestreController</prop>
+                <prop key="eliminarCursoSemestre.htm">cursosemestreController</prop>
             </props>
         </property>
     </bean>

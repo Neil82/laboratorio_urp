@@ -9,13 +9,16 @@ public class AnioNegocio {
     private AnioValidator validador = new AnioValidator();
     
     public List<Anio> getAnios() {
-        // return products;
         return aniosDao.getAnios();
     } 
     
     public Anio getAnio(String id) {
         // return products;
         return aniosDao.getAnio(id);
+    } 
+    
+    public List<Anio> getAnioForm(String id) {
+        return aniosDao.getAnioForm(id);
     } 
     
     public void insertAnio(Anio anio) {

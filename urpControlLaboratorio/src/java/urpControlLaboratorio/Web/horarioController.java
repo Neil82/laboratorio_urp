@@ -1,19 +1,14 @@
 
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import urpControlLaboratorio.Entidades.Horario;
 import urpControlLaboratorio.Negocio.AnioNegocio;
 import urpControlLaboratorio.Negocio.AulaNegocio;
@@ -21,7 +16,6 @@ import urpControlLaboratorio.Negocio.CursoSemestreNegocio;
 import urpControlLaboratorio.Negocio.DiaNegocio;
 import urpControlLaboratorio.Negocio.DuracionNegocio;
 import urpControlLaboratorio.Negocio.HoraNegocio;
-
 import urpControlLaboratorio.Negocio.HorarioNegocio;
 import urpControlLaboratorio.Negocio.HorarioValidator;
 import urpControlLaboratorio.Negocio.SemestreNegocio;
@@ -71,26 +65,24 @@ public class horarioController {
 
         //Map<String, Object> myModel = new HashMap<String, Object>();
         
-       List listAnios = this.aniosManager.getAnios(); 
-       List listSemestres = this.semestresManager.getSemestres();
-       List listAulas = this.aulasManager.getAulas();
+       List listAnios = this.aniosManager.getAnioForm(request.getParameter("selAnio")); 
+       List listSemestres = this.semestresManager.getSemestreForm(request.getParameter("selSemestre"));
+       List listAulas = this.aulasManager.getAulasForm(request.getParameter("selAula"));
        List listDias = this.diasManager.getDias();
        List listHoras = this.horasManager.getHoras();
        List listDuracion = this.duracionesManager.getDuracion();
        List listCursoSemestre = this.cursosemestreManager.getCursoSemestreForm(request.getParameter("selAnio"), request.getParameter("selSemestre"));
         
-        Horario h = new Horario();
-        //h.setSelAnio(request.getParameter("selAnio"));
-        //h.setSelSemestre(request.getParameter("selSemestre"));
-        h.setListAnio(listAnios);
-        h.setListSemestre(listSemestres);
-        h.setListAula(listAulas);
-        h.setListDia(listDias);
-        h.setListHora(listHoras);
-        h.setListDuracion(listDuracion);
-        h.setListCursoSemestre(listCursoSemestre);
+       Horario h = new Horario();
+       h.setListAnio(listAnios);
+       h.setListSemestre(listSemestres);
+       h.setListAula(listAulas);
+       h.setListDia(listDias);
+       h.setListHora(listHoras);
+       h.setListDuracion(listDuracion);
+       h.setListCursoSemestre(listCursoSemestre);
         
-        return new ModelAndView("horario","model", h);
+       return new ModelAndView("horario","model", h);
     }
     
     @RequestMapping(value="insertarHorario.htm",method= RequestMethod.POST)

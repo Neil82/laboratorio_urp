@@ -9,13 +9,15 @@ public class DocenteNegocio {
     private DocenteValidator validador = new DocenteValidator();
     
     public List<Docente> getDocentes() {
-        // return products;
         return docentesDao.getDocentes();
     } 
     
     public Docente getDocente(String id) {
-        // return products;
         return docentesDao.getDocente(id);
+    } 
+    
+    public List<Docente> getDocenteForm(String id) {
+        return docentesDao.getDocenteForm(id);
     } 
     
     public void insertDocente(Docente docente) {

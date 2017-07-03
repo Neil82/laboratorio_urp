@@ -13,4 +13,9 @@ public class GrupoNegocio {
         return gruposDao.getGrupos();
     } 
     
+    public List<Grupo> getGrupoForm(String id) {
+
+        return gruposDao.getGrupoForm(id);
+    } 
+    
 }

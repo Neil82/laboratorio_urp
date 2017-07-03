@@ -35,7 +35,7 @@ public class aulaController {
     public ModelAndView maestroAulas(HttpServletRequest request){ 
         
         Map<String, Object> myModel = new HashMap<String, Object>();
-        myModel.put("aulas", this.aulasManager.getAulas());         
+        myModel.put("aulas", this.aulasManager.getAulas());       
         return new ModelAndView("maestroAula","model", myModel);
     }
     
@@ -45,9 +45,10 @@ public class aulaController {
     @RequestMapping(value="insertarAula.htm",method= RequestMethod.GET)
     public ModelAndView insertarAula(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-                
-        return new ModelAndView("aula","model", new Aula());
+        Aula aula = new Aula();
+        aula.setTipoAccion("Ingresar los Datos del Aula");
+        aula.setBotonAccion("Ingresar");        
+        return new ModelAndView("aula","model", aula);
     }
     
     @RequestMapping(value="insertarAula.htm",method= RequestMethod.POST)
@@ -64,8 +65,9 @@ public class aulaController {
     @RequestMapping(value="editarAula.htm",method= RequestMethod.GET)
     public ModelAndView editarAula(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
         Aula aula = aulasManager.getAula(request.getParameter("id"));
+        aula.setTipoAccion("Editar Datos del Aula");
+        aula.setBotonAccion("Actualizar");
         return new ModelAndView("aula","model", aula);
     }
     
@@ -82,20 +84,9 @@ public class aulaController {
     @RequestMapping(value="eliminarAula.htm",method= RequestMethod.GET)
     public ModelAndView eliminarAula(HttpServletRequest request){ 
         
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        Aula aula = aulasManager.getAula(request.getParameter("id"));
-        return new ModelAndView("aula","model", aula);*/
-        
         aulasManager.deleteAula(request.getParameter("id"));
         return new ModelAndView("redirect:/maestroAula.htm");
     }
     
-    @RequestMapping(value="eliminarAula.htm",method= RequestMethod.POST)
-    public ModelAndView deleteAula(Aula aula, HttpServletRequest request){ 
-        
-        aulasManager.deleteAula(request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroAula.htm");
-    }
-    
- 
+   
 }

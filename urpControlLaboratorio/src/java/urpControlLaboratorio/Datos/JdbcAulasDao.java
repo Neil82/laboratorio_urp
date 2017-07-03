@@ -24,23 +24,29 @@ public class JdbcAulasDao  {
     
     public List<Aula> getAulas() {
 
-        List<Aula> aulas = this.jdbctemplate.query("select id, pc from aula where estado=1", new JdbcAulasDao.AulaMapper());
+        List<Aula> aulas = this.jdbctemplate.query("select id, aula from aula where estado=1", new JdbcAulasDao.AulaMapper());
         return aulas;
     } 
     
      public Aula getAula(String id) {
         
-        List<Aula> aulas =  this.jdbctemplate.query("select id, pc from aula where id='"+id+"'", new JdbcAulasDao.AulaMapper());
+        List<Aula> aulas =  this.jdbctemplate.query("select id, aula from aula where id='"+id+"'", new JdbcAulasDao.AulaMapper());
         return aulas.get(0);
         
     }
+     
+     public List<Aula> getAulasForm(String id) {
+
+        List<Aula> aulas = this.jdbctemplate.query("select id, aula from aula where id='"+id+"'", new JdbcAulasDao.AulaMapper());
+        return aulas;
+    } 
     
     public String getAulaValidacion(String id) {
         
         String name;
         
         try {
-            String sql = "select pc from aula where id = ?";
+            String sql = "select aula from aula where id = ?";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { id }, String.class);
         } catch (final EmptyResultDataAccessException e) {
@@ -55,7 +61,7 @@ public class JdbcAulasDao  {
         //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
-            "insert into aula (id, pc) values (?,?)",aula.getId(), aula.getPc());
+            "insert into aula (id, aula) values (?,?)",aula.getId(), aula.getAula());
         
         //logger.info("Rows affected: " + count);
     }
@@ -65,10 +71,10 @@ public class JdbcAulasDao  {
         
          this.jdbctemplate.update(
             "update aula "
-                    + "set pc = ? "
+                    + "set aula = ? "
                     + "where "
                     + "id = ?", 
-                 aula.getPc(), id);
+                 aula.getAula(), id);
         
         //logger.info("Rows affected: " + count);
     }    
@@ -90,7 +96,7 @@ public class JdbcAulasDao  {
         public Aula mapRow(ResultSet rs, int rowNum) throws SQLException {
             Aula aula  = new Aula();
             aula.setId(rs.getString("id"));
-            aula.setPc(rs.getString("pc"));            
+            aula.setAula(rs.getString("aula"));            
             return aula;
         } 
     } 

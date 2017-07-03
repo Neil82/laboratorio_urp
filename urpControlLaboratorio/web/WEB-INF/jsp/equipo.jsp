@@ -20,38 +20,292 @@
                 </ol>
                 
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Ingresar Equipo</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
-                            <div class="well">  
+                            <div class="well">
+                                
+                                
+                                
                                 
                                 <div class="row">
-                                    <label class="control-label col-md-2" style="text-align: right">Id.Equipo</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Usuario</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                                <form:input class="form-control" path="id"/>
+                                                <form:input class="form-control" path="eqnombre"/>
                                                 
                                         </div>
                                     </div>
-                                    <label class="control-label col-md-2" style="text-align: right">Descripción</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Aula</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:input class="form-control" path="descripcion"/>
+                                                <form:select class="form-control" path="idaula" >
+                                                    <form:options items="${model.listAula}"  
+                                                    itemValue="id"
+                                                    itemLabel="aula"/>
+                                                 </form:select>
                                             
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <input type="submit" class="form-control btn-primary" align="center" value="Ingresar">                                        
+                                   
+                                </div>
+                                                
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">CPU Marca</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="cpu_marca"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">CPU Modelo</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="cpu_modelo"/>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">CPU Serie</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="cpu_serie"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">Procesador</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                           <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="procesador"/>
+                                            
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                                
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Velocidad GHz</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="velocidad"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">Memoria RAM</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="ram"/>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Disco D</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="disco_d"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">Tarj. Video</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="tvideo"/>
+                                            
+                                        </div>
                                     </div>
                                         
+                                </div>  
+                                                
+                               
+                                                
+                                                
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right"></label>
                                 </div>
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: left">Monitor</label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Marca</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="monitor_marca"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">Modelo</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="monitor_modelo"/>
+                                            
+                                        </div>
+                                    </div>
+                                </div>  
+                                            
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Serie</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="monitor_serie"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right"></label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            
+                                        </div>
+                                    </div>   
+                                </div>   
+                                                
+                                                
+                                                
+                         
+                                                
+                                <div class="row">
+                                </div>
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: left">Teclado</label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Marca</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="teclado_marca"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">Modelo</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="teclado_modelo"/>
+                                            
+                                        </div>
+                                    </div>
+                                </div>  
+                                            
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Serie</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="teclado_serie"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right"></label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            
+                                        </div>
+                                    </div>   
+                                </div> 
+                                                
+                                                
+                                                
+                                                
+                                                
+              
+                                                
+                                <div class="row">
+                                </div>
+                                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: left">Mouse</label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Marca</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="mouse_marca"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right">Modelo</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                <form:input class="form-control" path="mouse_modelo"/>
+                                            
+                                        </div>
+                                    </div>
+                                </div>  
+                                            
+                                <div class="row">
+                                    <label class="control-label col-md-2" style="text-align: right">Serie</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                                <form:input class="form-control" path="mouse_serie"/>
+                                                
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2" style="text-align: right"></label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            
+                                        </div>
+                                    </div>   
+                                    
+                                    <div class="col-md-2">
+                                        <input type="submit" class="form-control btn-primary" align="center" value="${model.botonAccion}">                                        
+                                    </div>
+                                </div>                  
                                  
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <form:errors path="id" cssClass="error"/>   
-                                        <form:errors path="descripcion" cssClass="error"/>
+                                        <form:errors path="eqnombre" cssClass="error"/>   
+                                        <form:errors path="cpu_marca" cssClass="error"/>   
+                                        <form:errors path="cpu_modelo" cssClass="error"/>   
+                                        <form:errors path="cpu_serie" cssClass="error"/>   
+                                        <form:errors path="procesador" cssClass="error"/>
+                                        <form:errors path="velocidad" cssClass="error"/>
+                                        <form:errors path="ram" cssClass="error"/>
+                                        <form:errors path="disco_d" cssClass="error"/>
+                                        <form:errors path="tvideo" cssClass="error"/>
+                                        <form:errors path="idaula" cssClass="error"/>
+                                        
+                                        <form:errors path="monitor_marca" cssClass="error"/>   
+                                        <form:errors path="monitor_modelo" cssClass="error"/>   
+                                        <form:errors path="monitor_serie" cssClass="error"/>   
+                                        
+                                        <form:errors path="teclado_marca" cssClass="error"/>   
+                                        <form:errors path="teclado_modelo" cssClass="error"/>   
+                                        <form:errors path="teclado_serie" cssClass="error"/>   
+                                        
+                                        <form:errors path="mouse_marca" cssClass="error"/>   
+                                        <form:errors path="mouse_modelo" cssClass="error"/>   
+                                        <form:errors path="mouse_serie" cssClass="error"/>   
                                     </div>
                                 </div>
                                 

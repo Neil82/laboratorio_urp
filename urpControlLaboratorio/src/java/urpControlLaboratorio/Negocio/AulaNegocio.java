@@ -18,6 +18,10 @@ public class AulaNegocio {
         return aulasDao.getAula(id);
     } 
     
+    public List<Aula> getAulasForm(String id) {
+        return aulasDao.getAulasForm(id);
+    } 
+    
     public void insertAula(Aula aula) {
         
         if(this.validador.validate(aula))

@@ -60,7 +60,7 @@
                                                     <select name="selSemestre" class="form-control">
                                                         <option value="-1">--Seleccione--</option>
                                                         <c:forEach items="${model.semestres}" var="semestre">
-                                                            <option value="${semestre.descripcion}">${semestre.descripcion}</option>
+                                                            <option value="${semestre.id}">${semestre.descripcion}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>

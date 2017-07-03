@@ -34,6 +34,12 @@ public class JdbcCursosDao  {
         return cursos.get(0);
         
     }
+     
+    public List<Curso> getCursoForm(String id) {
+
+        List<Curso> cursos = this.jdbctemplate.query("select id, descripcion from curso where id='"+id+"'", new JdbcCursosDao.CursoMapper());
+        return cursos;
+    } 
     
     public String getCursoValidacion(String id) {
         

@@ -7,6 +7,8 @@ public class Docente {
     private String apellidos;
     private String password;
     private String docente_nom;
+    private String tipoAccion = "";
+    private String botonAccion = "";
     
     public String getId() {
         return id;
@@ -43,6 +45,22 @@ public class Docente {
 
     public void setDocente_nom(String docente_nom) {
         this.docente_nom = docente_nom;
+    }
+
+    public String getTipoAccion() {
+        return tipoAccion;
+    }
+
+    public void setTipoAccion(String tipoAccion) {
+        this.tipoAccion = tipoAccion;
+    }
+
+    public String getBotonAccion() {
+        return botonAccion;
+    }
+
+    public void setBotonAccion(String botonAccion) {
+        this.botonAccion = botonAccion;
     }
 
     

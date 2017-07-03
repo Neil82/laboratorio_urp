@@ -28,10 +28,17 @@ public class JdbcAniosDao  {
         return anios;
     } 
     
-     public Anio getAnio(String id) {
+    public Anio getAnio(String id) {
         
         List<Anio> anios =  this.jdbctemplate.query("select id, descripcion from anio where id='"+id+"'", new JdbcAniosDao.AnioMapper());
         return anios.get(0);
+        
+    }
+    
+    public List<Anio> getAnioForm(String id) {
+        
+        List<Anio> anios =  this.jdbctemplate.query("select id, descripcion from anio where id='"+id+"'", new JdbcAniosDao.AnioMapper());
+        return anios;
         
     }
     

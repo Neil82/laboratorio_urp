@@ -24,6 +24,13 @@ public class JdbcSemestresDao  {
         return semestres;
     } 
     
+    public List<Semestre> getSemestreForm(String id) {
+        
+        List<Semestre> semestres =  this.jdbctemplate.query("select id, descripcion from semestre where id='"+id+"'", new JdbcSemestresDao.SemestreMapper());
+        return semestres;
+        
+    }
+    
     private static class SemestreMapper implements ParameterizedRowMapper<Semestre> { 
         public Semestre mapRow(ResultSet rs, int rowNum) throws SQLException {
             Semestre semestre  = new Semestre();

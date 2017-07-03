@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script src="../js/maestroAula.js" type="text/javascript"></script>
+<script src="bootbox-4.4.0.js" type="text/javascript"></script>
+<script src="laboratorio.js" type="text/javascript"></script>
 <html>
 <head>
   <title>Control de Laboratorio URP</title>
@@ -28,16 +29,21 @@
                                       &nbsp;&nbsp;Aula
                                   </th>
                                   <th>PC Asociada</th>
-                                  <th>Opciones</th>
+                                  <th colspan="2">Opciones</th>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${model.aulas}" var="aula">
                                         <tr><td><c:out value="${aula.id}"/></td>
-                                            <td><c:out value="${aula.pc}"/></td>
-                                            <td>
+                                            <td><c:out value="${aula.aula}"/></td>
+                                            <td style="width: 20px;">
                                                 <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarAula.htm?id=${aula.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
-                                                <button type="button" class="btn-sm btn-danger btnEliminar" ><a style="color:white" href="<c:url value="eliminarAula.htm?id=${aula.id}" />"><span class="glyphicon glyphicon-remove"></span></a></button>
                                             </td>
+                                            <td style="width: 20px;">
+                                                <div id="del" class="divEliminarAula" title="${aula.id}">
+                                                    <button type="button" class="btn-sm btn-danger btnEliminar" ><a href="#" style="color:white"><span class="glyphicon glyphicon-remove"></span></a></button>
+                                                    
+                                                </div>
+                                           </td>
                                         </tr>       
                                     </c:forEach>
                                 </tbody>      

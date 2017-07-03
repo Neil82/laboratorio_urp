@@ -13,4 +13,9 @@ public class SubGrupoNegocio {
         return subgruposDao.getSubGrupos();
     } 
     
+    public List<SubGrupo> getSubGrupoForm(String id) {
+
+        return subgruposDao.getSubGrupoForm(id);
+    } 
+    
 }

@@ -32,8 +32,13 @@ public class JdbcDocentesDao  {
         
         List<Docente> docentes =  this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
         return docentes.get(0);
-        
     }
+     
+    public List<Docente> getDocenteForm(String id) {
+
+        List<Docente> docentes = this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
+        return docentes;
+    } 
     
     public String getDocenteValidacion(String id) {
         

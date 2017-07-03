@@ -13,4 +13,10 @@ public class SemestreNegocio {
         return semestresDao.getSemestres();
     } 
     
+    
+    public List<Semestre> getSemestreForm(String id) {
+
+        return semestresDao.getSemestreForm(id);
+    } 
+    
 }

@@ -9,13 +9,15 @@ public class CursoNegocio {
     private CursoValidator validador = new CursoValidator();
     
     public List<Curso> getCursos() {
-        // return products;
         return cursosDao.getCursos();
     } 
     
     public Curso getCurso(String id) {
-        // return products;
         return cursosDao.getCurso(id);
+    } 
+    
+    public List<Curso> getCursoForm(String id) {
+        return cursosDao.getCursoForm(id);
     } 
     
     public void insertCurso(Curso curso) {

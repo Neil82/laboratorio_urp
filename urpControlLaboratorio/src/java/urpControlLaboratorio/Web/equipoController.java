@@ -1,26 +1,23 @@
-
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import urpControlLaboratorio.Entidades.Equipo;
+import urpControlLaboratorio.Negocio.AulaNegocio;
 import urpControlLaboratorio.Negocio.EquipoNegocio;
 import urpControlLaboratorio.Negocio.EquipoValidator;
 
 public class equipoController {
     
     private EquipoNegocio equiposManager = new EquipoNegocio(); 
-    private EquipoValidator equiposValidador;
+    private final EquipoValidator equiposValidador;
+    private final AulaNegocio aulasManager = new AulaNegocio(); 
     
     public equipoController(){
   
@@ -39,15 +36,17 @@ public class equipoController {
         return new ModelAndView("maestroEquipo","model", myModel);
     }
     
-    
-    
-    
+
     @RequestMapping(value="insertarEquipo.htm",method= RequestMethod.GET)
     public ModelAndView insertarEquipo(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-                
-        return new ModelAndView("equipo","model", new Equipo());
+        List listAulas = this.aulasManager.getAulas();
+        //Map<String, Object> myModel = new HashMap<String, Object>();
+        Equipo equipo = new Equipo(); 
+        equipo.setListAula(listAulas);
+        equipo.setTipoAccion("Ingresar los Datos del Equipo");
+        equipo.setBotonAccion("Ingresar");
+        return new ModelAndView("equipo","model", equipo);
     }
     
     @RequestMapping(value="insertarEquipo.htm",method= RequestMethod.POST)
@@ -59,13 +58,18 @@ public class equipoController {
         return new ModelAndView("redirect:/maestroEquipo.htm");
     }
     
-    
+
     
     @RequestMapping(value="editarEquipo.htm",method= RequestMethod.GET)
     public ModelAndView editarEquipo(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
         Equipo equipo = equiposManager.getEquipo(request.getParameter("id"));
+        equipo.setTipoAccion("Editar Datos del Equipo");
+        equipo.setBotonAccion("Actualizar");
+        
+        List listAulas = this.aulasManager.getAulasForm(equipo.getIdaula());
+        equipo.setListAula(listAulas);
+      
         return new ModelAndView("equipo","model", equipo);
     }
     
@@ -82,20 +86,8 @@ public class equipoController {
     @RequestMapping(value="eliminarEquipo.htm",method= RequestMethod.GET)
     public ModelAndView eliminarEquipo(HttpServletRequest request){ 
         
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        Equipo equipo = equiposManager.getEquipo(request.getParameter("id"));
-        return new ModelAndView("equipo","model", equipo);*/
-        
         equiposManager.deleteEquipo(request.getParameter("id"));
         return new ModelAndView("redirect:/maestroEquipo.htm");
     }
-    
-    @RequestMapping(value="eliminarEquipo.htm",method= RequestMethod.POST)
-    public ModelAndView deleteEquipo(Equipo equipo, HttpServletRequest request){ 
-        
-        equiposManager.deleteEquipo(request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroEquipo.htm");
-    }
-    
  
 }

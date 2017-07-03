@@ -24,6 +24,12 @@ public class JdbcSubGruposDao  {
         return subgrupos;
     } 
     
+    public List<SubGrupo> getSubGrupoForm(String id) {
+
+        List<SubGrupo> subgrupos = this.jdbctemplate.query("select id, descripcion from subgrupo where id='"+id+"'", new JdbcSubGruposDao.SubGrupoMapper());
+        return subgrupos;
+    } 
+    
     private static class SubGrupoMapper implements ParameterizedRowMapper<SubGrupo> { 
         public SubGrupo mapRow(ResultSet rs, int rowNum) throws SQLException {
             SubGrupo subgrupo  = new SubGrupo();

@@ -45,9 +45,10 @@ public class cursoController {
     @RequestMapping(value="insertarCurso.htm",method= RequestMethod.GET)
     public ModelAndView insertarCurso(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-                
-        return new ModelAndView("curso","model", new Curso());
+        Curso curso = new Curso();
+        curso.setTipoAccion("Ingresar los Datos del Curso");
+        curso.setBotonAccion("Ingresar");      
+        return new ModelAndView("curso","model", curso);
     }
     
     @RequestMapping(value="insertarCurso.htm",method= RequestMethod.POST)
@@ -63,9 +64,10 @@ public class cursoController {
     
     @RequestMapping(value="editarCurso.htm",method= RequestMethod.GET)
     public ModelAndView editarCurso(HttpServletRequest request){ 
-        
-        Map<String, Object> myModel = new HashMap<String, Object>();
+
         Curso curso = cursosManager.getCurso(request.getParameter("id"));
+        curso.setTipoAccion("Editar Datos del Curso");
+        curso.setBotonAccion("Actualizar");
         return new ModelAndView("curso","model", curso);
     }
     
