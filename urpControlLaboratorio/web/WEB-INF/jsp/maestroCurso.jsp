@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <script src="bootbox-4.4.0.js" type="text/javascript"></script>
 <script src="laboratorio.js" type="text/javascript"></script>
 <html>

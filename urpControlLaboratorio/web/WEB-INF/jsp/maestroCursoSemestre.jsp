@@ -34,7 +34,7 @@
                                                 <td>Año</td>
                                                 <td>
                                                     
-                                                    <select name="selAnio" class="form-control" path="selAnio">
+                                                    <select name="selAnio" id="selAnio" class="form-control" onChange="showCursoSemestre()">
                                                         <option value="-1">--Seleccione--</option>
                                                         <c:forEach items="${model.anios}" var="anio">
                                                             <option value="${anio.id}">${anio.id}</option>
@@ -46,10 +46,10 @@
                                                 
                                                 <td>Semestre</td>
                                                 <td>
-                                                    <select name="selSemestre" class="form-control" path="selSemestre">
+                                                    <select name="selSemestre" id="selSemestre" class="form-control" onChange="showCursoSemestre()">
                                                         <option value="-1">--Seleccione--</option>
                                                         <c:forEach items="${model.semestres}" var="semestre">
-                                                            <option value="${semestre.descripcion}">${semestre.descripcion}</option>
+                                                            <option value="${semestre.id}">${semestre.descripcion}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
@@ -75,47 +75,22 @@
                                     </th>
                                 </tr>  
                                     
-                                  <tr>  
-                                    <th>                            
-                                        &nbsp;&nbsp;Año
-                                    </th>
-                                    <th>Semestre</th>
-                                    <th>Curso</th>
-                                    <th>Grupo</th>
-                                    <th>SubGrupo</th>
-                                    <th>Profesor</th>
-                                    <th colspan="2">Acciones</th>
-                                  </tr>
+                                  
                                 </thead>
-                                <tbody>
-                                    <c:forEach items="${model.cursoSemestres}" var="cursoSemestre">
-                                        <tr><td><c:out value="${cursoSemestre.id_anio}"/></td>
-                                            <td><c:out value="${cursoSemestre.id_semestre}"/></td>
-                                            <td><c:out value="${cursoSemestre.id_curso}"/></td>
-                                            <td><c:out value="${cursoSemestre.id_grupo}"/></td>
-                                            <td><c:out value="${cursoSemestre.id_subgrupo}"/></td>
-                                            <td><c:out value="${cursoSemestre.id_docente}"/></td>
-                                            <td style="width: 20px;">
-                                                <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarCursoSemestre.htm?id=${cursoSemestre.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
-                                            </td>
-                                            <td style="width: 20px;">
-                                                <div id="del" class="divEliminarCursoSemestre" title="${cursoSemestre.id}">
-                                                    <button type="button" class="btn-sm btn-danger btnEliminar" ><a href="#" style="color:white"><span class="glyphicon glyphicon-remove"></span></a></button>
-                                                    
-                                                </div>
-                                           </td>
-                                        </tr>       
-                                    </c:forEach>
-                                </tbody>      
+                               
+                        
                             </table>
-                            <br>                            
+                                                  
                         </div>
+                        
+                        <div id="txtHint"><b></b></div> 
                     </div>
-               
+                 
             </div>
+            
         </div>
         
-                
+             
         
     </div>
 

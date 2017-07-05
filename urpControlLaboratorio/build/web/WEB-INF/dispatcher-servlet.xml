@@ -55,12 +55,14 @@
                 <prop key="maestroHorario.htm">horarioController</prop>
                 <prop key="addHorario.htm">horarioController</prop>
                 <prop key="insertarHorario.htm">horarioController</prop>
+                <prop key="maestroHorarioAccion.htm">horarioController</prop>
                 
                 <prop key="maestroCursoSemestre.htm">cursosemestreController</prop>
                 <prop key="addCursoSemestre.htm">cursosemestreController</prop>
                 <prop key="insertarCursoSemestre.htm">cursosemestreController</prop>
                 <prop key="editarCursoSemestre.htm">cursosemestreController</prop>
                 <prop key="eliminarCursoSemestre.htm">cursosemestreController</prop>
+                <prop key="maestroCursoSemestreAccion.htm">cursosemestreController</prop>
             </props>
         </property>
     </bean>

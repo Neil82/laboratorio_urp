@@ -13,7 +13,7 @@ $jb(function() {
         var id = $jb(this).attr('title');
 
         bootbox.confirm({
-                message: "¿Seguro de Eliminar el Registro?",
+                message: "\u00BFSeguro de Eliminar el Registro?",
                 buttons: {
                         confirm: {
                                 label: 'Si, Eliminar',
@@ -66,7 +66,7 @@ $jb(function() {
         var id = $jb(this).attr('title');
 
         bootbox.confirm({
-                message: "¿Seguro de Eliminar el Registro?",
+                message: "\u00BFSeguro de Eliminar el Registro?",
                 buttons: {
                         confirm: {
                                 label: 'Si, Eliminar',
@@ -121,7 +121,7 @@ $jb(function() {
         var id = $jb(this).attr('title');
 
         bootbox.confirm({
-                message: "¿Seguro de Eliminar el Registro?",
+                message: "\u00BFSeguro de Eliminar el Registro?",
                 buttons: {
                         confirm: {
                                 label: 'Si, Eliminar',
@@ -177,7 +177,7 @@ $jb(function() {
         var id = $jb(this).attr('title');
 
         bootbox.confirm({
-                message: "¿Seguro de Eliminar el Registro?",
+                message: "\u00BFSeguro de Eliminar el Registro?",
                 buttons: {
                         confirm: {
                                 label: 'Si, Eliminar',
@@ -233,7 +233,7 @@ $jb(function() {
         var id = $jb(this).attr('title');
 
         bootbox.confirm({
-                message: "¿Seguro de Eliminar el Registro?",
+                message: "\u00BFSeguro de Eliminar el Registro?",
                 buttons: {
                         confirm: {
                                 label: 'Si, Eliminar',
@@ -289,7 +289,7 @@ $jb(function() {
         var id = $jb(this).attr('title');
 
         bootbox.confirm({
-                message: "¿Seguro de Eliminar el Registro?",
+                message: "\u00BFSeguro de Eliminar el Registro?",
                 buttons: {
                         confirm: {
                                 label: 'Si, Eliminar',
@@ -337,3 +337,39 @@ $jb(function() {
     });
 })
 
+function showCursoSemestre() {
+    var selAnio = $jb("#selAnio").val();
+    var selSemestre = $jb("#selSemestre").val();
+
+    if(selAnio!="-1" && selSemestre!="-1"){
+
+        $jb('#txtHint').html("Procesando...");
+
+        $jb.ajax({
+            url : 'http://localhost:8080/urpControlLaboratorio/maestroCursoSemestreAccion.htm?selAnio='+selAnio+"&selSemestre="+selSemestre,
+            success : function(data) {
+                $jb('#txtHint').html(data);
+            }
+        });
+
+    }
+}
+
+function showHorario() {
+    var selAnio = $jb("#selAnio").val();
+    var selSemestre = $jb("#selSemestre").val();
+    var selAula = $jb("#selAula").val();
+
+    if(selAnio!="-1" && selSemestre!="-1" && selAula!="-1"){
+
+        $jb('#txtHint').html("Procesando...");
+
+        $jb.ajax({
+            url : 'http://localhost:8080/urpControlLaboratorio/maestroHorarioAccion.htm?selAnio='+selAnio+"&selSemestre="+selSemestre+"&selAula="+selAula,
+            success : function(data) {
+                $jb('#txtHint').html(data);
+            }
+        });
+
+    }
+}

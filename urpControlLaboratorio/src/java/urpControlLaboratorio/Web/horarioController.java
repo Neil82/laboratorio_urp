@@ -49,13 +49,21 @@ public class horarioController {
         
         Map<String, Object> myModel = new HashMap<String, Object>();
         
-        myModel.put("horarios", this.horariosManager.getHorarios()); 
+        //myModel.put("horarios", this.horariosManager.getHorarios()); 
         myModel.put("aulas", this.aulasManager.getAulas());        
         myModel.put("anios", this.aniosManager.getAnios());  
         myModel.put("semestres", this.semestresManager.getSemestres());  
         return new ModelAndView("maestroHorario","model", myModel);
     }
     
+    
+    @RequestMapping(value="maestroHorarioAccion.htm", method= RequestMethod.GET)
+    public ModelAndView maestroHorarioAccion(HttpServletRequest request){ 
+        
+        Map<String, Object> myModel = new HashMap<String, Object>();
+        myModel.put("horarios", this.horariosManager.getHorarioAjax(request.getParameter("selAnio"), request.getParameter("selSemestre"), request.getParameter("selAula")));  
+        return new ModelAndView("maestroHorario_Accion","model", myModel);
+    }
     
     
     

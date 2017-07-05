@@ -9,13 +9,18 @@ public class HorarioNegocio {
     private HorarioValidator validador = new HorarioValidator();
     
     public List<Horario> getHorarios() {
-        // return products;
+
         return horariosDao.getHorarios();
     } 
     
     public Horario getHorario(String id) {
-        // return products;
+
         return horariosDao.getHorario(id);
+    } 
+    
+    public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
+
+        return horariosDao.getHorarioAjax(id_anio, id_semestre, id_aula);
     } 
     
     public void insertHorario(Horario horario) {

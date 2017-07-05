@@ -49,9 +49,27 @@ public class JdbcCursoSemestresDao  {
                 + "left join docente d on d.id=cs.id_docente "
                 + "where cs.id_anio='"+id_anio+"' and cs.id_semestre='"+id_semestre+"'", new JdbcCursoSemestresDao.CursoSemestreFormMapper());
         return cursoSemestres;
+    }
+    
+    
+    public List<CursoSemestre> getCursoSemestreAjax(String id_anio, String id_semestre) {
+
+        List<CursoSemestre> cursoSemestres = 
+                this.jdbctemplate.query("select cs.id, a.id as anio, s.descripcion as semestre,"
+                + "c.descripcion as curso, g.descripcion as grupo, sg.descripcion as subgrupo,"
+                + "concat(d.apellidos,' ',d.nombres) as docente "
+                + "from cursoSemestre cs left join anio a on a.id=cs.id_anio "
+                + "left join semestre s on s.id=cs.id_semestre "
+                + "left join curso c on c.id=cs.id_curso "
+                + "left join grupo g on g.id=cs.id_grupo "
+                + "left join subgrupo sg on sg.id=cs.id_subgrupo "
+                + "left join docente d on d.id=id_docente "
+                + "where cs.id_anio='"+id_anio+"' and cs.id_semestre='"+id_semestre+"'", new JdbcCursoSemestresDao.CursoSemestreMapper());
+        return cursoSemestres;
     } 
     
-     public CursoSemestre getCursoSemestre(String id) {
+    
+    public CursoSemestre getCursoSemestre(String id) {
         
         List<CursoSemestre> cursoSemestres =  this.jdbctemplate.query("select cs.id, a.id as anio, s.descripcion as semestre,"
                 + "c.descripcion as curso, g.descripcion as grupo, sg.descripcion as subgrupo,"

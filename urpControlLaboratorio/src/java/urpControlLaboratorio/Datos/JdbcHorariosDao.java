@@ -55,10 +55,30 @@ public class JdbcHorariosDao  {
                 + "left join cursoSemestre cs on cs.id = h.id_cursosemestre "
                 + "left join curso c on c.id = cs.id_curso "
                 + "left join docente do on do.id = cs.id_docente "
-                + "where id='"+id+"'", new JdbcHorariosDao.HorarioMapper());
+                + "where h.id='"+id+"'", new JdbcHorariosDao.HorarioMapper());
         return horarios.get(0);
         
     }
+     
+    public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
+        
+        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, s.descripcion as semestre, "
+                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, "
+                + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
+                + "from horario h left join anio a on a.id = h.id_anio "
+                + "left join semestre s on s.id = h.id_semestre "
+                + "left join aula au on au.id = h.id_aula "
+                + "left join dia d on d.id = h.id_dia "
+                + "left join hora hi on hi.id = h.id_hinicio "
+                + "left join duracion hf on hf.id = h.id_duracion "
+                + "left join cursoSemestre cs on cs.id = h.id_cursosemestre "
+                + "left join curso c on c.id = cs.id_curso "
+                + "left join docente do on do.id = cs.id_docente "
+                + "where h.id_anio='"+id_anio+"' and h.id_semestre='"+id_semestre+"' and "
+                + "id_aula ='"+id_aula+"'", new JdbcHorariosDao.HorarioMapper());
+        return horarios;
+        
+    } 
     
     public String getHorarioValidacion(String id_anio, String id_semestre, String id_aula, 
             String id_dia, String id_hinicio, String id_duracion, String id_cursosemestre) {

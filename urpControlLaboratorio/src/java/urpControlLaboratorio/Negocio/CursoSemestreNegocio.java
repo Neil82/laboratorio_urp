@@ -18,6 +18,11 @@ public class CursoSemestreNegocio {
         return cursoSemestresDao.getCursoSemestreForm(id_anio,id_semestre);
     } 
     
+    public List<CursoSemestre> getCursoSemestreAjax(String id_anio, String id_semestre) {
+        // return products;
+        return cursoSemestresDao.getCursoSemestreAjax(id_anio,id_semestre);
+    } 
+    
     public CursoSemestre getCursoSemestre(String id) {
         // return products;
         return cursoSemestresDao.getCursoSemestre(id);

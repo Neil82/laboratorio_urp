@@ -1,20 +1,14 @@
 
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import urpControlLaboratorio.Entidades.CursoSemestre;
 import urpControlLaboratorio.Negocio.AnioNegocio;
 import urpControlLaboratorio.Negocio.CursoNegocio;
@@ -49,24 +43,23 @@ public class cursosemestreController {
     public ModelAndView maestroCursoSemestres(HttpServletRequest request){ 
         
         Map<String, Object> myModel = new HashMap<String, Object>();
-        myModel.put("cursoSemestres", this.cursoSemestresManager.getCursoSemestres()); 
-        myModel.put("cursos", this.cursosManager.getCursos());        
+        //myModel.put("cursoSemestres", this.cursoSemestresManager.getCursoSemestres()); 
         myModel.put("anios", this.aniosManager.getAnios());  
         myModel.put("semestres", this.semestresManager.getSemestres());  
         return new ModelAndView("maestroCursoSemestre","model", myModel);
     }
     
     
-    
-    /*@RequestMapping(value="insertarCursoSemestre.htm",method= RequestMethod.GET)
-    public ModelAndView insertarCursoSemestre(HttpServletRequest request){ 
+    @RequestMapping(value="maestroCursoSemestreAccion.htm",method= RequestMethod.GET)
+    public ModelAndView maestroCursoSemestreAccion(HttpServletRequest request){ 
         
         Map<String, Object> myModel = new HashMap<String, Object>();
-        CursoSemestre h = new CursoSemestre();
-        //h.setId(request.getParameter("id"));
-        //h.setAula(request.getParameter("id"));
-        return new ModelAndView("cursoSemestre","model", h);
-    }*/
+        myModel.put("cursoSemestres", this.cursoSemestresManager.getCursoSemestreAjax(request.getParameter("selAnio"), request.getParameter("selSemestre")));  
+        return new ModelAndView("maestroCursoSemestre_Accion","model", myModel);
+    }
+    
+    
+ 
     
     @RequestMapping(value="addCursoSemestre.htm",method= RequestMethod.POST)
     public ModelAndView addCursoSemestre(HttpServletRequest request, CursoSemestre cursoSemestre){ 
