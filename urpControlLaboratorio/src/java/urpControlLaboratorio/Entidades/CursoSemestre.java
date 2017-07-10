@@ -10,14 +10,21 @@ public class CursoSemestre {
     private String id_subgrupo;
     private String id_docente;
     private String cursoDocente;
+    
     private List listCurso;
     private List listAnio;
     private List listSemestre;
     private List listGrupo;
     private List listSubGrupo;
     private List listDocente;
+    
     private String selAnio;
     private String selSemestre;
+    private String selCurso;
+    private String selGrupo;
+    private String selSubgrupo;
+    private String selDocente;
+    
     private String tipoAccion = "";
     private String botonAccion = "";
     
@@ -164,6 +171,38 @@ public class CursoSemestre {
 
     public void setBotonAccion(String botonAccion) {
         this.botonAccion = botonAccion;
+    }
+
+    public String getSelCurso() {
+        return selCurso;
+    }
+
+    public void setSelCurso(String selCurso) {
+        this.selCurso = selCurso;
+    }
+
+    public String getSelGrupo() {
+        return selGrupo;
+    }
+
+    public void setSelGrupo(String selGrupo) {
+        this.selGrupo = selGrupo;
+    }
+
+    public String getSelSubgrupo() {
+        return selSubgrupo;
+    }
+
+    public void setSelSubgrupo(String selSubgrupo) {
+        this.selSubgrupo = selSubgrupo;
+    }
+
+    public String getSelDocente() {
+        return selDocente;
+    }
+
+    public void setSelDocente(String selDocente) {
+        this.selDocente = selDocente;
     }
     
 }

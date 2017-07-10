@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         
-        <div class="panel panel-primary">
+        <div class="panel panel-primary panel-success">
             <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Cursos x Semestre</div>
             <div class="panel-body">
                 
@@ -90,11 +90,7 @@
             
         </div>
         
-             
-        
     </div>
-
-  
 
 </body>
 </html>

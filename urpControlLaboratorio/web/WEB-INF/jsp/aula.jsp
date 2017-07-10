@@ -17,10 +17,10 @@
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroAula.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroAula.htm" />">Volver</a></li>
                 </ol>
                 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary panel-success">
                     
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>
                        
@@ -33,7 +33,7 @@
                             <div class="well">  
                                 
                                 <div class="row">
-                                    <label class="control-label col-md-2" style="text-align: right">Aula</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Id.</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
@@ -41,7 +41,7 @@
                                                 
                                         </div>
                                     </div>
-                                    <label class="control-label col-md-2" style="text-align: right">Pc asociada</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Aula</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>

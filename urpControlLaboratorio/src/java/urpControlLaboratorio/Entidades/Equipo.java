@@ -1,8 +1,9 @@
-package urpControlLaboratorio.Entidades; 
+package urpControlLaboratorio.Entidades;
 
 import java.util.List;
 
-public class Equipo { 
+public class Equipo {
+
     private String id;
     private String eqnombre;
     private String procesador;
@@ -12,7 +13,7 @@ public class Equipo {
     private String tvideo;
     private String idaula;
     private List listAula;
-    
+
     private String monitor_marca;
     private String monitor_modelo;
     private String monitor_serie;
@@ -22,13 +23,15 @@ public class Equipo {
     private String mouse_marca;
     private String mouse_modelo;
     private String mouse_serie;
-    
+
     private String cpu_marca;
     private String cpu_modelo;
     private String cpu_serie;
-    
+
     private String tipoAccion = "";
     private String botonAccion = "";
+
+    private String selAula;
 
     public String getId() {
         return id;
@@ -212,6 +215,14 @@ public class Equipo {
 
     public void setBotonAccion(String botonAccion) {
         this.botonAccion = botonAccion;
+    }
+
+    public String getSelAula() {
+        return selAula;
+    }
+
+    public void setSelAula(String selAula) {
+        this.selAula = selAula;
     }
 
 }

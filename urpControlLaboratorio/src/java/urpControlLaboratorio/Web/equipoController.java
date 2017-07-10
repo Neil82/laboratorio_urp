@@ -67,8 +67,10 @@ public class equipoController {
         equipo.setTipoAccion("Editar Datos del Equipo");
         equipo.setBotonAccion("Actualizar");
         
-        List listAulas = this.aulasManager.getAulasForm(equipo.getIdaula());
+        List listAulas = this.aulasManager.getAulas();
         equipo.setListAula(listAulas);
+        
+        equipo.setSelAula(equipo.getIdaula());
       
         return new ModelAndView("equipo","model", equipo);
     }

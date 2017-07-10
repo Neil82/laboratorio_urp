@@ -19,7 +19,7 @@
                     <li><a href="<c:url value="/maestroUsuario.htm" />">Volver<a></li>
                 </ol>
                 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary panel-success">
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Ingresar Usuario</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">

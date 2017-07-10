@@ -55,6 +55,7 @@
                 <prop key="maestroHorario.htm">horarioController</prop>
                 <prop key="addHorario.htm">horarioController</prop>
                 <prop key="insertarHorario.htm">horarioController</prop>
+                <prop key="editarHorario.htm">horarioController</prop>
                 <prop key="maestroHorarioAccion.htm">horarioController</prop>
                 
                 <prop key="maestroCursoSemestre.htm">cursosemestreController</prop>

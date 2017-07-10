@@ -71,9 +71,10 @@ public class JdbcCursoSemestresDao  {
     
     public CursoSemestre getCursoSemestre(String id) {
         
-        List<CursoSemestre> cursoSemestres =  this.jdbctemplate.query("select cs.id, a.id as anio, s.descripcion as semestre,"
-                + "c.descripcion as curso, g.descripcion as grupo, sg.descripcion as subgrupo,"
-                + "concat(d.apellidos,' ',d.nombres) as docente "
+        List<CursoSemestre> cursoSemestres =  this.jdbctemplate.query("select cs.id, a.id as anio, "
+                + "s.id as semestre,"
+                + "c.id as curso, g.id as grupo, sg.id as subgrupo,"
+                + "d.id as docente "
                 + "from cursoSemestre cs left join anio a on a.id=cs.id_anio "
                 + "left join semestre s on s.id=cs.id_semestre "
                 + "left join curso c on c.id=cs.id_curso "
@@ -146,7 +147,7 @@ public class JdbcCursoSemestresDao  {
         public CursoSemestre mapRow(ResultSet rs, int rowNum) throws SQLException {
             CursoSemestre cursoSemestre  = new CursoSemestre();
             cursoSemestre.setId(rs.getString("id"));
-            cursoSemestre.setId_anio(rs.getString("anio")); 
+            cursoSemestre.setId_anio(rs.getString("anio"));
             cursoSemestre.setId_semestre(rs.getString("semestre"));
             cursoSemestre.setId_curso(rs.getString("curso"));
             cursoSemestre.setId_grupo(rs.getString("grupo"));

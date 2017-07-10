@@ -43,9 +43,9 @@ public class JdbcHorariosDao  {
     
      public Horario getHorario(String id) {
         
-        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, s.descripcion as semestre, "
-                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, "
-                + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
+        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, s.id as semestre, "
+                + "au.id as aula, d.id as dia, hi.id as hora_inicio, "
+                + "hf.id as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
                 + "from horario h left join anio a on a.id = h.id_anio "
                 + "left join semestre s on s.id = h.id_semestre "
                 + "left join aula au on au.id = h.id_aula "

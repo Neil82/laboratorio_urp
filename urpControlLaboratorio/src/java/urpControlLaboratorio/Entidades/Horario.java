@@ -1,5 +1,4 @@
 package urpControlLaboratorio.Entidades; 
-import java.io.Serializable;
 import java.util.List;
 
 public class Horario { 
@@ -11,6 +10,15 @@ public class Horario {
     private String id_hinicio;
     private String id_duracion;
     private String id_cursosemestre;
+    
+    private String selAnio;
+    private String selSemestre;
+    private String selAula;
+    private String selDia;
+    private String selHoraInicio;
+    private String selDuracion;
+    private String selcursoSemestre;
+    
     private List listAnio;
     private List listSemestre;
     private List listAula;
@@ -18,6 +26,9 @@ public class Horario {
     private List listHora;
     private List listDuracion;
     private List listCursoSemestre;
+    
+    private String tipoAccion = "";
+    private String botonAccion = "";
     
     public String getId() {
         return id;
@@ -140,6 +151,77 @@ public class Horario {
         this.listCursoSemestre = listCursoSemestre;
     }
 
-   
+    public String getSelAnio() {
+        return selAnio;
+    }
+
+    public void setSelAnio(String selAnio) {
+        this.selAnio = selAnio;
+    }
+
+    public String getSelSemestre() {
+        return selSemestre;
+    }
+
+    public void setSelSemestre(String selSemestre) {
+        this.selSemestre = selSemestre;
+    }
+
+    public String getSelAula() {
+        return selAula;
+    }
+
+    public void setSelAula(String selAula) {
+        this.selAula = selAula;
+    }
+
+    public String getSelDia() {
+        return selDia;
+    }
+
+    public void setSelDia(String selDia) {
+        this.selDia = selDia;
+    }
+
+    public String getSelHoraInicio() {
+        return selHoraInicio;
+    }
+
+    public void setSelHoraInicio(String selHoraInicio) {
+        this.selHoraInicio = selHoraInicio;
+    }
+
+    public String getSelDuracion() {
+        return selDuracion;
+    }
+
+    public void setSelDuracion(String selDuracion) {
+        this.selDuracion = selDuracion;
+    }
+
+    public String getSelcursoSemestre() {
+        return selcursoSemestre;
+    }
+
+    public void setSelcursoSemestre(String selcursoSemestre) {
+        this.selcursoSemestre = selcursoSemestre;
+    }
+
+    public String getTipoAccion() {
+        return tipoAccion;
+    }
+
+    public void setTipoAccion(String tipoAccion) {
+        this.tipoAccion = tipoAccion;
+    }
+
+    public String getBotonAccion() {
+        return botonAccion;
+    }
+
+    public void setBotonAccion(String botonAccion) {
+        this.botonAccion = botonAccion;
+    }
+
     
 }

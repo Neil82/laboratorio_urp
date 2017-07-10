@@ -107,9 +107,39 @@ public class horarioController {
     @RequestMapping(value="editarHorario.htm",method= RequestMethod.GET)
     public ModelAndView editarHorario(HttpServletRequest request){ 
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-        Horario horario = horariosManager.getHorario(request.getParameter("id"));
+        Horario horario_sel = horariosManager.getHorario(request.getParameter("id"));
+        
+        List listAnios = this.aniosManager.getAnioForm(horario_sel.getId_anio()); 
+        List listSemestres = this.semestresManager.getSemestreForm(horario_sel.getId_semestre());
+        List listAulas = this.aulasManager.getAulasForm(horario_sel.getId_aula());
+        List listDias = this.diasManager.getDias();
+        List listHoras = this.horasManager.getHoras();
+        List listDuracion = this.duracionesManager.getDuracion();
+        List listCursoSemestre = this.cursosemestreManager.getCursoSemestreForm(horario_sel.getId_anio(), horario_sel.getId_semestre());
+
+        Horario horario = new Horario();
+         
+        horario.setSelAnio(horario_sel.getId_anio());
+        horario.setSelSemestre(horario_sel.getId_semestre());
+        horario.setSelAula(horario_sel.getId_aula());
+        horario.setSelDia(horario_sel.getId_dia());
+        horario.setSelHoraInicio(horario_sel.getId_hinicio());
+        horario.setSelDuracion(horario_sel.getId_duracion());
+        horario.setSelcursoSemestre(horario_sel.getId_cursosemestre());
+         
+        horario.setListAnio(listAnios);
+        horario.setListSemestre(listSemestres);
+        horario.setListAula(listAulas);
+        horario.setListDia(listDias);
+        horario.setListHora(listHoras);
+        horario.setListDuracion(listDuracion);
+        horario.setListCursoSemestre(listCursoSemestre);
+         
+        
+        horario.setTipoAccion("Editar Datos del Horario");
+        horario.setBotonAccion("Actualizar");
         return new ModelAndView("horario","model", horario);
+     
     }
     
     @RequestMapping(value="editarHorario.htm",method= RequestMethod.POST)

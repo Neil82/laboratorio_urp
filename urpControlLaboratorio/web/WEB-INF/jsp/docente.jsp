@@ -19,7 +19,7 @@
                     <li><a href="<c:url value="/maestroDocente.htm" />">Volver<a></li>
                 </ol>
                 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary panel-success">
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
@@ -55,11 +55,11 @@
                                         </div>
                                     </div>
                                                 
-                                    <label class="control-label col-md-2" style="text-align: right">password</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Password</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:input class="form-control" path="password"/>
+                                                <form:password class="form-control" path="password"/>
                                             
                                         </div>
                                     </div>

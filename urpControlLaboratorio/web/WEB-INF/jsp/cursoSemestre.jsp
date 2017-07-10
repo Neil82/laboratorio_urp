@@ -19,7 +19,7 @@
                     <li><a href="<c:url value="/maestroCursoSemestre.htm" />">Volver<a></li>
                 </ol>
                 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary panel-success">
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
@@ -33,9 +33,18 @@
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                               
                                                  <form:select class="form-control" path="id_anio" >
-                                                    <form:options items="${model.listAnio}"  
-                                                    itemValue="id"
-                                                    itemLabel="id"/>
+                                                    
+                                                    <c:forEach items="${model.listAnio}" var="lanios">
+                                                    <c:choose>
+                                                        <c:when test="${lanios.id == model.selAnio}">
+                                                            <option value="${lanios.id}" selected>${lanios.id}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${lanios.id}" >${lanios.id}</option>
+                                                        </c:otherwise> 
+                                                    </c:choose> 
+                                                    </c:forEach>
+                                                    
                                                  </form:select>
                                         </div>
                                     </div>
@@ -45,12 +54,22 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                              
-                                                 <form:select class="form-control" path="id_semestre" >
-                                                    <form:options items="${model.listSemestre}"  
-                                                    itemValue="id"
-                                                    itemLabel="descripcion"/>
-                                                 </form:select>
+                                                
+                                                <form:select class="form-control" path="id_semestre" >
+                                                    
+                                                    <c:forEach items="${model.listSemestre}" var="lsemestre">
+                                                    <c:choose>
+                                                        <c:when test="${lsemestre.id == model.selSemestre}">
+                                                            <option value="${lsemestre.id}" selected>${lsemestre.descripcion}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${lsemestre.id}" >${lsemestre.descripcion}</option>
+                                                        </c:otherwise> 
+                                                    </c:choose> 
+                                                    </c:forEach>
+                                                    
+                                                </form:select>
+                                                
                                         </div>
                                     </div>
                                   
@@ -63,11 +82,21 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                               
-                                                 <form:select class="form-control" path="id_curso" >
-                                                    <form:options items="${model.listCurso}"  
-                                                    itemValue="id"
-                                                    itemLabel="descripcion"/>
-                                                 </form:select>
+                                                <form:select class="form-control" path="id_curso" >
+                                                    
+                                                    <c:forEach items="${model.listCurso}" var="lcurso">
+                                                    <c:choose>
+                                                        <c:when test="${lcurso.id == model.selCurso}">
+                                                            <option value="${lcurso.id}" selected>${lcurso.descripcion}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${lcurso.id}" >${lcurso.descripcion}</option>
+                                                        </c:otherwise> 
+                                                    </c:choose> 
+                                                    </c:forEach>
+                                                    
+                                                </form:select>
+                                                
                                         </div>
                                     </div>
                                                 
@@ -76,11 +105,21 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                               
-                                                 <form:select class="form-control" path="id_grupo" >
-                                                    <form:options items="${model.listGrupo}"  
-                                                    itemValue="id"
-                                                    itemLabel="descripcion"/>
-                                                 </form:select>
+                                                <form:select class="form-control" path="id_grupo" >
+                                                    
+                                                    <c:forEach items="${model.listGrupo}" var="lgrupo">
+                                                    <c:choose>
+                                                        <c:when test="${lgrupo.id == model.selGrupo}">
+                                                            <option value="${lgrupo.id}" selected>${lgrupo.descripcion}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${lgrupo.id}" >${lgrupo.descripcion}</option>
+                                                        </c:otherwise> 
+                                                    </c:choose> 
+                                                    </c:forEach>
+                                                    
+                                                </form:select>
+                                               
                                         </div>
                                     </div>
                                                 
@@ -92,11 +131,21 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                              <form:select class="form-control" path="id_subgrupo" >
-                                                    <form:options items="${model.listSubGrupo}"  
-                                                    itemValue="id"
-                                                    itemLabel="descripcion"/>
-                                                 </form:select>
+                                            
+                                                <form:select class="form-control" path="id_subgrupo" >
+                                                    
+                                                    <c:forEach items="${model.listSubGrupo}" var="lsubgrupo">
+                                                    <c:choose>
+                                                        <c:when test="${lsubgrupo.id == model.selSubgrupo}">
+                                                            <option value="${lsubgrupo.id}" selected>${lsubgrupo.descripcion}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${lsubgrupo.id}" >${lsubgrupo.descripcion}</option>
+                                                        </c:otherwise> 
+                                                    </c:choose> 
+                                                    </c:forEach>
+                                                    
+                                                </form:select>
                                                
                                         </div>
                                     </div>
@@ -105,11 +154,22 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                              <form:select class="form-control" path="id_docente" >
-                                                    <form:options items="${model.listDocente}"  
-                                                    itemValue="id"
-                                                    itemLabel="docente_nom"/>
-                                                 </form:select>
+                                            
+                                                <form:select class="form-control" path="id_docente" >
+                                                    
+                                                    <c:forEach items="${model.listDocente}" var="ldocente">
+                                                    <c:choose>
+                                                        <c:when test="${ldocente.id == model.selDocente}">
+                                                            <option value="${ldocente.id}" selected>${ldocente.docente_nom}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${ldocente.id}" >${ldocente.docente_nom}</option>
+                                                        </c:otherwise> 
+                                                    </c:choose> 
+                                                    </c:forEach>
+                                                    
+                                                </form:select>
+                                             
                                         </div>
                                     </div>
                                     

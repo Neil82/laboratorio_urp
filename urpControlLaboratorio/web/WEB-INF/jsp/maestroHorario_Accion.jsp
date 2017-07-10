@@ -6,9 +6,7 @@
 
 <table class="table table-hover">
     <tr>  
-      <th>                            
-          &nbsp;&nbsp;Hora Inicio
-      </th>
+      <th>&nbsp;&nbsp;Hora Inicio</th>
       <th>Hora Fin</th>
       <th>Lunes</th>
       <th>Martes</th>
@@ -20,7 +18,8 @@
     </tr>
 
     <c:forEach items="${model.horarios}" var="horario">
-        <tr><td><c:out value="${horario.id_anio}"/></td>
+        <tr>
+            <td><c:out value="${horario.id_anio}"/></td>
             <td><c:out value="${horario.id_semestre}"/></td>
             <td><c:out value="${horario.id_aula}"/></td>
             <td><c:out value="${horario.id_dia}"/></td>
