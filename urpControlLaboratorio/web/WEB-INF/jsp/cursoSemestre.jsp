@@ -12,7 +12,7 @@
         </style>  
     </head>
     <body>
-        <form:form method="post" commandName="model" action="insertarCursoSemestre.htm">
+        <form:form method="post" commandName="model" action="${model.accion}">
             <div class="container">
                 
                 <ol class="breadcrumb">

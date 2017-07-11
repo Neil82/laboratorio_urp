@@ -35,9 +35,17 @@
                                                 
                                                     <select name="selAula" id="selAula" class="form-control" onChange="showHorario()">
                                                         <option value="-1">--Seleccione--</option>
-                                                        <c:forEach items="${model.aulas}" var="aula">
-                                                            <option value="${aula.id}">${aula.aula}</option>
+                                                        <c:forEach items="${model.listAula}" var="aula">
+                                                            <c:choose>
+                                                                <c:when test="${aula.id == model.selAula}">
+                                                                    <option value="${aula.id}" selected>${aula.aula}</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="${aula.id}" >${aula.aula}</option>
+                                                                </c:otherwise> 
+                                                            </c:choose> 
                                                         </c:forEach>
+                                                       
                                                     </select>
 
                                                 </td>
@@ -47,9 +55,17 @@
                                                     
                                                     <select name="selAnio" id="selAnio" class="form-control" onChange="showHorario()">
                                                         <option value="-1">--Seleccione--</option>
-                                                        <c:forEach items="${model.anios}" var="anio">
-                                                            <option value="${anio.id}">${anio.id}</option>
+                                                        <c:forEach items="${model.listAnio}" var="anio">
+                                                            <c:choose>
+                                                                <c:when test="${anio.id == model.selAnio}">
+                                                                    <option value="${anio.id}" selected>${anio.id}</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="${anio.id}" >${anio.id}</option>
+                                                                </c:otherwise> 
+                                                            </c:choose> 
                                                         </c:forEach>
+                                                       
                                                     </select>
                                                     
                                                 </td>
@@ -59,9 +75,17 @@
                                                 <td>
                                                     <select name="selSemestre" id="selSemestre" class="form-control" onChange="showHorario()">
                                                         <option value="-1">--Seleccione--</option>
-                                                        <c:forEach items="${model.semestres}" var="semestre">
-                                                            <option value="${semestre.id}">${semestre.descripcion}</option>
+                                                        <c:forEach items="${model.listSemestre}" var="semestre">
+                                                            <c:choose>
+                                                                <c:when test="${semestre.id == model.selSemestre}">
+                                                                    <option value="${semestre.id}" selected>${semestre.descripcion}</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="${semestre.id}" >${semestre.descripcion}</option>
+                                                                </c:otherwise> 
+                                                            </c:choose> 
                                                         </c:forEach>
+                                                   
                                                     </select>
                                                 </td>
                                                 
@@ -101,7 +125,12 @@
         
     </div>
 
-  
+        <script>
+            window.onload = function() {
+               showHorario();
+            }
+        </script>
+        
 
 </body>
 </html>

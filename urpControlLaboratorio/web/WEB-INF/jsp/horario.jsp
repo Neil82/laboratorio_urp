@@ -12,7 +12,7 @@
         </style>  
     </head>
     <body>
-        <form:form method="post" commandName="model"  action="insertarHorario.htm">
+        <form:form method="post" commandName="model"  action="${model.accion}">
             <div class="container">
                 
                 <ol class="breadcrumb">
@@ -197,6 +197,9 @@
                                 </div>                 
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="id_anio" cssClass="error"/>   
                                         <form:errors path="id_semestre" cssClass="error"/>
@@ -215,11 +218,7 @@
                 </div>
             </div>
         </form:form>
-
-
-
-
-
+        
         
 </body>
 </html>

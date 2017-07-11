@@ -60,7 +60,7 @@ public class JdbcHorariosDao  {
         
     }
      
-    public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
+    /*public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
         
         List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, "
                 + "s.descripcion as semestre, "
@@ -79,29 +79,17 @@ public class JdbcHorariosDao  {
                 + "id_aula ='"+id_aula+"'", new JdbcHorariosDao.HorarioMapper());
         return horarios;
         
-    } 
+    } */
+     
+    public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
+        
+        List<Horario> horarios =  this.jdbctemplate.query("call sp_horario ('"+id_anio+"', '"+id_semestre+"', '"+id_aula+"')", new JdbcHorariosDao.HorarioReporteMapper());
+        return horarios;
+        
+    }
     
-    public String getHorarioValidacion(String id_anio, String id_semestre, String id_aula, 
-            String id_dia, String id_hinicio, String id_duracion, String id_cursosemestre) {
-        
-        String name;
-        
-        try {
-            String sql = "select id_anio from horario where id_anio = ? "
-                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and "
-                    + " id_duracion = ? and id_cursosemestre = ?";
-            name = (String)this.jdbctemplate.queryForObject(
-			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicio, id_duracion, id_cursosemestre }, String.class);
-        } catch (final EmptyResultDataAccessException e) {
-	  name = null;
-        
-         }
-         
-	return name;
-    } 
      
     public void insertHorario(Horario horario) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "insert into horario (id_anio, id_semestre, id_aula, id_dia, id_hinicio, "
@@ -109,31 +97,27 @@ public class JdbcHorariosDao  {
                  horario.getId_anio(), horario.getId_semestre(), horario.getId_aula(), horario.getId_dia(), 
                  horario.getId_hinicio(), horario.getId_duracion(), horario.getId_cursosemestre());
         
-        //logger.info("Rows affected: " + count);
     }
     
     public void updateHorario(Horario horario, String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update horario "
                     + "set id_anio = ?, "
-                    + "set id_semestre = ?, "
-                    + "set id_aula = ?, "
-                    + "set id_dia = ?, "
-                    + "set id_hinicio = ?, "
-                    + "set id_duracion = ?, "
-                    + "set id_cursosemestre = ? "
+                    + " id_semestre = ?, "
+                    + " id_aula = ?, "
+                    + " id_dia = ?, "
+                    + " id_hinicio = ?, "
+                    + " id_duracion = ?, "
+                    + " id_cursosemestre = ? "
                     + "where "
                     + "id = ?", 
                  horario.getId_anio(), horario.getId_semestre(), horario.getId_aula(), horario.getId_dia(), 
                  horario.getId_hinicio(), horario.getId_duracion(), horario.getId_cursosemestre(), id);
-        
-        //logger.info("Rows affected: " + count);
+
     }    
     
     public void deleteHorario(String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update horario "
@@ -141,9 +125,279 @@ public class JdbcHorariosDao  {
                     + "where "
                     + "id = ?", 
                  id);
-        
-        //logger.info("Rows affected: " + count);
+       
     }
+    
+    
+    public String getHorarioValidacionInsert(String id_anio, String id_semestre, String id_aula, 
+            String id_dia, String id_hinicio, String id_duracion, String id_cursosemestre) {
+        
+        String name = "";
+        Integer cantidad = 0;
+        Integer durac_test = 0;
+        Integer id_duracionT = Integer.parseInt(id_duracion);
+        Integer id_hinicioT = Integer.parseInt(id_hinicio);
+        Integer id_hinicioTT = Integer.parseInt(id_hinicio);
+        
+        try {
+            
+            String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? ";
+            cantidad = (Integer)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicio }, Integer.class);
+        
+            } catch (final EmptyResultDataAccessException e) { name = ""; cantidad=0; }
+        
+        
+        
+            if(cantidad <= 0 && id_hinicioT > 1){
+            
+                try {
+                    id_hinicioT = id_hinicioT - 1;
+
+                    String sql = "select id_duracion from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    durac_test = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT }, Integer.class);
+                    if(durac_test >= 2){ name="repetido"; }
+                    
+                } catch (final EmptyResultDataAccessException e) { cantidad = 0; durac_test=0; }
+                
+                
+                try {
+                    if(durac_test <= 0 && id_hinicioT > 1){
+                        id_hinicioT = id_hinicioT - 1;
+
+                        String sql = "select id_duracion from horario where id_anio = ? "
+                                + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                        durac_test = (Integer)this.jdbctemplate.queryForObject(
+                                sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT }, Integer.class);
+                    }
+                    if(durac_test >= 3){ name="repetido"; }
+                } catch (final EmptyResultDataAccessException e) { cantidad = 0; durac_test=0;  }
+                
+                
+                try {
+                    if(durac_test <= 0 && id_hinicioT > 1){
+                        id_hinicioT = id_hinicioT - 1;
+
+                        String sql = "select id_duracion from horario where id_anio = ? "
+                                + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                        durac_test = (Integer)this.jdbctemplate.queryForObject(
+                                sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT }, Integer.class);
+                    }
+                    if(durac_test >= 4){ name="repetido"; }
+                } catch (final EmptyResultDataAccessException e) { cantidad = 0; durac_test=0;  }
+                
+                
+                try {
+                    if(durac_test <= 0 && id_hinicioT > 1){
+                        id_hinicioT = id_hinicioT - 1;
+
+                        String sql = "select id_duracion from horario where id_anio = ? "
+                                + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                        durac_test = (Integer)this.jdbctemplate.queryForObject(
+                                sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT }, Integer.class);
+                    }
+                    if(durac_test >= 5){ name="repetido"; }
+                } catch (final EmptyResultDataAccessException e) { cantidad = 0; durac_test=0;  }
+                
+                
+                try {
+                    if(durac_test <= 0 && id_hinicioT > 1){
+                        id_hinicioT = id_hinicioT - 1;
+
+                        String sql = "select id_duracion from horario where id_anio = ? "
+                                + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                        durac_test = (Integer)this.jdbctemplate.queryForObject(
+                                sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT }, Integer.class);
+                    }
+                    if(durac_test >= 6){ name="repetido"; }
+                } catch (final EmptyResultDataAccessException e) { cantidad = 0; durac_test=0;  }
+                
+                
+                try {
+                    if(durac_test <= 0 && id_hinicioT > 1){
+                        id_hinicioT = id_hinicioT - 1;
+
+                        String sql = "select id_duracion from horario where id_anio = ? "
+                                + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                        durac_test = (Integer)this.jdbctemplate.queryForObject(
+                                sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT }, Integer.class);
+                    }
+                    if(durac_test >= 7){ name="repetido"; }
+                } catch (final EmptyResultDataAccessException e) { cantidad = 0; durac_test=0;  }
+                
+            }
+            
+            
+            
+            try {
+                if(name.equals("") && id_duracionT >= 2){
+                    id_hinicioTT = id_hinicioTT + 1;
+
+                    String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    cantidad = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioTT }, Integer.class);
+                    if(cantidad > 0){ name="repetido"; }
+                }
+            } catch (final EmptyResultDataAccessException e) { cantidad = 0; name="";}
+            
+            try {
+                if(name.equals("") && id_duracionT >= 3){
+                    id_hinicioTT = id_hinicioTT + 1;
+
+                    String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    cantidad = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioTT }, Integer.class);
+                    if(cantidad > 0){ name="repetido"; }
+                }
+            } catch (final EmptyResultDataAccessException e) { cantidad = 0; name=""; }
+            
+            try {
+                if(name.equals("") && id_duracionT >= 4){
+                    id_hinicioTT = id_hinicioTT + 1;
+
+                    String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    cantidad = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioTT }, Integer.class);
+                    if(cantidad > 0){ name="repetido"; }
+                }
+            } catch (final EmptyResultDataAccessException e) { cantidad = 0; name=""; }
+            
+            try {
+                if(name.equals("") && id_duracionT >= 5){
+                    id_hinicioTT = id_hinicioTT + 1;
+
+                    String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    cantidad = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioTT }, Integer.class);
+                    if(cantidad > 0){ name="repetido"; }
+                }
+            } catch (final EmptyResultDataAccessException e) { cantidad = 0; name=""; }
+            
+            try {
+                if(name.equals("") && id_duracionT >= 6){
+                    id_hinicioTT = id_hinicioTT + 1;
+
+                    String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    cantidad = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioTT }, Integer.class);
+                    if(cantidad > 0){ name="repetido"; }
+                }
+            } catch (final EmptyResultDataAccessException e) { cantidad = 0; name=""; }
+            
+            try {
+                if(name.equals("") && id_duracionT >= 7){
+                    id_hinicioTT = id_hinicioTT + 1;
+
+                    String sql = "select count(id_anio) as cantidad from horario where id_anio = ? "
+                            + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ?";
+                    cantidad = (Integer)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioTT }, Integer.class);
+                    if(cantidad > 0){ name="repetido"; }
+                }
+            } catch (final EmptyResultDataAccessException e) { cantidad = 0; name=""; }
+            
+            if(name.equals("")){ name = null; }
+            
+        
+         
+	return name;
+    } 
+    
+    public String getHorarioValidacionUpd(String id_anio, String id_semestre, String id_aula, 
+            String id_dia, String id_hinicio, String id_duracion, String id_cursosemestre, String id) {
+        
+        String name;
+        int id_duracionT = Integer.parseInt(id_duracion);
+        
+        try {
+            String sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicio, id }, String.class);
+            
+            if(id_duracionT >= 2){
+                
+                int id_hinicioT = Integer.parseInt(id_hinicio);
+                id_hinicioT = id_hinicioT + 1;
+                        
+                sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+                name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT, id }, String.class);
+            }
+            
+            if(id_duracionT >= 3){
+                
+                int id_hinicioT = Integer.parseInt(id_hinicio);
+                id_hinicioT = id_hinicioT + 2;
+                        
+                sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+                name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT, id }, String.class);
+            }
+            
+            if(id_duracionT >= 4){
+                
+                int id_hinicioT = Integer.parseInt(id_hinicio);
+                id_hinicioT = id_hinicioT + 3;
+                        
+                sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+                name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT, id }, String.class);
+            }
+            
+            if(id_duracionT >= 5){
+                
+                int id_hinicioT = Integer.parseInt(id_hinicio);
+                id_hinicioT = id_hinicioT + 4;
+                        
+                sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+                name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT, id }, String.class);
+            }
+            
+            if(id_duracionT >= 6){
+                
+                int id_hinicioT = Integer.parseInt(id_hinicio);
+                id_hinicioT = id_hinicioT + 5;
+                        
+                sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+                name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT, id }, String.class);
+            }
+            
+            if(id_duracionT >= 7){
+                
+                int id_hinicioT = Integer.parseInt(id_hinicio);
+                id_hinicioT = id_hinicioT + 6;
+                        
+                sql = "select id_anio from horario where id_anio = ? "
+                    + " and id_semestre = ? and id_aula = ? and id_dia = ? and id_hinicio = ? and id <> ?";
+                name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_aula, id_dia, id_hinicioT, id }, String.class);
+            }
+            
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
+    
     
     private static class HorarioMapper implements ParameterizedRowMapper<Horario> { 
         public Horario mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -157,6 +411,21 @@ public class JdbcHorariosDao  {
             horario.setHora_fin(rs.getString("hora_fin"));
             horario.setId_duracion(rs.getString("duracion"));
             horario.setId_cursosemestre(rs.getString("cursosemestre"));
+            return horario;
+        } 
+    } 
+    
+    private static class HorarioReporteMapper implements ParameterizedRowMapper<Horario> { 
+        public Horario mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Horario horario = new Horario();
+            horario.setRep_horaInicio(rs.getString("hora_inicio"));
+            horario.setRep_horaFin(rs.getString("hora_fin"));
+            horario.setRep_lunes(rs.getString("lunes"));
+            horario.setRep_martes(rs.getString("martes"));
+            horario.setRep_miercoles(rs.getString("miercoles"));
+            horario.setRep_jueves(rs.getString("jueves"));
+            horario.setRep_viernes(rs.getString("viernes"));
+            horario.setRep_sabado(rs.getString("sabado"));
             return horario;
         } 
     } 

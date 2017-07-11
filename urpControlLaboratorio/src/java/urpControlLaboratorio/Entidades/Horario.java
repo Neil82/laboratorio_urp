@@ -30,6 +30,18 @@ public class Horario {
     
     private String tipoAccion = "";
     private String botonAccion = "";
+    private String accion = "";
+    
+    private String rep_horaInicio;
+    private String rep_horaFin;
+    private String rep_lunes;
+    private String rep_martes;
+    private String rep_miercoles;
+    private String rep_jueves;
+    private String rep_viernes;
+    private String rep_sabado;
+    
+    private String msgError;
     
     public String getId() {
         return id;
@@ -224,6 +236,14 @@ public class Horario {
         this.botonAccion = botonAccion;
     }
 
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
     public String getHora_fin() {
         return hora_fin;
     }
@@ -232,5 +252,76 @@ public class Horario {
         this.hora_fin = hora_fin;
     }
 
-    
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
+    }
+
+    public String getRep_horaInicio() {
+        return rep_horaInicio;
+    }
+
+    public void setRep_horaInicio(String rep_horaInicio) {
+        this.rep_horaInicio = rep_horaInicio;
+    }
+
+    public String getRep_horaFin() {
+        return rep_horaFin;
+    }
+
+    public void setRep_horaFin(String rep_horaFin) {
+        this.rep_horaFin = rep_horaFin;
+    }
+
+    public String getRep_lunes() {
+        return rep_lunes;
+    }
+
+    public void setRep_lunes(String rep_lunes) {
+        this.rep_lunes = rep_lunes;
+    }
+
+    public String getRep_martes() {
+        return rep_martes;
+    }
+
+    public void setRep_martes(String rep_martes) {
+        this.rep_martes = rep_martes;
+    }
+
+    public String getRep_miercoles() {
+        return rep_miercoles;
+    }
+
+    public void setRep_miercoles(String rep_miercoles) {
+        this.rep_miercoles = rep_miercoles;
+    }
+
+    public String getRep_jueves() {
+        return rep_jueves;
+    }
+
+    public void setRep_jueves(String rep_jueves) {
+        this.rep_jueves = rep_jueves;
+    }
+
+    public String getRep_viernes() {
+        return rep_viernes;
+    }
+
+    public void setRep_viernes(String rep_viernes) {
+        this.rep_viernes = rep_viernes;
+    }
+
+    public String getRep_sabado() {
+        return rep_sabado;
+    }
+
+    public void setRep_sabado(String rep_sabado) {
+        this.rep_sabado = rep_sabado;
+    }
+
 }

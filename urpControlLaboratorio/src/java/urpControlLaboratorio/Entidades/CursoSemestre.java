@@ -27,6 +27,7 @@ public class CursoSemestre {
     
     private String tipoAccion = "";
     private String botonAccion = "";
+    private String accion = "";
     
     public String getId() {
         return id;
@@ -171,6 +172,14 @@ public class CursoSemestre {
 
     public void setBotonAccion(String botonAccion) {
         this.botonAccion = botonAccion;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
     }
 
     public String getSelCurso() {

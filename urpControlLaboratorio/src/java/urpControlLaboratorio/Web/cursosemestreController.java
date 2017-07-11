@@ -83,8 +83,11 @@ public class cursosemestreController {
         cursosemestre.setListGrupo(listGrupos);
         cursosemestre.setListSubGrupo(listSubGrupos);
         cursosemestre.setListDocente(listDocentes);
+        
         cursosemestre.setTipoAccion("Ingresar los Datos del Curso-Semestre");
-        cursosemestre.setBotonAccion("Ingresar");       
+        cursosemestre.setBotonAccion("Ingresar");     
+        cursosemestre.setAccion("insertarCursoSemestre.htm");   
+        
         return new ModelAndView("cursoSemestre","model", cursosemestre);
     }
     
@@ -130,6 +133,8 @@ public class cursosemestreController {
         
         cursosemestre.setTipoAccion("Editar Datos del Curso-Semestre");
         cursosemestre.setBotonAccion("Actualizar");
+        cursosemestre.setAccion("editarCursoSemestre.htm");   
+        
         return new ModelAndView("cursoSemestre","model", cursosemestre);
     }
     

@@ -23,16 +23,30 @@ public class HorarioNegocio {
         return horariosDao.getHorarioAjax(id_anio, id_semestre, id_aula);
     } 
     
-    public void insertHorario(Horario horario) {
+    public String insertHorario(Horario horario) {
         
-        if(this.validador.validate(horario))
+        String resultado = this.validador.validateInsert(horario);
+        
+        if(resultado == "ok"){
             horariosDao.insertHorario(horario);
-        //else
-            //regresar mensaje de error                  
+            resultado = "ok";
+        } 
+        
+        return resultado; 
+        
     } 
     
-    public void updateHorario(Horario horario, String id) {
-        horariosDao.updateHorario(horario, id);                  
+    public String updateHorario(Horario horario, String id) {
+        
+        String resultado = this.validador.validateUpdate(horario, id);
+        
+        if(resultado == "ok"){
+            horariosDao.updateHorario(horario, id); 
+            resultado = "ok";
+        } 
+        
+        return resultado;  
+                         
     }
     
     public void deleteHorario(String id) {
