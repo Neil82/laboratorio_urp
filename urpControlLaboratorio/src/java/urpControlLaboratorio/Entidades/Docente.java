@@ -3,12 +3,14 @@ import java.io.Serializable;
 
 public class Docente { 
     private String id;
+    private String coddocente;
     private String nombres;
     private String apellidos;
     private String password;
     private String docente_nom;
     private String tipoAccion = "";
     private String botonAccion = "";
+    private String msgError = "";
     
     public String getId() {
         return id;
@@ -16,6 +18,15 @@ public class Docente {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getCoddocente() {
+        return coddocente;
+    }
+
+    public void setCoddocente(String coddocente) {
+        this.coddocente = coddocente;
+    }
+    
     public String getNombres() {
         return nombres;
     }    
@@ -63,5 +74,11 @@ public class Docente {
         this.botonAccion = botonAccion;
     }
 
-    
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
+    }
 }

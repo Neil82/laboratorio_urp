@@ -1,18 +1,13 @@
 
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+import urpControlLaboratorio.Entidades.Curso;
 import urpControlLaboratorio.Entidades.Docente;
 import urpControlLaboratorio.Negocio.DocenteNegocio;
 import urpControlLaboratorio.Negocio.DocenteValidator;
@@ -52,12 +47,31 @@ public class docenteController {
     }
     
     @RequestMapping(value="insertarDocente.htm",method= RequestMethod.POST)
-    public ModelAndView insertarDocente(Docente docente){ 
-        Errors errors = null;
+    public ModelAndView insertarDocente(HttpServletRequest request, Docente docente){ 
         
-        //this.docentesValidador.validate(docente, errors);
-        docentesManager.insertDocente(docente); 
-        return new ModelAndView("redirect:/maestroDocente.htm");
+        
+        Docente docente_form = new Docente();
+        
+        String resultado = docentesManager.insertDocente(docente);  
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroDocente.htm");
+            
+        } else{
+            
+            docente_form.setTipoAccion("Ingresar los Datos del Docente");
+            docente_form.setBotonAccion("Ingresar");
+            docente_form.setCoddocente(request.getParameter("coddocente"));
+            docente_form.setNombres(request.getParameter("nombres"));
+            docente_form.setApellidos(request.getParameter("apellidos"));
+            docente_form.setPassword(request.getParameter("password"));
+            
+            docente_form.setMsgError(resultado);
+            
+            return new ModelAndView("docente","model", docente_form);
+        }
+
     }
     
     
@@ -72,11 +86,32 @@ public class docenteController {
         return new ModelAndView("docente","model", docente);
     }
     
+    
     @RequestMapping(value="editarDocente.htm",method= RequestMethod.POST)
     public ModelAndView editarDocente(Docente docente, HttpServletRequest request){ 
         
-        docentesManager.updateDocente(docente, request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroDocente.htm");
+        String resultado = docentesManager.updateDocente(docente, request.getParameter("id"));
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroDocente.htm");
+            
+        } else{
+            
+            Docente docente_upd = docentesManager.getDocente(request.getParameter("id"));
+            docente_upd.setTipoAccion("Editar Datos del Docente");
+            docente_upd.setBotonAccion("Actualizar");
+            
+            docente_upd.setCoddocente(request.getParameter("coddocente"));
+            docente_upd.setNombres(request.getParameter("nombres"));
+            docente_upd.setApellidos(request.getParameter("apellidos"));
+            docente_upd.setPassword(request.getParameter("password"));
+            
+            docente_upd.setMsgError(resultado);
+            
+            return new ModelAndView("docente","model", docente_upd);
+        }
+
     }
     
     

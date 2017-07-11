@@ -1,8 +1,6 @@
 
 package urpControlLaboratorio.Negocio;
 
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import urpControlLaboratorio.Datos.JdbcDocentesDao;
 import urpControlLaboratorio.Entidades.Docente;
 
@@ -11,40 +9,46 @@ public class DocenteValidator {
     private JdbcDocentesDao jdbc = new JdbcDocentesDao();
 
     
-    /*@Override
-    public boolean supports(Class<?> type) {
-        return Docente.class.isAssignableFrom(type);
-    }*/
-
+    public String validateInsert(Docente docente) {
     
-    public boolean validate(Docente docente) {
-    
-        String id = docente.getId().trim(); 
-        if ( id == "") {
-            return false;
+        String coddocente = docente.getCoddocente().trim(); 
+        if ( coddocente == "") {
+            return "Ingrese el Código del Docente";
         }
         else {
 
-            if(jdbc.getDocenteValidacion(id) != null){
-                return false;
+            if(jdbc.getDocenteValidacion(coddocente) != null){
+                return "La Docente ingresado ya se encuentra registrado";
             }
-
         }
 
         if (docente.getNombres().trim() == "") {
-            return false;
+            return "Ingrese los Nombres del Docente";
         }
         
         if (docente.getApellidos().trim() == "") {
-            return false;
+            return "Ingrese los Apellidos del Docente";
         }
+      
+        return "ok";
+    }
+    
+    
+    public String validateUpdate(Docente docente, String id) {
+    
+        String coddocente = docente.getCoddocente().trim(); 
         
-        if (docente.getPassword().trim() == "") {
-            return false;
+        if ( coddocente == "") {
+            return "Ingrese el Código del Docente";
         }
-        
-        //validar que el Docente no este insertada
-        return true;
+        else {
+
+            if(jdbc.getDocenteValidacionUpd(coddocente, id) != null){
+                return "El Código de Docente ingresado ya se encuentra registrado";
+            }
+              
+        }
+       return "ok";
     }
     
 }

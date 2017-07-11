@@ -5,16 +5,15 @@ import java.util.List;
 import urpControlLaboratorio.Entidades.Aula;
 import urpControlLaboratorio.Datos.JdbcAulasDao;
 public class AulaNegocio {
+    
     private JdbcAulasDao aulasDao = new JdbcAulasDao(); // aulasDao declarada en el property del bean del applicationContext id="aulasManager"
     private AulaValidator validador = new AulaValidator();
     
     public List<Aula> getAulas() {
-        // return products;
         return aulasDao.getAulas();
     } 
     
     public Aula getAula(String id) {
-        // return products;
         return aulasDao.getAula(id);
     } 
     
@@ -22,16 +21,28 @@ public class AulaNegocio {
         return aulasDao.getAulasForm(id);
     } 
     
-    public void insertAula(Aula aula) {
+    public String insertAula(Aula aula) {
         
-        if(this.validador.validate(aula))
+        String resultado = this.validador.validateInsert(aula);
+        
+        if(resultado == "ok"){
             aulasDao.insertAula(aula);
-        //else
-            //regresar mensaje de error                  
-    } 
+            resultado = "ok";
+        } 
+        
+        return resultado;
+    }
     
-    public void updateAula(Aula aula, String id) {
-        aulasDao.updateAula(aula, id);                  
+    public String updateAula(Aula aula, String id) {
+        
+        String resultado = this.validador.validateUpdate(aula, id);
+        
+        if(resultado == "ok"){
+            aulasDao.updateAula(aula, id);
+            resultado = "ok";
+        } 
+        
+        return resultado;                  
     }
     
     public void deleteAula(String id) {

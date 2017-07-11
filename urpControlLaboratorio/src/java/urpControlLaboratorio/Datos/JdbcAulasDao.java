@@ -5,11 +5,8 @@ import java.sql.SQLException;
 import java.util.List; 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-
 import urpControlLaboratorio.Entidades.Aula;
-
 
 
 public class JdbcAulasDao  {
@@ -20,7 +17,6 @@ public class JdbcAulasDao  {
         Conexion con = new Conexion();
         this.jdbctemplate = new JdbcTemplate(con.conectar());
     }
-    
     
     public List<Aula> getAulas() {
 
@@ -40,34 +36,15 @@ public class JdbcAulasDao  {
         List<Aula> aulas = this.jdbctemplate.query("select id, aula from aula where id='"+id+"'", new JdbcAulasDao.AulaMapper());
         return aulas;
     } 
-    
-    public String getAulaValidacion(String id) {
-        
-        String name;
-        
-        try {
-            String sql = "select aula from aula where id = ?";
-            name = (String)this.jdbctemplate.queryForObject(
-                            sql, new Object[] { id }, String.class);
-        } catch (final EmptyResultDataAccessException e) {
-	  name = null;
-        
-         }
-         
-	return name;
-    } 
-     
+  
     public void insertAula(Aula aula) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
-            "insert into aula (id, aula) values (?,?)",aula.getId(), aula.getAula());
+            "insert into aula (aula) values (?)", aula.getAula());
         
-        //logger.info("Rows affected: " + count);
     }
     
     public void updateAula(Aula aula, String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update aula "
@@ -76,11 +53,9 @@ public class JdbcAulasDao  {
                     + "id = ?", 
                  aula.getAula(), id);
         
-        //logger.info("Rows affected: " + count);
     }    
     
     public void deleteAula(String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update aula "
@@ -88,9 +63,46 @@ public class JdbcAulasDao  {
                     + "where "
                     + "id = ?", 
                  id);
-        
-        //logger.info("Rows affected: " + count);
+
     }
+    
+    
+    
+    
+    public String getAulaValidacionInsert(String aula) {
+        
+        String name;
+        
+        try {
+            String sql = "select aula from aula where aula = ?";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { aula }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
+    
+    public String getAulaValidacionUpd(String aula, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select aula from aula where aula = ? and id <> ?";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { aula, id }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
+    
     
     private static class AulaMapper implements ParameterizedRowMapper<Aula> { 
         public Aula mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -100,4 +112,5 @@ public class JdbcAulasDao  {
             return aula;
         } 
     } 
+
 }

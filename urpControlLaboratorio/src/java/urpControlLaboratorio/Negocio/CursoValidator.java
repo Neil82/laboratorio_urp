@@ -1,8 +1,6 @@
 
 package urpControlLaboratorio.Negocio;
 
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import urpControlLaboratorio.Datos.JdbcCursosDao;
 import urpControlLaboratorio.Entidades.Curso;
 
@@ -10,33 +8,48 @@ public class CursoValidator {
     
     private JdbcCursosDao jdbc = new JdbcCursosDao();
 
+    public String validateInsert(Curso curso) {
     
-    /*@Override
-    public boolean supports(Class<?> type) {
-        return Curso.class.isAssignableFrom(type);
-    }*/
-
-    
-    public boolean validate(Curso curso) {
-    
-        String id = curso.getId().trim(); 
-        if ( id == "") {
-            return false;
+        String Codcurso_ing = curso.getCodcurso().trim();
+        
+        if ( Codcurso_ing == "") {
+            return "Ingrese el Código del Curso";
         }
         else {
 
-            if(jdbc.getCursoValidacion(id) != null){
-                return false;
+            if(jdbc.getCursoValidacion(Codcurso_ing) != null){
+                return "El Código del Curso ingresado ya se encuentra registrado";
             }
-
+            
+            if (curso.getDescripcion().trim() == "") {
+                return "Ingrese la Descripción del Curso";
+            }
         }
-
-        if (curso.getDescripcion().trim() == "") {
-            return false;
-        }
+              
+       return "ok";
+    }
+    
+    
+    
+    public String validateUpdate(Curso curso, String id) {
+    
+        String Codcurso_ing = curso.getCodcurso().trim();
         
-        //validar que el CUrso no este insertada
-        return true;
+        if ( Codcurso_ing == "") {
+            return "Ingrese el Código del Curso";
+        }
+        else {
+
+            if(jdbc.getCursoValidacionUpd(Codcurso_ing, id) != null){
+                return "El Curso ingresado ya se encuentra registrado";
+            }
+            
+            if (curso.getDescripcion().trim() == "") {
+                return "Ingrese la Descripción del Curso";
+            }
+              
+        }
+       return "ok";
     }
     
 }

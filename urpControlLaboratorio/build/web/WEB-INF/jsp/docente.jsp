@@ -26,11 +26,11 @@
                             <div class="well">  
                                 
                                 <div class="row">
-                                    <label class="control-label col-md-2" style="text-align: right">Id.Docente</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Cod.Docente</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                                <form:input class="form-control" path="id"/>
+                                                <form:input class="form-control" path="coddocente"/>
                                                 
                                         </div>
                                     </div>
@@ -71,6 +71,9 @@
                                 </div>
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="id" cssClass="error"/>   
                                         <form:errors path="nombres" cssClass="error"/>
@@ -87,10 +90,5 @@
             </div>
         </form:form>
 
-
-
-
-
-        
 </body>
 </html>

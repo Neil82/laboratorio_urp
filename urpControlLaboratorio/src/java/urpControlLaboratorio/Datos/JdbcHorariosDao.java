@@ -26,7 +26,7 @@ public class JdbcHorariosDao  {
 
         List<Horario> horarios = 
         this.jdbctemplate.query("select h.id, a.id as anio, s.descripcion as semestre, "
-                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, "
+                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, hi.hora_fin, "
                 + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
                 + "from horario h left join anio a on a.id = h.id_anio "
                 + "left join semestre s on s.id = h.id_semestre "
@@ -44,7 +44,7 @@ public class JdbcHorariosDao  {
      public Horario getHorario(String id) {
         
         List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, s.id as semestre, "
-                + "au.id as aula, d.id as dia, hi.id as hora_inicio, "
+                + "au.id as aula, d.id as dia, hi.id as hora_inicio, hi.hora_fin, "
                 + "hf.id as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
                 + "from horario h left join anio a on a.id = h.id_anio "
                 + "left join semestre s on s.id = h.id_semestre "
@@ -62,8 +62,9 @@ public class JdbcHorariosDao  {
      
     public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
         
-        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, s.descripcion as semestre, "
-                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, "
+        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, "
+                + "s.descripcion as semestre, "
+                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, hi.hora_fin, "
                 + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
                 + "from horario h left join anio a on a.id = h.id_anio "
                 + "left join semestre s on s.id = h.id_semestre "
@@ -153,6 +154,7 @@ public class JdbcHorariosDao  {
             horario.setId_aula(rs.getString("aula"));
             horario.setId_dia(rs.getString("dia"));
             horario.setId_hinicio(rs.getString("hora_inicio"));
+            horario.setHora_fin(rs.getString("hora_fin"));
             horario.setId_duracion(rs.getString("duracion"));
             horario.setId_cursosemestre(rs.getString("cursosemestre"));
             return horario;

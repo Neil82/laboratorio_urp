@@ -26,9 +26,8 @@
                                               <span class="glyphicon glyphicon-plus"></span>
                                           </a>
                                       </button>                                      
-                                      &nbsp;&nbsp;Id.Equipo
+                                      &nbsp;&nbsp;Equipo
                                   </th>
-                                  <th>Usuario</th>
                                   <th>Procesador</th>
                                   <th>Velocidad GHz</th>
                                   <th>Mem. RAM</th>
@@ -39,7 +38,7 @@
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${model.equipos}" var="equipo">
-                                        <tr><td><c:out value="${equipo.id}"/></td>
+                                        <tr>
                                             <td><c:out value="${equipo.eqnombre}"/></td>
                                             <td><c:out value="${equipo.procesador}"/></td>
                                             <td><c:out value="${equipo.velocidad}"/></td>

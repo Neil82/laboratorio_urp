@@ -56,6 +56,9 @@
                                 </div>
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="id" cssClass="error"/>   
                                         <form:errors path="aula" cssClass="error"/>
@@ -70,10 +73,5 @@
             </div>
         </form:form>
 
-
-
-
-
-        
 </body>
 </html>

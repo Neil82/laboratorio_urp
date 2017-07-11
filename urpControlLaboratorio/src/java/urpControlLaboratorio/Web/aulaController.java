@@ -1,18 +1,12 @@
 
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import urpControlLaboratorio.Entidades.Aula;
 import urpControlLaboratorio.Negocio.AulaNegocio;
 import urpControlLaboratorio.Negocio.AulaValidator;
@@ -52,12 +46,27 @@ public class aulaController {
     }
     
     @RequestMapping(value="insertarAula.htm",method= RequestMethod.POST)
-    public ModelAndView insertarAula(Aula aula){ 
-        Errors errors = null;
+    public ModelAndView insertarAula(HttpServletRequest request, Aula aula){ 
+        //Errors errors = null;
+    
+        Aula aula_form = new Aula();
         
-        //this.aulasValidador.validate(aula, errors);
-        aulasManager.insertAula(aula); 
-        return new ModelAndView("redirect:/maestroAula.htm");
+        String resultado = aulasManager.insertAula(aula);
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroAula.htm");
+            
+        } else{
+            
+            aula_form.setTipoAccion("Ingresar los Datos del Aula");
+            aula_form.setBotonAccion("Ingresar");
+            aula_form.setAula(request.getParameter("aula"));
+            
+            aula_form.setMsgError(resultado);
+            
+            return new ModelAndView("aula","model", aula_form);
+        }
     }
     
     
@@ -71,11 +80,30 @@ public class aulaController {
         return new ModelAndView("aula","model", aula);
     }
     
+    
+    
     @RequestMapping(value="editarAula.htm",method= RequestMethod.POST)
     public ModelAndView editarAula(Aula aula, HttpServletRequest request){ 
+         
+        String resultado = aulasManager.updateAula(aula, request.getParameter("id"));
         
-        aulasManager.updateAula(aula, request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroAula.htm");
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroAula.htm");
+            
+        } else{
+            
+            Aula aula_upd = aulasManager.getAula(request.getParameter("id"));
+            aula_upd.setTipoAccion("Editar Datos del Aula");
+            aula_upd.setBotonAccion("Actualizar");
+            
+            aula_upd.setAula(request.getParameter("aula"));
+            
+            aula_upd.setMsgError(resultado);
+            
+            return new ModelAndView("aula","model", aula_upd);
+        }
+
     }
     
     

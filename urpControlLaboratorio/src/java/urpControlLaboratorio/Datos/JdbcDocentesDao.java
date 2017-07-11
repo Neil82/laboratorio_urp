@@ -5,83 +5,75 @@ import java.sql.SQLException;
 import java.util.List; 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-
 import urpControlLaboratorio.Entidades.Docente;
-
 
 
 public class JdbcDocentesDao  {
     
     private final JdbcTemplate jdbctemplate;
     
+    
     public JdbcDocentesDao(){
         Conexion con = new Conexion();
         this.jdbctemplate = new JdbcTemplate(con.conectar());
     }
     
-    
     public List<Docente> getDocentes() {
 
-        List<Docente> docentes = this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where estado=1", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes = this.jdbctemplate.query("select id, coddocente, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where estado=1", new JdbcDocentesDao.DocenteMapper());
         return docentes;
     } 
     
      public Docente getDocente(String id) {
         
-        List<Docente> docentes =  this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes =  this.jdbctemplate.query("select id, coddocente, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
         return docentes.get(0);
     }
      
     public List<Docente> getDocenteForm(String id) {
 
-        List<Docente> docentes = this.jdbctemplate.query("select id, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes = this.jdbctemplate.query("select id, coddocente, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
         return docentes;
     } 
     
-    public String getDocenteValidacion(String id) {
-        
-        String name;
-        
-        try {
-            String sql = "select nombres from docente where id = ?";
-            name = (String)this.jdbctemplate.queryForObject(
-			sql, new Object[] { id }, String.class);
-        } catch (final EmptyResultDataAccessException e) {
-	  name = null;
-        
-         }
-         
-	return name;
-    } 
-     
+    
     public void insertDocente(Docente docente) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
-            "insert into docente (id, nombres, apellidos, password) values (?,?,?,?)",docente.getId(), docente.getNombres(), docente.getApellidos(), docente.getPassword());
-        
-        //logger.info("Rows affected: " + count);
+            "insert into docente (coddocente, nombres, apellidos, password) values (?,?,?,?)",docente.getCoddocente(), docente.getNombres(), docente.getApellidos(), docente.getPassword());
+
     }
     
     public void updateDocente(Docente docente, String id) {
-        //logger.info("Saving product: " + prod.getDescription());
-        
-         this.jdbctemplate.update(
+
+        if(docente.getPassword()!=""){
+            
+            this.jdbctemplate.update(
             "update docente "
-                    + "set nombres = ?, "
-                    + "set apellidos = ?, "
-                    + "set password = ? "
+                    + "set coddocente = ?, "
+                    + "nombres = ?, "
+                    + "apellidos = ?, "
+                    + "password = ? "
                     + "where "
                     + "id = ?", 
-                 docente.getNombres(), docente.getApellidos(), docente.getPassword(), id);
+                 docente.getCoddocente(), docente.getNombres(), docente.getApellidos(), docente.getPassword(), id);
         
-        //logger.info("Rows affected: " + count);
+        } else{
+        
+            this.jdbctemplate.update(
+            "update docente "
+                    + "set coddocente = ?, "
+                    + "nombres = ?, "
+                    + "apellidos = ? "
+                    + "where "
+                    + "id = ?", 
+                 docente.getCoddocente(), docente.getNombres(), docente.getApellidos(), id);
+            
+        }
     }    
     
     public void deleteDocente(String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update docente "
@@ -89,14 +81,47 @@ public class JdbcDocentesDao  {
                     + "where "
                     + "id = ?", 
                  id);
-        
-        //logger.info("Rows affected: " + count);
+
     }
+    
+    
+    public String getDocenteValidacion(String coddocente) {
+        
+        String name;
+        
+        try {
+            String sql = "select nombres from docente where coddocente = ?";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { coddocente }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
+    public String getDocenteValidacionUpd(String coddocente, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select nombres from docente where coddocente = ? and id <> ?";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { coddocente, id }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
     
     private static class DocenteMapper implements ParameterizedRowMapper<Docente> { 
         public Docente mapRow(ResultSet rs, int rowNum) throws SQLException {
             Docente docente  = new Docente();
             docente.setId(rs.getString("id"));
+            docente.setCoddocente(rs.getString("coddocente"));
             docente.setNombres(rs.getString("nombres")); 
             docente.setApellidos(rs.getString("apellidos")); 
             docente.setDocente_nom(rs.getString("docente")); 

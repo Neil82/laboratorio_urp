@@ -31,7 +31,6 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                                 <form:input class="form-control" path="id"/>
-                                                
                                         </div>
                                     </div>
                                     <label class="control-label col-md-2" style="text-align: right">Descripcion</label>
@@ -39,7 +38,6 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="descripcion"/>
-                                            
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -49,6 +47,9 @@
                                 </div>
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="id" cssClass="error"/>   
                                         <form:errors path="descripcion" cssClass="error"/>

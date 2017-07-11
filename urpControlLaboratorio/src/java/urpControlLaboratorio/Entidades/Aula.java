@@ -6,6 +6,7 @@ public class Aula {
     private String aula = "";
     private String tipoAccion = "";
     private String botonAccion = "";
+    private String msgError = "";
     
     public String getId() {
         return id;
@@ -36,6 +37,14 @@ public class Aula {
 
     public void setBotonAccion(String botonAccion) {
         this.botonAccion = botonAccion;
+    }
+
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
     }
  
 }

@@ -17,26 +17,46 @@ public class AnioValidator {
     }*/
 
     
-    public boolean validate(Anio anio) {
+    public String validateInsert(Anio anio) {
     
-        String id = anio.getId().trim(); 
-        if ( id == "") {
-            return false;
+        String anio_ing = anio.getId().trim(); 
+        
+        if ( anio_ing == "") {
+            return "Ingrese el Año";
         }
         else {
 
-            if(jdbc.getAnioValidacion(id) != null){
-                return false;
+            if(jdbc.getAnioValidacionInsert(anio_ing) != null){
+                return "La Año ingresado ya se encuentra registrado";
             }
-
+             
+            if (anio.getDescripcion().trim() == "") {
+                return "Ingrese la descripción del Año";
+            }
         }
-
-        if (anio.getDescripcion().trim() == "") {
-            return false;
-        }
+       
+        return "ok";
+    }
+    
+    
+    public String validateUpdate(Anio anio, String id) {
+    
+        String anio_ing = anio.getId().trim(); 
         
-        //validar que la PC no este insertada
-        return true;
+        if ( anio_ing == "") {
+            return "Ingrese el Año";
+        }
+        else {
+
+            if(jdbc.getAnioValidacionUpd(anio_ing, id) != null){
+                return "La Año ingresado ya se encuentra registrado";
+            }
+             
+            if (anio.getDescripcion().trim() == "") {
+                return "Ingrese la descripción del Año";
+            }
+        }
+       return "ok";
     }
     
 }

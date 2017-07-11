@@ -22,7 +22,7 @@
                                 <thead>
                                   <th>
                                       <button type="button" class="btn-sm btn-success" id="btnNuevo">
-                                          <a style="color:white" href="<c:url value="insertarEquipo.htm"/>">
+                                          <a style="color:white" href="<c:url value="insertarDocente.htm"/>">
                                               <span class="glyphicon glyphicon-plus"></span>
                                           </a>
                                       </button>                                      
@@ -34,7 +34,7 @@
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${model.docentes}" var="docente">
-                                        <tr><td><c:out value="${docente.id}"/></td>
+                                        <tr><td><c:out value="${docente.coddocente}"/></td>
                                             <td><c:out value="${docente.nombres}"/></td>
                                             <td><c:out value="${docente.apellidos}"/></td>
                                             <td style="width: 20px;">

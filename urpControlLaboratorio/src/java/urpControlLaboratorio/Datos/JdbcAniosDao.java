@@ -5,12 +5,8 @@ import java.sql.SQLException;
 import java.util.List; 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-
 import urpControlLaboratorio.Entidades.Anio;
-
-
 
 public class JdbcAniosDao  {
     
@@ -20,7 +16,6 @@ public class JdbcAniosDao  {
         Conexion con = new Conexion();
         this.jdbctemplate = new JdbcTemplate(con.conectar());
     }
-    
     
     public List<Anio> getAnios() {
 
@@ -42,22 +37,7 @@ public class JdbcAniosDao  {
         
     }
     
-    public String getAnioValidacion(String id) {
-        
-        String name;
-        
-        try {
-            String sql = "select descripcion from anio where id = ?";
-            name = (String)this.jdbctemplate.queryForObject(
-                            sql, new Object[] { id }, String.class);
-        } catch (final EmptyResultDataAccessException e) {
-	  name = null;
-        
-         }
-         
-	return name;
-    } 
-     
+    
     public void insertAnio(Anio anio) {
         //logger.info("Saving product: " + prod.getDescription());
         
@@ -68,16 +48,14 @@ public class JdbcAniosDao  {
     }
     
     public void updateAnio(Anio anio, String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update anio "
-                    + "set descripcion = ? "
+                    + "set id = ?, descripcion = ? "
                     + "where "
                     + "id = ?", 
                  anio.getDescripcion(), id);
         
-        //logger.info("Rows affected: " + count);
     }    
     
     public void deleteAnio(String id) {
@@ -92,6 +70,40 @@ public class JdbcAniosDao  {
         
         //logger.info("Rows affected: " + count);
     }
+    
+    
+    public String getAnioValidacionInsert(String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select descripcion from anio where id = ?";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { id }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
+    public String getAnioValidacionUpd(String anio, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select descripcion from anio where id = ? and id <> ?";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { anio, id }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
     
     private static class AnioMapper implements ParameterizedRowMapper<Anio> { 
         public Anio mapRow(ResultSet rs, int rowNum) throws SQLException {

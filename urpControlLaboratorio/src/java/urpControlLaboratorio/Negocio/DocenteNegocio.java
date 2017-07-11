@@ -20,16 +20,30 @@ public class DocenteNegocio {
         return docentesDao.getDocenteForm(id);
     } 
     
-    public void insertDocente(Docente docente) {
+    public String insertDocente(Docente docente) {
         
-        if(this.validador.validate(docente))
+        String resultado = this.validador.validateInsert(docente);
+        
+        if(resultado == "ok"){
             docentesDao.insertDocente(docente);
-        //else
-            //regresar mensaje de error                  
+            resultado = "ok";
+        } 
+        
+        return resultado;
+                 
     } 
     
-    public void updateDocente(Docente docente, String id) {
-        docentesDao.updateDocente(docente, id);                  
+    public String updateDocente(Docente docente, String id) {
+        
+        String resultado = this.validador.validateUpdate(docente, id);
+        
+        if(resultado == "ok"){
+            docentesDao.updateDocente(docente, id); 
+            resultado = "ok";
+        } 
+        
+        return resultado;  
+                     
     }
     
     public void deleteDocente(String id) {

@@ -29,7 +29,7 @@
                                 
                                 
                                 <div class="row">
-                                    <label class="control-label col-md-2" style="text-align: right">Usuario</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Equipo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
@@ -293,6 +293,9 @@
                                 </div>                  
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="eqnombre" cssClass="error"/>   
                                         <form:errors path="cpu_marca" cssClass="error"/>   
@@ -326,11 +329,6 @@
                 </div>
             </div>
         </form:form>
-
-
-
-
-
         
 </body>
 </html>

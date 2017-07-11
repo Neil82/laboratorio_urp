@@ -1,18 +1,13 @@
 
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import urpControlLaboratorio.Entidades.Curso;
 import urpControlLaboratorio.Negocio.CursoNegocio;
 import urpControlLaboratorio.Negocio.CursoValidator;
@@ -52,12 +47,28 @@ public class cursoController {
     }
     
     @RequestMapping(value="insertarCurso.htm",method= RequestMethod.POST)
-    public ModelAndView insertarCurso(Curso curso){ 
-        Errors errors = null;
+    public ModelAndView insertarCurso(HttpServletRequest request, Curso curso){ 
         
-        //this.cursosValidador.validate(curso, errors);
-        cursosManager.insertCurso(curso); 
-        return new ModelAndView("redirect:/maestroCurso.htm");
+        Curso curso_form = new Curso();
+        
+        String resultado = cursosManager.insertCurso(curso); 
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroCurso.htm");
+            
+        } else{
+            
+            curso_form.setTipoAccion("Ingresar los Datos del Curso");
+            curso_form.setBotonAccion("Ingresar");
+            curso_form.setCodcurso(request.getParameter("codcurso"));
+            curso_form.setDescripcion(request.getParameter("aula"));
+            
+            curso_form.setMsgError(resultado);
+            
+            return new ModelAndView("curso","model", curso_form);
+        }
+        
     }
     
     
@@ -74,8 +85,26 @@ public class cursoController {
     @RequestMapping(value="editarCurso.htm",method= RequestMethod.POST)
     public ModelAndView editarCurso(Curso curso, HttpServletRequest request){ 
         
-        cursosManager.updateCurso(curso, request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroCurso.htm");
+        String resultado = cursosManager.updateCurso(curso, request.getParameter("id"));
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroCurso.htm");
+            
+        } else{
+            
+            Curso curso_upd = cursosManager.getCurso(request.getParameter("id"));
+            curso_upd.setTipoAccion("Editar Datos del Curso");
+            curso_upd.setBotonAccion("Actualizar");
+            
+            curso_upd.setCodcurso(request.getParameter("codcurso"));
+            curso_upd.setDescripcion(request.getParameter("descripcion"));
+            
+            curso_upd.setMsgError(resultado);
+            
+            return new ModelAndView("curso","model", curso_upd);
+        }
+        
     }
     
     
@@ -83,10 +112,6 @@ public class cursoController {
     
     @RequestMapping(value="eliminarCurso.htm",method= RequestMethod.GET)
     public ModelAndView eliminarCurso(HttpServletRequest request){ 
-        
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        Curso curso = cursosManager.getCurso(request.getParameter("id"));
-        return new ModelAndView("curso","model", curso);*/
         
         cursosManager.deleteCurso(request.getParameter("id"));
         return new ModelAndView("redirect:/maestroCurso.htm");

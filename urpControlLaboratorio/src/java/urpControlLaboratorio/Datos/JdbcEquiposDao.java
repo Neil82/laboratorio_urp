@@ -17,7 +17,6 @@ public class JdbcEquiposDao  {
         this.jdbctemplate = new JdbcTemplate(con.conectar());
     }
     
-    
     public List<Equipo> getEquipos() {
 
         List<Equipo> equipos = this.jdbctemplate.query("select distinct e.id, e.eqnombre, e.cpu_marca, "
@@ -40,26 +39,6 @@ public class JdbcEquiposDao  {
         return equipos.get(0);
         
     }
-    
-    public String getEquipoValidacion(String eqnombre, String cpu_marca, String cpu_modelo, 
-                String cpu_serie, String procesador, String velocidad, 
-                String ram, String disco_d, String tvideo, String idaula) {
-        
-        String name;
-        
-        try {
-            String sql = "select eqnombre from equipo where eqnombre = ? and cpu_marca = ? and "
-                    + "cpu_modelo = ? and cpu_serie = ? and procesador = ? and "
-                    + "velocidad = ? and ram = ? and disco_d = ? and tvideo = ? and idaula = ?";
-            name = (String)this.jdbctemplate.queryForObject(
-			sql, new Object[] { eqnombre, cpu_marca, cpu_modelo, cpu_serie, procesador, velocidad, ram, disco_d, tvideo, idaula }, String.class);
-            } catch (final EmptyResultDataAccessException e) {
-            name = null;
-        
-            }
-         
-	return name;
-    } 
      
     public void insertEquipo(Equipo equipo) {
         //logger.info("Saving product: " + prod.getDescription());
@@ -92,7 +71,6 @@ public class JdbcEquiposDao  {
                  equipo.getMouse_serie()
          );
         
-        //logger.info("Rows affected: " + count);
     }
     
     public void updateEquipo(Equipo equipo, String id) {
@@ -144,8 +122,7 @@ public class JdbcEquiposDao  {
                  equipo.getMouse_serie(),
                  id
          );
-        
-        //logger.info("Rows affected: " + count);
+       
     }    
     
     public void deleteEquipo(String id) {
@@ -157,8 +134,45 @@ public class JdbcEquiposDao  {
                     + "id = ?", 
                  id);
         
-        //logger.info("Rows affected: " + count);
     }
+    
+    
+    public String getEquipoValidacionInsert(String eqnombre, String cpu_marca, String cpu_modelo, 
+                String cpu_serie, String procesador, String velocidad, 
+                String ram, String disco_d, String tvideo, String idaula) {
+        
+        String name;
+        
+        try {
+            String sql = "select eqnombre from equipo where eqnombre = ? and cpu_marca = ? and "
+                    + "cpu_modelo = ? and cpu_serie = ? and procesador = ? and "
+                    + "velocidad = ? and ram = ? and disco_d = ? and tvideo = ? and idaula = ?";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { eqnombre, cpu_marca, cpu_modelo, cpu_serie, procesador, velocidad, ram, disco_d, tvideo, idaula }, String.class);
+            } catch (final EmptyResultDataAccessException e) {
+            name = null;
+        
+            }
+         
+	return name;
+    } 
+    
+    public String getEquipoValidacionUpd(String eqnombre, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select eqnombre from equipo where eqnombre = ? and id <> ?";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { eqnombre, id }, String.class);
+            } catch (final EmptyResultDataAccessException e) {
+            name = null;
+        
+            }
+         
+	return name;
+    } 
+    
     
     private static class EquipoMapper implements ParameterizedRowMapper<Equipo> { 
         public Equipo mapRow(ResultSet rs, int rowNum) throws SQLException {

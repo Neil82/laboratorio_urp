@@ -32,6 +32,8 @@ public class Equipo {
     private String botonAccion = "";
 
     private String selAula;
+    
+    private String msgError;
 
     public String getId() {
         return id;
@@ -225,4 +227,13 @@ public class Equipo {
         this.selAula = selAula;
     }
 
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
+    }
+
+   
 }

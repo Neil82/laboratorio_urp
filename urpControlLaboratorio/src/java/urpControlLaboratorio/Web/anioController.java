@@ -1,18 +1,12 @@
 
 package urpControlLaboratorio.Web;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import urpControlLaboratorio.Entidades.Anio;
 import urpControlLaboratorio.Negocio.AnioNegocio;
 import urpControlLaboratorio.Negocio.AnioValidator;
@@ -52,12 +46,27 @@ public class anioController {
     }
     
     @RequestMapping(value="insertarAnio.htm",method= RequestMethod.POST)
-    public ModelAndView insertarAnio(Anio anio){ 
-        Errors errors = null;
+    public ModelAndView insertarAnio(HttpServletRequest request, Anio anio){ 
         
-        //this.aniosValidador.validate(anio, errors);
-        aniosManager.insertAnio(anio); 
-        return new ModelAndView("redirect:/maestroAnio.htm");
+        Anio anio_form = new Anio();
+        
+        String resultado = aniosManager.insertAnio(anio); 
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroAnio.htm");
+            
+        } else{
+            
+            anio_form.setTipoAccion("Ingresar los Datos del Año");
+            anio_form.setBotonAccion("Ingresar");
+            anio_form.setId(request.getParameter("id"));
+            anio_form.setDescripcion(request.getParameter("descripcion"));
+            
+            anio_form.setMsgError(resultado);
+            
+            return new ModelAndView("anio","model", anio_form);
+        }
     }
     
     
@@ -74,8 +83,26 @@ public class anioController {
     @RequestMapping(value="editarAnio.htm",method= RequestMethod.POST)
     public ModelAndView editarAnio(Anio anio, HttpServletRequest request){ 
         
-        aniosManager.updateAnio(anio, request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroAnio.htm");
+        String resultado = aniosManager.updateAnio(anio, request.getParameter("id"));
+        
+        if(resultado=="ok"){
+            
+            return new ModelAndView("redirect:/maestroAnio.htm");
+            
+        } else{
+            
+            Anio anio_upd = aniosManager.getAnio(request.getParameter("id"));
+            anio_upd.setTipoAccion("Editar Datos del Año");
+            anio_upd.setBotonAccion("Actualizar");
+            
+            anio_upd.setId(request.getParameter("id"));
+            anio_upd.setDescripcion(request.getParameter("descripcion"));
+            
+            anio_upd.setMsgError(resultado);
+            
+            return new ModelAndView("anio","model", anio_upd);
+        }
+      
     }
     
     

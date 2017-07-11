@@ -16,16 +16,30 @@ public class EquipoNegocio {
         return equiposDao.getEquipo(id);
     } 
     
-    public void insertEquipo(Equipo equipo) {
+    public String insertEquipo(Equipo equipo) {
         
-        if(this.validador.validate(equipo))
+        String resultado = this.validador.validateInsert(equipo);
+        
+        if(resultado == "ok"){
             equiposDao.insertEquipo(equipo);
-        //else
-            //regresar mensaje de error                  
+            resultado = "ok";
+        } 
+        
+        return resultado;
+                   
     } 
     
-    public void updateEquipo(Equipo equipo, String id) {
-        equiposDao.updateEquipo(equipo, id);                  
+    public String updateEquipo(Equipo equipo, String id) {
+        
+        String resultado = this.validador.validateUpdate(equipo, id);
+        
+        if(resultado == "ok"){
+            equiposDao.updateEquipo(equipo, id);    
+            resultado = "ok";
+        } 
+        
+        return resultado;  
+                      
     }
     
     public void deleteEquipo(String id) {

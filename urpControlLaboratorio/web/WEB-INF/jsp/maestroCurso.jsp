@@ -27,14 +27,14 @@
                                               <span class="glyphicon glyphicon-plus"></span>
                                           </a>
                                       </button>                                      
-                                      &nbsp;&nbsp;Id.Curso
+                                      &nbsp;&nbsp;Cod.Curso
                                   </th>
                                   <th>Descripción</th>
                                   <th colspan="2">Opciones</th>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${model.cursos}" var="curso">
-                                        <tr><td><c:out value="${curso.id}"/></td>
+                                        <tr><td><c:out value="${curso.codcurso}"/></td>
                                             <td><c:out value="${curso.descripcion}"/></td>
                                             <td style="width: 20px;">
                                                 <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarCurso.htm?id=${curso.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>

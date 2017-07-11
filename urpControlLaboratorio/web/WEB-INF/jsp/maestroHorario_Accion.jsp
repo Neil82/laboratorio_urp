@@ -19,8 +19,8 @@
 
     <c:forEach items="${model.horarios}" var="horario">
         <tr>
-            <td><c:out value="${horario.id_anio}"/></td>
-            <td><c:out value="${horario.id_semestre}"/></td>
+            <td><c:out value="${horario.id_hinicio}"/></td>
+            <td><c:out value="${horario.hora_fin}"/></td>
             <td><c:out value="${horario.id_aula}"/></td>
             <td><c:out value="${horario.id_dia}"/></td>
             <td><c:out value="${horario.id_hinicio}"/></td>

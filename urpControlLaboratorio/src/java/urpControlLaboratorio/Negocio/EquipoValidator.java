@@ -8,44 +8,34 @@ public class EquipoValidator {
     private JdbcEquiposDao jdbc = new JdbcEquiposDao();
 
     
-    /*@Override
-    public boolean supports(Class<?> type) {
-        return Equipo.class.isAssignableFrom(type);
-    }*/
-
-    
-    public boolean validate(Equipo equipo) {
+    public String validateInsert(Equipo equipo) {
     
         if (equipo.getEqnombre().trim() == "") {
-            return false;
+            return "Ingrese el nombre del Equipo";
         }
         
         if (equipo.getProcesador().trim() == "") {
-            return false;
+            return "Ingrese la marca del CPU";
         }
         
         if (equipo.getVelocidad().trim() == "") {
-            return false;
+            return "Ingrese la velocidad del CPU";
         }
         
         if (equipo.getRam().trim() == "") {
-            return false;
+            return "Ingrese la información de la RAM";
         }
         
         if (equipo.getDisco_d().trim() == "") {
-            return false;
+            return "Ingrese el tamaño del disco D";
         }
         
         if (equipo.getTvideo().trim() == "") {
-            return false;
-        }
-        
-        if (equipo.getIdaula().trim() == "") {
-            return false;
+            return "Ingrese la marca del Monitor";
         }
         
         
-        if(jdbc.getEquipoValidacion(
+        if(jdbc.getEquipoValidacionInsert(
                 equipo.getEqnombre(), 
                 equipo.getCpu_marca(), 
                 equipo.getCpu_modelo(), 
@@ -57,12 +47,44 @@ public class EquipoValidator {
                 equipo.getTvideo(), 
                 equipo.getIdaula()
                 ) != null){
-            return false;
+            return "El nombre del Equipo ya se encuentra registrado.";
         }
     
+        return "ok";
+    }
+    
+    
+    public String validateUpdate(Equipo equipo, String id) {
+    
+        if (equipo.getEqnombre().trim() == "") {
+            return "Ingrese el nombre del Equipo";
+        }
         
-        //validar que el Equipo no este insertada
-        return true;
+        if (equipo.getProcesador().trim() == "") {
+            return "Ingrese la marca del CPU";
+        }
+        
+        if (equipo.getVelocidad().trim() == "") {
+            return "Ingrese la velocidad del CPU";
+        }
+        
+        if (equipo.getRam().trim() == "") {
+            return "Ingrese la información de la RAM";
+        }
+        
+        if (equipo.getDisco_d().trim() == "") {
+            return "Ingrese el tamaño del disco D";
+        }
+        
+        if (equipo.getTvideo().trim() == "") {
+            return "Ingrese la marca del Monitor";
+        }
+        
+        if(jdbc.getEquipoValidacionUpd(equipo.getEqnombre(), id) != null){
+            return "El nombre del Equipo ya se encuentra registrado.";
+        }
+    
+        return "ok";
     }
     
 }

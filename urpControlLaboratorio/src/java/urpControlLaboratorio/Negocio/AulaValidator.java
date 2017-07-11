@@ -1,42 +1,48 @@
 
 package urpControlLaboratorio.Negocio;
 
-import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import urpControlLaboratorio.Datos.JdbcAulasDao;
 import urpControlLaboratorio.Entidades.Aula;
 
 public class AulaValidator {
     
-    private JdbcAulasDao jdbc = new JdbcAulasDao();
+    private final JdbcAulasDao jdbc = new JdbcAulasDao();
 
     
-    /*@Override
-    public boolean supports(Class<?> type) {
-        return Aula.class.isAssignableFrom(type);
-    }*/
-
+    public String validateInsert(Aula aula) {
     
-    public boolean validate(Aula aula) {
-    
-        String id = aula.getId().trim(); 
-        if ( id == "") {
-            return false;
+        String aula_ing = aula.getAula().trim(); 
+        
+        if ( aula_ing == "") {
+            return "Ingrese la descripción del Aula";
         }
         else {
 
-            if(jdbc.getAulaValidacion(id) != null){
-                return false;
+            if(jdbc.getAulaValidacionInsert(aula_ing) != null){
+                return "La Aula ingresada ya se encuentra registrada";
             }
-
+              
         }
-
-        if (aula.getAula().trim() == "") {
-            return false;
-        }
-        
-        //validar que la PC no este insertada
-        return true;
+       return "ok";
     }
     
+    
+    public String validateUpdate(Aula aula, String id) {
+    
+        String aula_ing = aula.getAula().trim(); 
+        
+        if ( aula_ing == "") {
+            return "Ingrese la descripción del Aula";
+        }
+        else {
+
+            if(jdbc.getAulaValidacionUpd(aula_ing, id) != null){
+                return "La Aula ingresada ya se encuentra registrada";
+            }
+              
+        }
+       return "ok";
+    }
+
 }

@@ -8,6 +8,7 @@ public class Horario {
     private String id_aula;
     private String id_dia;
     private String id_hinicio;
+    private String hora_fin;
     private String id_duracion;
     private String id_cursosemestre;
     
@@ -221,6 +222,14 @@ public class Horario {
 
     public void setBotonAccion(String botonAccion) {
         this.botonAccion = botonAccion;
+    }
+
+    public String getHora_fin() {
+        return hora_fin;
+    }
+
+    public void setHora_fin(String hora_fin) {
+        this.hora_fin = hora_fin;
     }
 
     

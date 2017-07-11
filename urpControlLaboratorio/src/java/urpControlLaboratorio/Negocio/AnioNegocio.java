@@ -21,16 +21,28 @@ public class AnioNegocio {
         return aniosDao.getAnioForm(id);
     } 
     
-    public void insertAnio(Anio anio) {
+    public String insertAnio(Anio anio) {
         
-        if(this.validador.validate(anio))
+        String resultado = this.validador.validateInsert(anio);
+        
+        if(resultado == "ok"){
             aniosDao.insertAnio(anio);
-        //else
-            //regresar mensaje de error                  
+            resultado = "ok";
+        } 
+        
+        return resultado;       
     } 
     
-    public void updateAnio(Anio anio, String id) {
-        aniosDao.updateAnio(anio, id);                  
+    public String updateAnio(Anio anio, String id) {
+        
+        String resultado = this.validador.validateUpdate(anio, id);
+        
+        if(resultado == "ok"){
+            aniosDao.updateAnio(anio, id);
+            resultado = "ok";
+        } 
+        
+        return resultado;                   
     }
     
     public void deleteAnio(String id) {

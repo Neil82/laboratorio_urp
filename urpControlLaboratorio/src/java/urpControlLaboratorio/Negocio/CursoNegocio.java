@@ -4,7 +4,10 @@ package urpControlLaboratorio.Negocio;
 import java.util.List;
 import urpControlLaboratorio.Entidades.Curso;
 import urpControlLaboratorio.Datos.JdbcCursosDao;
+
+
 public class CursoNegocio {
+    
     private JdbcCursosDao cursosDao = new JdbcCursosDao(); // cursosDao declarada en el property del bean del applicationContext id="cursossManager"
     private CursoValidator validador = new CursoValidator();
     
@@ -20,16 +23,28 @@ public class CursoNegocio {
         return cursosDao.getCursoForm(id);
     } 
     
-    public void insertCurso(Curso curso) {
+    public String insertCurso(Curso curso) {
         
-        if(this.validador.validate(curso))
+        String resultado = this.validador.validateInsert(curso);
+        
+        if(resultado == "ok"){
             cursosDao.insertCurso(curso);
-        //else
-            //regresar mensaje de error                  
+            resultado = "ok";
+        } 
+        
+        return resultado;
     } 
     
-    public void updateCurso(Curso curso, String id) {
-        cursosDao.updateCurso(curso, id);                  
+    public String updateCurso(Curso curso, String id) {
+        
+        String resultado = this.validador.validateUpdate(curso, id);
+        
+        if(resultado == "ok"){
+            cursosDao.updateCurso(curso, id); 
+            resultado = "ok";
+        } 
+        
+        return resultado;       
     }
     
     public void deleteCurso(String id) {
