@@ -14,25 +14,89 @@ public class EquipoValidator {
             return "Ingrese el nombre del Equipo";
         }
         
-        if (equipo.getProcesador().trim() == "") {
+        
+        
+        if (equipo.getCpu_marca().trim() == "") {
             return "Ingrese la marca del CPU";
+        }
+        
+        if (equipo.getCpu_modelo().trim() == "") {
+            return "Ingrese el Modelo del CPU";
+        }
+        
+        if (equipo.getCpu_serie().trim() == "") {
+            return "Ingrese el Número de Serie del CPU";
+        }
+        
+        if (equipo.getProcesador().trim() == "") {
+            return "Ingrese el tipo de Procesador del CPU";
         }
         
         if (equipo.getVelocidad().trim() == "") {
             return "Ingrese la velocidad del CPU";
         }
         
+        
+        
+        
+        
         if (equipo.getRam().trim() == "") {
             return "Ingrese la información de la RAM";
         }
         
         if (equipo.getDisco_d().trim() == "") {
-            return "Ingrese el tamaño del disco D";
+            return "Ingrese el tamaño del Disco";
         }
         
         if (equipo.getTvideo().trim() == "") {
+            return "Ingrese la información de la Tarjeta de Video";
+        }
+        
+        
+        
+        
+        if (equipo.getMonitor_marca().trim() == "") {
             return "Ingrese la marca del Monitor";
         }
+        
+        if (equipo.getMonitor_modelo().trim() == "") {
+            return "Ingrese el Modelo del Monitor";
+        }
+        
+        if (equipo.getMonitor_serie().trim() == "") {
+            return "Ingrese el Número de Serie del Monitor";
+        }
+        
+        
+        
+        
+        if (equipo.getTeclado_marca().trim() == "") {
+            return "Ingrese la marca del Teclado";
+        }
+        
+        if (equipo.getTeclado_modelo().trim() == "") {
+            return "Ingrese el Modelo del Teclado";
+        }
+        
+        if (equipo.getTeclado_serie().trim() == "") {
+            return "Ingrese el Número de Serie del Teclado";
+        }
+        
+        
+        
+        
+        if (equipo.getMouse_marca().trim() == "") {
+            return "Ingrese la marca del Mouse";
+        }
+        
+        if (equipo.getMouse_modelo().trim() == "") {
+            return "Ingrese el Modelo del Mouse";
+        }
+        
+        if (equipo.getMouse_serie().trim() == "") {
+            return "Ingrese el Número de Serie del Mouse";
+        }
+        
         
         
         if(jdbc.getEquipoValidacionInsert(
@@ -60,24 +124,87 @@ public class EquipoValidator {
             return "Ingrese el nombre del Equipo";
         }
         
-        if (equipo.getProcesador().trim() == "") {
+        
+        
+        if (equipo.getCpu_marca().trim() == "") {
             return "Ingrese la marca del CPU";
+        }
+        
+        if (equipo.getCpu_modelo().trim() == "") {
+            return "Ingrese el Modelo del CPU";
+        }
+        
+        if (equipo.getCpu_serie().trim() == "") {
+            return "Ingrese el Número de Serie del CPU";
+        }
+        
+        if (equipo.getProcesador().trim() == "") {
+            return "Ingrese el tipo de Procesador del CPU";
         }
         
         if (equipo.getVelocidad().trim() == "") {
             return "Ingrese la velocidad del CPU";
         }
         
+        
+        
+        
+        
         if (equipo.getRam().trim() == "") {
             return "Ingrese la información de la RAM";
         }
         
         if (equipo.getDisco_d().trim() == "") {
-            return "Ingrese el tamaño del disco D";
+            return "Ingrese el tamaño del Disco";
         }
         
         if (equipo.getTvideo().trim() == "") {
+            return "Ingrese la información de la Tarjeta de Video";
+        }
+        
+        
+        
+        
+        if (equipo.getMonitor_marca().trim() == "") {
             return "Ingrese la marca del Monitor";
+        }
+        
+        if (equipo.getMonitor_modelo().trim() == "") {
+            return "Ingrese el Modelo del Monitor";
+        }
+        
+        if (equipo.getMonitor_serie().trim() == "") {
+            return "Ingrese el Número de Serie del Monitor";
+        }
+        
+        
+        
+        
+        if (equipo.getTeclado_marca().trim() == "") {
+            return "Ingrese la marca del Teclado";
+        }
+        
+        if (equipo.getTeclado_modelo().trim() == "") {
+            return "Ingrese el Modelo del Teclado";
+        }
+        
+        if (equipo.getTeclado_serie().trim() == "") {
+            return "Ingrese el Número de Serie del Teclado";
+        }
+        
+        
+        
+        
+        if (equipo.getMouse_marca().trim() == "") {
+            return "Ingrese la marca del Mouse";
+        }
+        
+        if (equipo.getMouse_modelo().trim() == "") {
+            return "Ingrese el Modelo del Mouse";
+        }
+        
+        if (equipo.getMouse_serie().trim() == "") {
+            return "Ingrese el Número de Serie del Mouse";
         }
         
         if(jdbc.getEquipoValidacionUpd(equipo.getEqnombre(), id) != null){

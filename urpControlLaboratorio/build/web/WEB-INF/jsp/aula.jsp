@@ -36,7 +36,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Id.</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input disabled="true" class="form-control" path="id"/>
                                                 
                                         </div>
@@ -44,7 +44,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Aula</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                                 <form:input class="form-control" path="aula"/>
                                             
                                         </div>

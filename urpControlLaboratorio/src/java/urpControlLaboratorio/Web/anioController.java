@@ -60,7 +60,7 @@ public class anioController {
             
             anio_form.setTipoAccion("Ingresar los Datos del Año");
             anio_form.setBotonAccion("Ingresar");
-            anio_form.setId(request.getParameter("id"));
+            anio_form.setAnio(request.getParameter("anio"));
             anio_form.setDescripcion(request.getParameter("descripcion"));
             
             anio_form.setMsgError(resultado);
@@ -95,7 +95,7 @@ public class anioController {
             anio_upd.setTipoAccion("Editar Datos del Año");
             anio_upd.setBotonAccion("Actualizar");
             
-            anio_upd.setId(request.getParameter("id"));
+            anio_upd.setAnio(request.getParameter("anio"));
             anio_upd.setDescripcion(request.getParameter("descripcion"));
             
             anio_upd.setMsgError(resultado);

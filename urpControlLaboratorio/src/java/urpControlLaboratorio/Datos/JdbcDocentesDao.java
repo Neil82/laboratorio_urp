@@ -21,13 +21,17 @@ public class JdbcDocentesDao  {
     
     public List<Docente> getDocentes() {
 
-        List<Docente> docentes = this.jdbctemplate.query("select id, coddocente, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where estado=1", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes = this.jdbctemplate.query("select id, coddocente, nombres, "
+                + "apellidos, concat(apellidos,' ',nombres) as docente "
+                + "from docente where estado=1 order by apellidos", new JdbcDocentesDao.DocenteMapper());
         return docentes;
     } 
     
      public Docente getDocente(String id) {
         
-        List<Docente> docentes =  this.jdbctemplate.query("select id, coddocente, nombres, apellidos, concat(apellidos,' ',nombres) as docente from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
+        List<Docente> docentes =  this.jdbctemplate.query("select id, coddocente, nombres, "
+                + "apellidos, concat(apellidos,' ',nombres) as docente "
+                + "from docente where id='"+id+"'", new JdbcDocentesDao.DocenteMapper());
         return docentes.get(0);
     }
      
@@ -85,12 +89,12 @@ public class JdbcDocentesDao  {
     }
     
     
-    public String getDocenteValidacion(String coddocente) {
+    public String getDocenteValidacionInsert(String coddocente) {
         
         String name;
         
         try {
-            String sql = "select nombres from docente where coddocente = ?";
+            String sql = "select nombres from docente where coddocente = ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
 			sql, new Object[] { coddocente }, String.class);
         } catch (final EmptyResultDataAccessException e) {
@@ -106,7 +110,7 @@ public class JdbcDocentesDao  {
         String name;
         
         try {
-            String sql = "select nombres from docente where coddocente = ? and id <> ?";
+            String sql = "select nombres from docente where coddocente = ? and id <> ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { coddocente, id }, String.class);
         } catch (final EmptyResultDataAccessException e) {

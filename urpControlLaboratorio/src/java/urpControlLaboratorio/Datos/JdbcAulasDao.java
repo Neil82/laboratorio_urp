@@ -20,7 +20,9 @@ public class JdbcAulasDao  {
     
     public List<Aula> getAulas() {
 
-        List<Aula> aulas = this.jdbctemplate.query("select id, aula from aula where estado=1", new JdbcAulasDao.AulaMapper());
+        List<Aula> aulas = this.jdbctemplate.query("select a.id, a.aula, e.eqnombre as equipo, "
+                + "e.cpu_marca as marca, e.cpu_serie as serieCPU, e.procesador from aula a "
+                + "left join equipo e on e.idaula=a.id and e.estado=1 where a.estado=1 order by aula", new JdbcAulasDao.AulaEquipoMapper());
         return aulas;
     } 
     
@@ -74,7 +76,7 @@ public class JdbcAulasDao  {
         String name;
         
         try {
-            String sql = "select aula from aula where aula = ?";
+            String sql = "select aula from aula where aula = ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { aula }, String.class);
         } catch (final EmptyResultDataAccessException e) {
@@ -91,7 +93,7 @@ public class JdbcAulasDao  {
         String name;
         
         try {
-            String sql = "select aula from aula where aula = ? and id <> ?";
+            String sql = "select aula from aula where aula = ? and id <> ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { aula, id }, String.class);
         } catch (final EmptyResultDataAccessException e) {
@@ -104,11 +106,24 @@ public class JdbcAulasDao  {
     
     
     
+    private static class AulaEquipoMapper implements ParameterizedRowMapper<Aula> { 
+        public Aula mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Aula aula  = new Aula();
+            aula.setId(rs.getString("id"));
+            aula.setAula(rs.getString("aula"));
+            aula.setEquipo(rs.getString("equipo"));
+            aula.setMarca(rs.getString("marca"));
+            aula.setSerieCpu(rs.getString("serieCPU"));
+            aula.setProcesador(rs.getString("procesador"));
+            return aula;
+        } 
+    } 
+    
     private static class AulaMapper implements ParameterizedRowMapper<Aula> { 
         public Aula mapRow(ResultSet rs, int rowNum) throws SQLException {
             Aula aula  = new Aula();
             aula.setId(rs.getString("id"));
-            aula.setAula(rs.getString("aula"));            
+            aula.setAula(rs.getString("aula"));
             return aula;
         } 
     } 

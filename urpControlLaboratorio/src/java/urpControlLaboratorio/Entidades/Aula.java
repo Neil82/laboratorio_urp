@@ -4,6 +4,18 @@ import java.io.Serializable;
 public class Aula { 
     private String id = "";
     private String aula = "";
+    private String equipo = "";
+    private String marca = "";
+    private String serieCpu = "";
+    private String procesador = "";
+
+    public String getSerieCpu() {
+        return serieCpu;
+    }
+
+    public void setSerieCpu(String serieCpu) {
+        this.serieCpu = serieCpu;
+    }
     private String tipoAccion = "";
     private String botonAccion = "";
     private String msgError = "";
@@ -23,6 +35,31 @@ public class Aula {
         this.aula = aula;
     }
 
+    public String getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(String equipo) {
+        this.equipo = equipo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getProcesador() {
+        return procesador;
+    }
+
+    public void setProcesador(String procesador) {
+        this.procesador = procesador;
+    }
+
+ 
     public String getTipoAccion() {
         return tipoAccion;
     }

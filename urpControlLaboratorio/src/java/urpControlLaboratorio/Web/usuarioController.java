@@ -81,11 +81,7 @@ public class usuarioController {
     
     @RequestMapping(value="eliminarUsuario.htm",method= RequestMethod.GET)
     public ModelAndView eliminarUsuario(HttpServletRequest request){ 
-        
-        /*Map<String, Object> myModel = new HashMap<String, Object>();
-        Usuario usuario = usuariosManager.getUsuario(request.getParameter("id"));
-        return new ModelAndView("usuario","model", usuario);*/
-        
+     
         usuariosManager.deleteUsuario(request.getParameter("idusuario"));
         return new ModelAndView("redirect:/maestroUsuario.htm");
     }

@@ -13,13 +13,12 @@ public class AnioNegocio {
     } 
     
     public Anio getAnio(String id) {
-        // return products;
         return aniosDao.getAnio(id);
     } 
     
     public List<Anio> getAnioForm(String id) {
         return aniosDao.getAnioForm(id);
-    } 
+    }
     
     public String insertAnio(Anio anio) {
         

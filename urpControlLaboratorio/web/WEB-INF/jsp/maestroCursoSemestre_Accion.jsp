@@ -6,22 +6,20 @@
 
 <table class="table table-hover">
 <tr>  
-    <th>                            
-        &nbsp;&nbsp;Año
-    </th>
-    <th>Semestre</th>
+    <th style="text-align: center;">Año</th>
+    <th style="text-align: center;">Semestre</th>
     <th>Curso</th>
-    <th>Grupo</th>
-    <th>SubGrupo</th>
+    <th style="text-align: center;">Grupo</th>
+    <th style="text-align: center;">SubGrupo</th>
     <th>Profesor</th>
     <th colspan="2">Acciones</th>
 </tr>   
 <c:forEach items="${model.cursoSemestres}" var="cursoSemestre">
-    <tr><td><c:out value="${cursoSemestre.id_anio}"/></td>
-        <td><c:out value="${cursoSemestre.id_semestre}"/></td>
+    <tr><td style="text-align: center;"><c:out value="${cursoSemestre.id_anio}"/></td>
+        <td style="text-align: center;"><c:out value="${cursoSemestre.id_semestre}"/></td>
         <td><c:out value="${cursoSemestre.id_curso}"/></td>
-        <td><c:out value="${cursoSemestre.id_grupo}"/></td>
-        <td><c:out value="${cursoSemestre.id_subgrupo}"/></td>
+        <td style="text-align: center;"><c:out value="${cursoSemestre.id_grupo}"/></td>
+        <td style="text-align: center;"><c:out value="${cursoSemestre.id_subgrupo}"/></td>
         <td><c:out value="${cursoSemestre.id_docente}"/></td>
         <td style="width: 20px;">
             <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarCursoSemestre.htm?id=${cursoSemestre.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>

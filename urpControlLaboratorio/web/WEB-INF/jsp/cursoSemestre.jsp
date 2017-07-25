@@ -16,7 +16,7 @@
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroCursoSemestre.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroCursoSemestre.htm" />">Volver</a></li>
                 </ol>
                 
                 <div class="panel panel-primary panel-success">
@@ -30,17 +30,17 @@
                                     <label class="control-label col-md-2" style="text-align: right">Año</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                               
                                                  <form:select class="form-control" path="id_anio" >
                                                     
                                                     <c:forEach items="${model.listAnio}" var="lanios">
                                                     <c:choose>
                                                         <c:when test="${lanios.id == model.selAnio}">
-                                                            <option value="${lanios.id}" selected>${lanios.id}</option>
+                                                            <option value="${lanios.id}" selected>${lanios.anio}</option>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <option value="${lanios.id}" >${lanios.id}</option>
+                                                            <option value="${lanios.id}" >${lanios.anio}</option>
                                                         </c:otherwise> 
                                                     </c:choose> 
                                                     </c:forEach>
@@ -80,7 +80,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Curso</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
                                               
                                                 <form:select class="form-control" path="id_curso" >
                                                     
@@ -103,7 +103,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Grupo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
                                               
                                                 <form:select class="form-control" path="id_grupo" >
                                                     
@@ -130,7 +130,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">SubGrupo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-indent-left"></span></span>
                                             
                                                 <form:select class="form-control" path="id_subgrupo" >
                                                     
@@ -153,7 +153,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Docente</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                             
                                                 <form:select class="form-control" path="id_docente" >
                                                     
@@ -183,6 +183,9 @@
                                     
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="id" cssClass="error"/>   
                                         <form:errors path="id_anio" cssClass="error"/>

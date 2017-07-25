@@ -1,8 +1,6 @@
 
 package urpControlLaboratorio.Negocio;
 
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import urpControlLaboratorio.Datos.JdbcCursoSemestresDao;
 import urpControlLaboratorio.Entidades.CursoSemestre;
 
@@ -11,37 +9,30 @@ public class CursoSemestreValidator {
     private JdbcCursoSemestresDao jdbc = new JdbcCursoSemestresDao();
 
     
-    /*@Override
-    public boolean supports(Class<?> type) {
-        return CursoSemestre.class.isAssignableFrom(type);
-    }*/
-
+    public String validateInsert(CursoSemestre cursoSemestre) {
     
-    public boolean validate(CursoSemestre cursoSemestre) {
-    
-       
         if (cursoSemestre.getId_anio().trim() == "") {
-            return false;
+            return "Seleccione el Año.";
         }
         
         if (cursoSemestre.getId_curso().trim() == "") {
-            return false;
+            return "Seleccione el Curso.";
         }
         
         if (cursoSemestre.getId_docente().trim() == "") {
-            return false;
+            return "Seleccione el Docente.";
         }
         
         if (cursoSemestre.getId_grupo().trim() == "") {
-            return false;
+            return "Seleccione el Grupo.";
         }
         
         if (cursoSemestre.getId_semestre().trim() == "") {
-            return false;
+            return "Seleccione el Semestre.";
         }
         
         if (cursoSemestre.getId_subgrupo().trim() == "") {
-            return false;
+            return "Seleccione el Subgrupo.";
         }
         
         String id_anio = cursoSemestre.getId_anio().trim(); 
@@ -50,13 +41,52 @@ public class CursoSemestreValidator {
         String id_semestre = cursoSemestre.getId_semestre().trim(); 
         String id_subgrupo = cursoSemestre.getId_subgrupo().trim(); 
        
-        if(jdbc.getCursoSemestreValidacion(id_anio,id_semestre,id_curso,id_grupo,id_subgrupo) != null){
-            return false;
+        if(jdbc.getCursoSemestreValidacionInsert(id_anio,id_semestre,id_curso,id_grupo,id_subgrupo) != null){
+            return "Ya se ha registrado la combinación de este Curso/Semestre.";
         }
 
+        return "ok";
+    }
+    
+    
+    public String validateUpdate(CursoSemestre cursoSemestre, String id) {
+    
+       
+        if (cursoSemestre.getId_anio().trim() == "") {
+            return "Seleccione el Año.";
+        }
         
-        //validar que el CursoSemestre no este insertada
-        return true;
+        if (cursoSemestre.getId_curso().trim() == "") {
+            return "Seleccione el Curso.";
+        }
+        
+        if (cursoSemestre.getId_docente().trim() == "") {
+            return "Seleccione el Docente.";
+        }
+        
+        if (cursoSemestre.getId_grupo().trim() == "") {
+            return "Seleccione el Grupo.";
+        }
+        
+        if (cursoSemestre.getId_semestre().trim() == "") {
+            return "Seleccione el Semestre.";
+        }
+        
+        if (cursoSemestre.getId_subgrupo().trim() == "") {
+            return "Seleccione el Subgrupo.";
+        }
+        
+        String id_anio = cursoSemestre.getId_anio().trim(); 
+        String id_curso = cursoSemestre.getId_curso().trim(); 
+        String id_grupo = cursoSemestre.getId_grupo().trim(); 
+        String id_semestre = cursoSemestre.getId_semestre().trim(); 
+        String id_subgrupo = cursoSemestre.getId_subgrupo().trim(); 
+       
+        if(jdbc.getCursoSemestreValidacionUpd(id_anio,id_semestre,id_curso,id_grupo,id_subgrupo, id) != null){
+            return "Ya se ha registrado la combinación de este Curso/Semestre.";
+        }
+
+        return "ok";
     }
     
 }

@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 public class Anio { 
     private String id = "";
+    private String anio = "";
     private String descripcion = "";
     private String tipoAccion = "";
     private String botonAccion = "";
@@ -14,6 +15,15 @@ public class Anio {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getAnio() {
+        return anio;
+    }
+
+    public void setAnio(String anio) {
+        this.anio = anio;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }    

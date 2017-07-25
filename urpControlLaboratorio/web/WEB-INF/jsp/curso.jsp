@@ -16,11 +16,11 @@
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroCurso.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroCurso.htm" />">Volver</a></li>
                 </ol>
                 
                 <div class="panel panel-primary panel-success">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-book"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="well">  
@@ -29,15 +29,15 @@
                                     <label class="control-label col-md-2" style="text-align: right">Cod.Curso</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="codcurso"/>
                                                 
                                         </div>
                                     </div>
-                                    <label class="control-label col-md-2" style="text-align: right">Descripción</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Curso</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
                                                 <form:input class="form-control" path="descripcion"/>
                                             
                                         </div>

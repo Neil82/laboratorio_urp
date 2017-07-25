@@ -1,3 +1,15 @@
+HTML{ width:100%; 
+	height:100%;
+}
+
+body{
+    font-family: Arial,sans-serif;
+    margin:0;
+    background: #ffffff;
+    width:100%; 
+    height:100%;
+}
+
 #tablatexto {
 color: rgba(38,68,134,1.00);
 width:400px;

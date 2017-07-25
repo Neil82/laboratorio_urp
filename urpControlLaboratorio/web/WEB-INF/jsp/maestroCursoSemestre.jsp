@@ -31,25 +31,41 @@
                                             
                                             <tr>
                        
-                                                <td>Año</td>
+                                                <td>Año&nbsp;&nbsp;</td>
                                                 <td>
                                                     
                                                     <select name="selAnio" id="selAnio" class="form-control" onChange="showCursoSemestre()">
                                                         <option value="-1">--Seleccione--</option>
-                                                        <c:forEach items="${model.anios}" var="anio">
-                                                            <option value="${anio.id}">${anio.id}</option>
+                                                        
+                                                        <c:forEach items="${model.listAnio}" var="anio">
+                                                            <c:choose>
+                                                                <c:when test="${anio.id == model.selAnio}">
+                                                                    <option value="${anio.id}" selected>${anio.anio}</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="${anio.id}" >${anio.anio}</option>
+                                                                </c:otherwise> 
+                                                            </c:choose> 
                                                         </c:forEach>
                                                     </select>
                                                     
                                                 </td>
                                                 <td style="width:100px;"></td>
                                                 
-                                                <td>Semestre</td>
+                                                <td>Semestre&nbsp;&nbsp;</td>
                                                 <td>
                                                     <select name="selSemestre" id="selSemestre" class="form-control" onChange="showCursoSemestre()">
                                                         <option value="-1">--Seleccione--</option>
-                                                        <c:forEach items="${model.semestres}" var="semestre">
-                                                            <option value="${semestre.id}">${semestre.descripcion}</option>
+                                                       
+                                                        <c:forEach items="${model.listSemestre}" var="semestre">
+                                                            <c:choose>
+                                                                <c:when test="${semestre.id == model.selSemestre}">
+                                                                    <option value="${semestre.id}" selected>${semestre.descripcion}</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="${semestre.id}" >${semestre.descripcion}</option>
+                                                                </c:otherwise> 
+                                                            </c:choose> 
                                                         </c:forEach>
                                                     </select>
                                                 </td>
@@ -57,13 +73,9 @@
                                                 <td style="width:50px;"></td>
                                                 
                                                 <td>
-                                                    <!--<button type="button" class="btn-sm btn-success" id="btnNuevo">
-                                                        <a style="color:white" href="<c:url value="insertarCursoSemestre.htm?id=${semestre.id}"/>">
-                                                            <span class="glyphicon glyphicon-plus"></span>
-                                                        </a>
-                                                    </button>-->
+                                                  
                                                     
-                                                    <input type="submit" class="form-control btn-primary" align="center" value="Add">        
+                                                    <input type="submit" class="form-control btn-primary" align="center" value="+">        
                                                     
                                                 </td>
                                                 
@@ -91,6 +103,12 @@
         </div>
         
     </div>
+    
+    <script>
+        window.onload = function() {
+           showCursoSemestre();
+        }
+    </script>
 
 </body>
 </html>

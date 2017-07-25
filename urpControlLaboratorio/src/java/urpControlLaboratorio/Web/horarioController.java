@@ -5,11 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import urpControlLaboratorio.Entidades.Aula;
 import urpControlLaboratorio.Entidades.Horario;
 import urpControlLaboratorio.Negocio.AnioNegocio;
 import urpControlLaboratorio.Negocio.AulaNegocio;
@@ -74,8 +72,7 @@ public class horarioController {
         return new ModelAndView("maestroHorario_Accion","model", myModel);
     }
     
-    
-    
+
     @RequestMapping(value="addHorario.htm",method= RequestMethod.POST)
     public ModelAndView addHorario(HttpServletRequest request, Horario horario){ 
         
@@ -154,7 +151,6 @@ public class horarioController {
         }
 
     }
-    
     
     
     @RequestMapping(value="editarHorario.htm",method= RequestMethod.GET)

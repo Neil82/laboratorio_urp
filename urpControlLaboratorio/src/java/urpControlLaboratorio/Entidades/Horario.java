@@ -41,6 +41,20 @@ public class Horario {
     private String rep_viernes;
     private String rep_sabado;
     
+    private String rep_lunes_dur;
+    private String rep_martes_dur;
+    private String rep_miercoles_dur;
+    private String rep_jueves_dur;
+    private String rep_viernes_dur;
+    private String rep_sabado_dur;
+    
+    private String rep_lunes_docente;
+    private String rep_martes_docente;
+    private String rep_miercoles_docente;
+    private String rep_jueves_docente;
+    private String rep_viernes_docente;
+    private String rep_sabado_docente;
+    
     private String msgError;
     
     public String getId() {
@@ -322,6 +336,102 @@ public class Horario {
 
     public void setRep_sabado(String rep_sabado) {
         this.rep_sabado = rep_sabado;
+    }
+
+    public String getRep_lunes_dur() {
+        return rep_lunes_dur;
+    }
+
+    public void setRep_lunes_dur(String rep_lunes_dur) {
+        this.rep_lunes_dur = rep_lunes_dur;
+    }
+
+    public String getRep_martes_dur() {
+        return rep_martes_dur;
+    }
+
+    public void setRep_martes_dur(String rep_martes_dur) {
+        this.rep_martes_dur = rep_martes_dur;
+    }
+
+    public String getRep_miercoles_dur() {
+        return rep_miercoles_dur;
+    }
+
+    public void setRep_miercoles_dur(String rep_miercoles_dur) {
+        this.rep_miercoles_dur = rep_miercoles_dur;
+    }
+
+    public String getRep_jueves_dur() {
+        return rep_jueves_dur;
+    }
+
+    public void setRep_jueves_dur(String rep_jueves_dur) {
+        this.rep_jueves_dur = rep_jueves_dur;
+    }
+
+    public String getRep_viernes_dur() {
+        return rep_viernes_dur;
+    }
+
+    public void setRep_viernes_dur(String rep_viernes_dur) {
+        this.rep_viernes_dur = rep_viernes_dur;
+    }
+
+    public String getRep_sabado_dur() {
+        return rep_sabado_dur;
+    }
+
+    public void setRep_sabado_dur(String rep_sabado_dur) {
+        this.rep_sabado_dur = rep_sabado_dur;
+    }
+
+    public String getRep_lunes_docente() {
+        return rep_lunes_docente;
+    }
+
+    public void setRep_lunes_docente(String rep_lunes_docente) {
+        this.rep_lunes_docente = rep_lunes_docente;
+    }
+
+    public String getRep_martes_docente() {
+        return rep_martes_docente;
+    }
+
+    public void setRep_martes_docente(String rep_martes_docente) {
+        this.rep_martes_docente = rep_martes_docente;
+    }
+
+    public String getRep_miercoles_docente() {
+        return rep_miercoles_docente;
+    }
+
+    public void setRep_miercoles_docente(String rep_miercoles_docente) {
+        this.rep_miercoles_docente = rep_miercoles_docente;
+    }
+
+    public String getRep_jueves_docente() {
+        return rep_jueves_docente;
+    }
+
+    public void setRep_jueves_docente(String rep_jueves_docente) {
+        this.rep_jueves_docente = rep_jueves_docente;
+    }
+
+    public String getRep_viernes_docente() {
+        return rep_viernes_docente;
+    }
+
+    public void setRep_viernes_docente(String rep_viernes_docente) {
+        this.rep_viernes_docente = rep_viernes_docente;
+    }
+
+    public String getRep_sabado_docente() {
+        return rep_sabado_docente;
+    }
+
+    public void setRep_sabado_docente(String rep_sabado_docente) {
+        this.rep_sabado_docente = rep_sabado_docente;
     }
 
 }

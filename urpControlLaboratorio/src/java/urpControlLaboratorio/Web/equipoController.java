@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import urpControlLaboratorio.Entidades.Aula;
 import urpControlLaboratorio.Entidades.Equipo;
 import urpControlLaboratorio.Negocio.AulaNegocio;
 import urpControlLaboratorio.Negocio.EquipoNegocio;
@@ -69,8 +67,8 @@ public class equipoController {
             equipo_form.setEqnombre(request.getParameter("eqnombre"));
             
             List listAulas = this.aulasManager.getAulas();
-            equipo.setListAula(listAulas);
-            equipo.setSelAula(request.getParameter("idaula"));
+            equipo_form.setListAula(listAulas);
+            equipo_form.setSelAula(request.getParameter("idaula"));
             
             equipo_form.setCpu_marca(request.getParameter("cpu_marca"));
             equipo_form.setCpu_modelo(request.getParameter("cpu_modelo"));

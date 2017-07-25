@@ -19,47 +19,44 @@ public class JdbcAniosDao  {
     
     public List<Anio> getAnios() {
 
-        List<Anio> anios = this.jdbctemplate.query("select id, descripcion from anio where estado=1", new JdbcAniosDao.AnioMapper());
+        List<Anio> anios = this.jdbctemplate.query("select id, anio, descripcion from anio where estado=1", new JdbcAniosDao.AnioMapper());
         return anios;
     } 
     
     public Anio getAnio(String id) {
         
-        List<Anio> anios =  this.jdbctemplate.query("select id, descripcion from anio where id='"+id+"'", new JdbcAniosDao.AnioMapper());
+        List<Anio> anios =  this.jdbctemplate.query("select id, anio, descripcion from anio where id='"+id+"'", new JdbcAniosDao.AnioMapper());
         return anios.get(0);
         
     }
     
     public List<Anio> getAnioForm(String id) {
         
-        List<Anio> anios =  this.jdbctemplate.query("select id, descripcion from anio where id='"+id+"'", new JdbcAniosDao.AnioMapper());
+        List<Anio> anios =  this.jdbctemplate.query("select id, anio, descripcion from anio where id='"+id+"'", new JdbcAniosDao.AnioMapper());
         return anios;
         
     }
     
     
     public void insertAnio(Anio anio) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
-            "insert into anio (id, descripcion) values (?,?)",anio.getId(), anio.getDescripcion());
-        
-        //logger.info("Rows affected: " + count);
+            "insert into anio (anio, descripcion) values (?,?)",anio.getAnio(), anio.getDescripcion());
+
     }
     
     public void updateAnio(Anio anio, String id) {
         
          this.jdbctemplate.update(
             "update anio "
-                    + "set id = ?, descripcion = ? "
+                    + "set anio = ?, descripcion = ? "
                     + "where "
                     + "id = ?", 
-                 anio.getDescripcion(), id);
+                 anio.getAnio(), anio.getDescripcion(), id);
         
     }    
     
     public void deleteAnio(String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update anio "
@@ -68,18 +65,17 @@ public class JdbcAniosDao  {
                     + "id = ?", 
                  id);
         
-        //logger.info("Rows affected: " + count);
     }
     
     
-    public String getAnioValidacionInsert(String id) {
+    public String getAnioValidacionInsert(String anio) {
         
         String name;
         
         try {
-            String sql = "select descripcion from anio where id = ?";
+            String sql = "select descripcion from anio where anio = ?";
             name = (String)this.jdbctemplate.queryForObject(
-                            sql, new Object[] { id }, String.class);
+                            sql, new Object[] { anio }, String.class);
         } catch (final EmptyResultDataAccessException e) {
 	  name = null;
         
@@ -93,7 +89,7 @@ public class JdbcAniosDao  {
         String name;
         
         try {
-            String sql = "select descripcion from anio where id = ? and id <> ?";
+            String sql = "select descripcion from anio where anio=? and id <> ? ";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { anio, id }, String.class);
         } catch (final EmptyResultDataAccessException e) {
@@ -109,6 +105,7 @@ public class JdbcAniosDao  {
         public Anio mapRow(ResultSet rs, int rowNum) throws SQLException {
             Anio anio  = new Anio();
             anio.setId(rs.getString("id"));
+            anio.setAnio(rs.getString("anio"));
             anio.setDescripcion(rs.getString("descripcion"));            
             return anio;
         } 

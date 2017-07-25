@@ -26,15 +26,24 @@
                                               <span class="glyphicon glyphicon-plus"></span>
                                           </a>
                                       </button>                                      
-                                      &nbsp;&nbsp;Aula
+                                      &nbsp;&nbsp;Item
                                   </th>
-                                  <th>PC Asociada</th>
+                                  <th>Aula</th>
+                                  <th>Equipo Asociado</th>
+                                  <th>Marca Equipo</th>
+                                  <th>Procesador</th>
                                   <th colspan="2">Opciones</th>
                                 </thead>
                                 <tbody>
+                                    <c:set var="item" value="0" /> 
                                     <c:forEach items="${model.aulas}" var="aula">
-                                        <tr><td><c:out value="${aula.id}"/></td>
+                                        <c:set var="item" value="${item+1}" /> 
+                                        
+                                        <tr><td><c:out value="${item}"/></td>
                                             <td><c:out value="${aula.aula}"/></td>
+                                            <td><c:out value="${aula.equipo}"/></td>
+                                            <td><c:out value="${aula.marca}"/></td>
+                                            <td><c:out value="${aula.procesador}"/></td>
                                             <td style="width: 20px;">
                                                 <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarAula.htm?id=${aula.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
                                             </td>

@@ -4,7 +4,6 @@ package urpControlLaboratorio.Web;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,7 +61,7 @@ public class cursoController {
             curso_form.setTipoAccion("Ingresar los Datos del Curso");
             curso_form.setBotonAccion("Ingresar");
             curso_form.setCodcurso(request.getParameter("codcurso"));
-            curso_form.setDescripcion(request.getParameter("aula"));
+            curso_form.setDescripcion(request.getParameter("descripcion"));
             
             curso_form.setMsgError(resultado);
             

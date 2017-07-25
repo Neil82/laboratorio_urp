@@ -13,7 +13,7 @@
     <div class="container">
         
         <div class="panel panel-primary panel-success">
-            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Equipos</div>
+            <div class="panel-heading"><span class="glyphicon glyphicon-list"></span> &nbsp;&nbsp;Equipos</div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     <div class="well">

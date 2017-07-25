@@ -4,6 +4,8 @@ package urpControlLaboratorio.Negocio;
 import java.util.List;
 import urpControlLaboratorio.Entidades.Horario;
 import urpControlLaboratorio.Datos.JdbcHorariosDao;
+
+
 public class HorarioNegocio {
     private JdbcHorariosDao horariosDao = new JdbcHorariosDao(); // horariosDao declarada en el property del bean del applicationContext id="horariossManager"
     private HorarioValidator validador = new HorarioValidator();

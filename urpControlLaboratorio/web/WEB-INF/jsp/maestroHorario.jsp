@@ -92,11 +92,7 @@
                                                 <td style="width:50px;"></td>
                                                 
                                                 <td>
-                                                    <!--<button type="button" class="btn-sm btn-success" id="btnNuevo">
-                                                        <a style="color:white" href="<c:url value="insertarHorario.htm"/>">
-                                                            <span class="glyphicon glyphicon-plus"></span>
-                                                        </a>
-                                                    </button>-->
+                                                   
                                                     
                                                     <input type="submit" class="form-control btn-primary" align="center" value="Add">
                                                 </td>
@@ -125,11 +121,11 @@
         
     </div>
 
-        <script>
-            window.onload = function() {
-               showHorario();
-            }
-        </script>
+    <script>
+        window.onload = function() {
+           showHorario();
+        }
+    </script>
         
 
 </body>

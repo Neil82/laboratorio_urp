@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List; 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import urpControlLaboratorio.Entidades.Horario;
@@ -60,30 +59,10 @@ public class JdbcHorariosDao  {
         
     }
      
-    /*public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
-        
-        List<Horario> horarios =  this.jdbctemplate.query("select h.id, a.id as anio, "
-                + "s.descripcion as semestre, "
-                + "au.id as aula, d.descripcion as dia, hi.descripcion as hora_inicio, hi.hora_fin, "
-                + "hf.descripcion as duracion, concat(c.descripcion,' - ',do.apellidos,' ',do.nombres) as cursosemestre "
-                + "from horario h left join anio a on a.id = h.id_anio "
-                + "left join semestre s on s.id = h.id_semestre "
-                + "left join aula au on au.id = h.id_aula "
-                + "left join dia d on d.id = h.id_dia "
-                + "left join hora hi on hi.id = h.id_hinicio "
-                + "left join duracion hf on hf.id = h.id_duracion "
-                + "left join cursoSemestre cs on cs.id = h.id_cursosemestre "
-                + "left join curso c on c.id = cs.id_curso "
-                + "left join docente do on do.id = cs.id_docente "
-                + "where h.id_anio='"+id_anio+"' and h.id_semestre='"+id_semestre+"' and "
-                + "id_aula ='"+id_aula+"'", new JdbcHorariosDao.HorarioMapper());
-        return horarios;
-        
-    } */
-     
+   
     public List<Horario> getHorarioAjax(String id_anio, String id_semestre, String id_aula) {
         
-        List<Horario> horarios =  this.jdbctemplate.query("call sp_horario ('"+id_anio+"', '"+id_semestre+"', '"+id_aula+"')", new JdbcHorariosDao.HorarioReporteMapper());
+        List<Horario> horarios =  this.jdbctemplate.query("call sp_horario ('"+id_aula+"', '"+id_anio+"', '"+id_semestre+"')", new JdbcHorariosDao.HorarioReporteMapper());
         return horarios;
         
     }
@@ -420,12 +399,28 @@ public class JdbcHorariosDao  {
             Horario horario = new Horario();
             horario.setRep_horaInicio(rs.getString("hora_inicio"));
             horario.setRep_horaFin(rs.getString("hora_fin"));
+            
             horario.setRep_lunes(rs.getString("lunes"));
             horario.setRep_martes(rs.getString("martes"));
             horario.setRep_miercoles(rs.getString("miercoles"));
             horario.setRep_jueves(rs.getString("jueves"));
             horario.setRep_viernes(rs.getString("viernes"));
             horario.setRep_sabado(rs.getString("sabado"));
+            
+            horario.setRep_lunes_dur(rs.getString("lunes_dur"));
+            horario.setRep_martes_dur(rs.getString("martes_dur"));
+            horario.setRep_miercoles_dur(rs.getString("miercoles_dur"));
+            horario.setRep_jueves_dur(rs.getString("jueves_dur"));
+            horario.setRep_viernes_dur(rs.getString("viernes_dur"));
+            horario.setRep_sabado_dur(rs.getString("sabado_dur"));
+            
+            horario.setRep_lunes_docente(rs.getString("lunes_profe"));
+            horario.setRep_martes_docente(rs.getString("martes_profe"));
+            horario.setRep_miercoles_docente(rs.getString("miercoles_profe"));
+            horario.setRep_jueves_docente(rs.getString("jueves_profe"));
+            horario.setRep_viernes_docente(rs.getString("viernes_profe"));
+            horario.setRep_sabado_docente(rs.getString("sabado_profe"));
+            
             return horario;
         } 
     } 

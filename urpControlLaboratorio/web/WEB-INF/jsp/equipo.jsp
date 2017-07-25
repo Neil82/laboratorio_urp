@@ -16,11 +16,11 @@
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroEquipo.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroEquipo.htm" />">Volver</a></li>
                 </ol>
                 
                 <div class="panel panel-primary panel-success">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-list"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="well">
@@ -32,7 +32,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Equipo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
                                                 <form:input class="form-control" path="eqnombre"/>
                                                 
                                         </div>
@@ -40,7 +40,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Aula</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                             
                                                 <form:select class="form-control" path="idaula" >
                                                     
@@ -67,7 +67,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">CPU Marca</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="cpu_marca"/>
                                                 
                                         </div>
@@ -75,7 +75,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">CPU Modelo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="cpu_modelo"/>
                                             
                                         </div>
@@ -87,7 +87,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">CPU Serie</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="cpu_serie"/>
                                                 
                                         </div>
@@ -95,7 +95,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Procesador</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                           <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                           <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="procesador"/>
                                             
                                         </div>
@@ -108,7 +108,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Velocidad GHz</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="velocidad"/>
                                                 
                                         </div>
@@ -116,7 +116,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Memoria RAM</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="ram"/>
                                             
                                         </div>
@@ -125,10 +125,10 @@
                                 </div> 
                                                 
                                 <div class="row">
-                                    <label class="control-label col-md-2" style="text-align: right">Disco D</label>
+                                    <label class="control-label col-md-2" style="text-align: right">Total HDD</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                                 <form:input class="form-control" path="disco_d"/>
                                                 
                                         </div>
@@ -136,7 +136,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Tarj. Video</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="tvideo"/>
                                             
                                         </div>
@@ -160,7 +160,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Marca</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="monitor_marca"/>
                                                 
                                         </div>
@@ -168,7 +168,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Modelo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="monitor_modelo"/>
                                             
                                         </div>
@@ -179,7 +179,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Serie</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="monitor_serie"/>
                                                 
                                         </div>
@@ -207,7 +207,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Marca</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="teclado_marca"/>
                                                 
                                         </div>
@@ -215,7 +215,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Modelo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="teclado_modelo"/>
                                             
                                         </div>
@@ -226,7 +226,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Serie</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="teclado_serie"/>
                                                 
                                         </div>
@@ -256,7 +256,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Marca</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="mouse_marca"/>
                                                 
                                         </div>
@@ -264,7 +264,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Modelo</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-saved"></span></span>
                                                 <form:input class="form-control" path="mouse_modelo"/>
                                             
                                         </div>
@@ -275,7 +275,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Serie</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="mouse_serie"/>
                                                 
                                         </div>

@@ -72,12 +72,12 @@ public class JdbcCursosDao  {
     
     
     
-    public String getCursoValidacion(String codcurso) {
+    public String getCursoValidacionInsert(String codcurso) {
         
         String name;
         
         try {
-            String sql = "select descripcion from curso where codcurso = ?";
+            String sql = "select descripcion from curso where codcurso = ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { codcurso }, String.class);
         } catch (final EmptyResultDataAccessException e) {
@@ -93,9 +93,41 @@ public class JdbcCursosDao  {
         String name;
         
         try {
-            String sql = "select descripcion from curso where codcurso = ? and id <> ?";
+            String sql = "select descripcion from curso where codcurso = ? and id <> ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
                             sql, new Object[] { codcurso, id }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    }
+    
+    public String getCursoNombreValidacionInsert(String curso) {
+        
+        String name;
+        
+        try {
+            String sql = "select descripcion from curso where descripcion = ? and estado=1";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { curso }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
+    
+    public String getCursoNombreValidacionUpd(String curso, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select descripcion from curso where descripcion = ? and id <> ? and estado=1";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { curso, id }, String.class);
         } catch (final EmptyResultDataAccessException e) {
 	  name = null;
         

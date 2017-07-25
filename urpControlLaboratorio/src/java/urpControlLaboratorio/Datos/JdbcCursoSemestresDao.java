@@ -5,11 +5,8 @@ import java.sql.SQLException;
 import java.util.List; 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-
 import urpControlLaboratorio.Entidades.CursoSemestre;
-
 
 
 public class JdbcCursoSemestresDao  {
@@ -55,7 +52,7 @@ public class JdbcCursoSemestresDao  {
     public List<CursoSemestre> getCursoSemestreAjax(String id_anio, String id_semestre) {
 
         List<CursoSemestre> cursoSemestres = 
-                this.jdbctemplate.query("select cs.id, a.id as anio, s.descripcion as semestre,"
+                this.jdbctemplate.query("select cs.id, a.anio, s.descripcion as semestre,"
                 + "c.descripcion as curso, g.descripcion as grupo, sg.descripcion as subgrupo,"
                 + "concat(d.apellidos,' ',d.nombres) as docente "
                 + "from cursoSemestre cs left join anio a on a.id=cs.id_anio "
@@ -71,7 +68,7 @@ public class JdbcCursoSemestresDao  {
     
     public CursoSemestre getCursoSemestre(String id) {
         
-        List<CursoSemestre> cursoSemestres =  this.jdbctemplate.query("select cs.id, a.id as anio, "
+        List<CursoSemestre> cursoSemestres =  this.jdbctemplate.query("select cs.id, a.anio, "
                 + "s.id as semestre,"
                 + "c.id as curso, g.id as grupo, sg.id as subgrupo,"
                 + "d.id as docente "
@@ -86,7 +83,7 @@ public class JdbcCursoSemestresDao  {
         
     }
     
-    public String getCursoSemestreValidacion(String id_anio, String id_semestre, String id_curso, String id_grupo, String id_subgrupo) {
+    public String getCursoSemestreValidacionInsert(String id_anio, String id_semestre, String id_curso, String id_grupo, String id_subgrupo) {
         
         String name;
         
@@ -102,18 +99,35 @@ public class JdbcCursoSemestresDao  {
          
 	return name;
     } 
+    
+    public String getCursoSemestreValidacionUpd(String id_anio, String id_semestre, String id_curso, String id_grupo, String id_subgrupo, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select id_anio from cursoSemestre where id_anio = ? "
+                    + " and id_semestre = ? and id_curso = ? and id_grupo = ? and id_subgrupo = ? and id <> ?";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { id_anio, id_semestre, id_curso, id_grupo, id_subgrupo }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+         }
+         
+	return name;
+    } 
      
     public void insertCursoSemestre(CursoSemestre cursoSemestre) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
-            "insert into cursoSemestre (id_anio, id_semestre, id_curso, id_grupo, id_subgrupo, id_docente) values (?,?,?,?,?,?)",cursoSemestre.getId_anio(), cursoSemestre.getId_semestre(), cursoSemestre.getId_curso(), cursoSemestre.getId_grupo(), cursoSemestre.getId_subgrupo(), cursoSemestre.getId_docente());
+            "insert into cursoSemestre (id_anio, id_semestre, id_curso, id_grupo, id_subgrupo, "
+                    + "id_docente) values (?,?,?,?,?,?)",
+                 cursoSemestre.getId_anio(), cursoSemestre.getId_semestre(), cursoSemestre.getId_curso(), 
+                 cursoSemestre.getId_grupo(), cursoSemestre.getId_subgrupo(), cursoSemestre.getId_docente());
         
-        //logger.info("Rows affected: " + count);
     }
     
     public void updateCursoSemestre(CursoSemestre cursoSemestre, String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update cursoSemestre "
@@ -127,11 +141,9 @@ public class JdbcCursoSemestresDao  {
                     + "id = ?", 
                  cursoSemestre.getId_anio(), cursoSemestre.getId_semestre(), cursoSemestre.getId_curso(), cursoSemestre.getId_grupo(), cursoSemestre.getId_subgrupo(), cursoSemestre.getId_docente(), id);
         
-        //logger.info("Rows affected: " + count);
     }    
     
     public void deleteCursoSemestre(String id) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update cursoSemestre "
@@ -139,8 +151,7 @@ public class JdbcCursoSemestresDao  {
                     + "where "
                     + "id = ?", 
                  id);
-        
-        //logger.info("Rows affected: " + count);
+
     }
     
     private static class CursoSemestreMapper implements ParameterizedRowMapper<CursoSemestre> { 

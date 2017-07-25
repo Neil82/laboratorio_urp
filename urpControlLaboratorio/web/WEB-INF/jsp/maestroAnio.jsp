@@ -13,7 +13,7 @@
     <div class="container">
         
         <div class="panel panel-primary panel-success">
-            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Años Lectivos</div>
+            <div class="panel-heading"><span class="glyphicon glyphicon-calendar"></span> &nbsp;&nbsp;Años Lectivos</div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     <div class="well">
@@ -26,14 +26,19 @@
                                               <span class="glyphicon glyphicon-plus"></span>
                                           </a>
                                       </button>                                      
-                                      &nbsp;&nbsp;Ano Lectivo
+                                      &nbsp;&nbsp;Item
                                   </th>
+                                  <th>Año Lectivo</th>
                                   <th>Descripción</th>
                                   <th colspan="2">Opciones</th>
                                 </thead>
                                 <tbody>
+                                    <c:set var="item" value="0" /> 
                                     <c:forEach items="${model.anios}" var="anio">
-                                        <tr><td><c:out value="${anio.id}"/></td>
+                                        <c:set var="item" value="${item+1}" /> 
+                                        <tr>
+                                            <td><c:out value="${item}"/></td>
+                                            <td><c:out value="${anio.anio}"/></td>
                                             <td><c:out value="${anio.descripcion}"/></td>
                                             <td style="width: 20px;">
                                                 <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarAnio.htm?id=${anio.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>

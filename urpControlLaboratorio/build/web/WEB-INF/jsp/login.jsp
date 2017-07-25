@@ -11,8 +11,8 @@
     <body>
 
 <div style="position: relative; padding: 0px;">
-    <img src="images/fondo1.jpg" style=" width: 100%; height: 100%;" alt="Universidad Ricardo Palma" />
-
+    
+<img src="images/fondo1.jpg" style="width: 100%; height: 100%; padding: 0px;" alt="Universidad Ricardo Palma" />
 	
 <div id="hlogin" style="position: absolute; left: 30px; bottom: 70px;">
 	

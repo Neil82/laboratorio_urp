@@ -8,7 +8,7 @@
  
  <div class="container">
         <div class="navbar-wrapper">
-            <nav class="navbar navbar-inverse ">
+            <nav class="navbar navbar-inverse" style="background-color: #A5D6A7; color: black">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -39,7 +39,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="#">Marcacion manual de salida</a></li>
+                                  <li><a href="maestroSalidaManual.htm">Marcacion manual de salida</a></li>
                                   <li><a href="#">Recuperacion de clases</a></li>
                                   <li><a href="<c:url value="maestroUsuario.htm"/>">Usuarios</a></li>                                  
                                 </ul>

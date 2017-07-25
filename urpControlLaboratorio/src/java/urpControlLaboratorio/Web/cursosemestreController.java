@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,12 +40,19 @@ public class cursosemestreController {
     
     @RequestMapping("maestroCursoSemestre.htm")
     public ModelAndView maestroCursoSemestres(HttpServletRequest request){ 
+ 
+        List listAnios = this.aniosManager.getAnios(); 
+        List listSemestres = this.semestresManager.getSemestres();
+       
+        CursoSemestre Mymodel = new CursoSemestre();
+        Mymodel.setListAnio(listAnios);
+        Mymodel.setListSemestre(listSemestres);
         
-        Map<String, Object> myModel = new HashMap<String, Object>();
-        //myModel.put("cursoSemestres", this.cursoSemestresManager.getCursoSemestres()); 
-        myModel.put("anios", this.aniosManager.getAnios());  
-        myModel.put("semestres", this.semestresManager.getSemestres());
-        return new ModelAndView("maestroCursoSemestre","model", myModel);
+        Mymodel.setSelAnio(request.getParameter("selAnio"));
+        Mymodel.setSelSemestre(request.getParameter("selSemestre"));
+        
+        return new ModelAndView("maestroCursoSemestre","model", Mymodel);
+        
     }
     
     
@@ -59,14 +65,9 @@ public class cursosemestreController {
     }
     
     
- 
-    
     @RequestMapping(value="addCursoSemestre.htm",method= RequestMethod.POST)
     public ModelAndView addCursoSemestre(HttpServletRequest request, CursoSemestre cursoSemestre){ 
-        Errors errors = null;
 
-        //Map<String, Object> myModel = new HashMap<String, Object>();
-        
         List listAnios = this.aniosManager.getAnios(); 
         List listSemestres = this.semestresManager.getSemestres();
         List listCursos = this.cursosManager.getCursos();
@@ -92,12 +93,50 @@ public class cursosemestreController {
     }
     
     @RequestMapping(value="insertarCursoSemestre.htm",method= RequestMethod.POST)
-    public ModelAndView insertarCursoSemestre(CursoSemestre cursoSemestre){ 
-        Errors errors = null;
+    public ModelAndView insertarCursoSemestre(HttpServletRequest request, CursoSemestre cursoSemestre){ 
         
-        //this.cursoSemestresValidador.validate(cursoSemestre, errors);
-        cursoSemestresManager.insertCursoSemestre(cursoSemestre); 
-        return new ModelAndView("redirect:/maestroCursoSemestre.htm");
+        CursoSemestre cursoSemestre_form = new CursoSemestre();
+        String resultado = cursoSemestresManager.insertCursoSemestre(cursoSemestre); 
+        
+        if(resultado=="ok"){
+            
+            String anioS = request.getParameter("id_anio");
+            String semS = request.getParameter("id_semestre");
+            
+            return new ModelAndView("redirect:/maestroCursoSemestre.htm?selAnio="+anioS+"&selSemestre="+semS);
+            
+        } else{
+            
+            List listAnios = this.aniosManager.getAnios(); 
+            List listSemestres = this.semestresManager.getSemestres();
+            List listCursos = this.cursosManager.getCursos();
+            List listGrupos = this.gruposManager.getGrupos();
+            List listSubGrupos = this.subgruposManager.getSubGrupos();
+            List listDocentes = this.docentesManager.getDocentes();
+
+            cursoSemestre_form.setTipoAccion("Ingresar los Datos del Curso-Semestre");
+            cursoSemestre_form.setBotonAccion("Ingresar");
+            cursoSemestre_form.setAccion("insertarCursoSemestre.htm");
+            
+            cursoSemestre_form.setSelAnio(request.getParameter("id_anio"));
+            cursoSemestre_form.setSelSemestre(request.getParameter("id_semestre"));
+            cursoSemestre_form.setSelCurso(request.getParameter("id_curso"));
+            cursoSemestre_form.setSelGrupo(request.getParameter("id_grupo"));
+            cursoSemestre_form.setSelSubgrupo(request.getParameter("id_subgrupo"));
+            cursoSemestre_form.setSelDocente(request.getParameter("id_docente"));
+            
+            cursoSemestre_form.setListAnio(listAnios);
+            cursoSemestre_form.setListSemestre(listSemestres);
+            cursoSemestre_form.setListCurso(listCursos);
+            cursoSemestre_form.setListGrupo(listGrupos);
+            cursoSemestre_form.setListSubGrupo(listSubGrupos);
+            cursoSemestre_form.setListDocente(listDocentes);
+            
+            cursoSemestre_form.setMsgError(resultado);
+            
+            return new ModelAndView("cursoSemestre","model", cursoSemestre_form);
+        }
+      
     }
     
     

@@ -43,8 +43,11 @@
                                                 <form:input class="form-control" path="usuario"/>
                                             
                                         </div>
-                                    </div>            
+                                    </div>  
+                                </div>
                                                 
+                                                
+                                <div class="row">                
                                     <label class="control-label col-md-2" style="text-align: right">Nombres</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
@@ -62,12 +65,14 @@
                                             
                                         </div>
                                     </div>
-                                                
+                                </div>
+                                
+                                <div class="row">                
                                     <label class="control-label col-md-2" style="text-align: right">Password</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                <form:input class="form-control" path="password"/>
+                                                <form:password class="form-control" path="password"/>
                                             
                                         </div>
                                     </div>
