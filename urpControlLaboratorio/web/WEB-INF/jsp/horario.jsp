@@ -16,11 +16,11 @@
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroHorario.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroHorario.htm" />">Volver</a></li>
                 </ol>
                 
                 <div class="panel panel-primary panel-success">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-calendar"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="well">  
@@ -29,17 +29,17 @@
                                     <label class="control-label col-md-2" style="text-align: right">Año</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 
                                                 <form:select class="form-control" path="id_anio" >
                                                     
                                                     <c:forEach items="${model.listAnio}" var="lanios">
                                                     <c:choose>
                                                         <c:when test="${lanios.id == model.selAnio}">
-                                                            <option value="${lanios.id}" selected>${lanios.id}</option>
+                                                            <option value="${lanios.id}" selected>${lanios.anio}</option>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <option value="${lanios.id}" >${lanios.id}</option>
+                                                            <option value="${lanios.id}" >${lanios.anio}</option>
                                                         </c:otherwise> 
                                                     </c:choose> 
                                                     </c:forEach>
@@ -52,7 +52,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Semestre</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-equalizer"></span></span>
                                                 <form:select class="form-control" path="id_semestre" >
                                                     
                                                     <c:forEach items="${model.listSemestre}" var="lsemestre">
@@ -76,7 +76,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Aula</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
                                                 <form:select class="form-control" path="id_aula" >
                                                     
                                                     <c:forEach items="${model.listAula}" var="lAula">
@@ -98,7 +98,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Día</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 <form:select class="form-control" path="id_dia" >
                                                     
                                                     <c:forEach items="${model.listDia}" var="lDia">
@@ -123,7 +123,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Hora Inicio</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                                 <form:select class="form-control" path="id_hinicio" >
                                                     
                                                     <c:forEach items="${model.listHora}" var="lHora">
@@ -145,7 +145,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Duración</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-hourglass"></span></span>
                                                 <form:select class="form-control" path="id_duracion" >
                                                     
                                                     <c:forEach items="${model.listDuracion}" var="lDuracion">
@@ -171,7 +171,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Curso/Profesor</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
                                                 <form:select class="form-control" path="id_cursosemestre" >
                                                     
                                                     <c:forEach items="${model.listCursoSemestre}" var="lCS">
@@ -190,8 +190,11 @@
                                         </div>
                                     </div>
                                     
+                                    <div class="col-md-3">
+                                    </div>
+                                    
                                     <div class="col-md-2">
-                                        <input type="submit" class="form-control btn-primary" align="center" value="${model.botonAccion}">                                        
+                                        <input type="submit" class="form-control btn-primary pull-right col-md-2" align="center" value="${model.botonAccion}">                                        
                                     </div>
                                         
                                 </div>                 

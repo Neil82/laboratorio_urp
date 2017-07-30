@@ -15,7 +15,7 @@
     <div class="container">
         
         <div class="panel panel-primary panel-success">
-            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Marcación Manual de Salida</div>
+            <div class="panel-heading"><span class="glyphicon glyphicon-hourglass"></span> &nbsp;&nbsp;Marcación Manual de Salida</div>
             <div class="panel-body">
                 
                     <div class="well">
@@ -32,8 +32,8 @@
                                    
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
-                                                    <form:input class="form-control" path="id_docente" />
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                    <form:input class="form-control" path="cod_docente" />
 
                                             </div>
                                         </div>

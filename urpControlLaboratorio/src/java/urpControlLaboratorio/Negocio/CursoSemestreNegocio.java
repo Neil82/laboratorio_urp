@@ -38,8 +38,17 @@ public class CursoSemestreNegocio {
         return resultado; 
     }
     
-    public void updateCursoSemestre(CursoSemestre cursoSemestre, String id) {
-        cursoSemestresDao.updateCursoSemestre(cursoSemestre, id);                  
+    public String updateCursoSemestre(CursoSemestre cursoSemestre, String id) {
+        
+    String resultado = this.validador.validateUpdate(cursoSemestre, id);
+        
+        if(resultado == "ok"){
+            cursoSemestresDao.updateCursoSemestre(cursoSemestre, id);   
+            resultado = "ok";
+        } 
+        
+        return resultado; 
+    
     }
     
     public void deleteCursoSemestre(String id) {

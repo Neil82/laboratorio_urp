@@ -24,7 +24,7 @@
             <td style="text-align: left;"><c:out value="${marcacion.tipo}"/></td>
            
             <td style="width: 20px;">
-                <div id="del" class="divEliminarMarcacion" title="${marcacion.id_marcacion}">
+                <div id="del" class="divEliminarMarcacion" title="${marcacion.id_marcacion}" itemid="${marcacion.cod_docente}">
                     <button type="button" class="btn-sm btn-danger btnEliminar" ><a href="#" style="color:white"><span class="glyphicon glyphicon-remove"></span></a></button>
 
                 </div>

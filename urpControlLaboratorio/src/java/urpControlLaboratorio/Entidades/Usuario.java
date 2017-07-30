@@ -1,5 +1,4 @@
 package urpControlLaboratorio.Entidades; 
-import java.io.Serializable;
 
 public class Usuario { 
     private String idusuario = "";
@@ -9,6 +8,10 @@ public class Usuario {
     private String usuario = "";
     private String password = "";
     private Boolean acreditado;
+    
+    private String tipoAccion = "";
+    private String botonAccion = "";
+    private String msgError = "";
 
     public String getIdusuario() {
         return idusuario;
@@ -64,6 +67,30 @@ public class Usuario {
 
     public void setAcreditado(Boolean acreditado) {
         this.acreditado = acreditado;
+    }
+
+    public String getTipoAccion() {
+        return tipoAccion;
+    }
+
+    public void setTipoAccion(String tipoAccion) {
+        this.tipoAccion = tipoAccion;
+    }
+
+    public String getBotonAccion() {
+        return botonAccion;
+    }
+
+    public void setBotonAccion(String botonAccion) {
+        this.botonAccion = botonAccion;
+    }
+
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
     }
     
     

@@ -1,8 +1,6 @@
 
 package urpControlLaboratorio.Negocio;
 
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import urpControlLaboratorio.Datos.JdbcUsuariosDao;
 import urpControlLaboratorio.Entidades.Usuario;
 
@@ -11,40 +9,74 @@ public class UsuarioValidator {
     private JdbcUsuariosDao jdbc = new JdbcUsuariosDao();
 
     
-    /*@Override
-    public boolean supports(Class<?> type) {
-        return Usuario.class.isAssignableFrom(type);
-    }*/
-
+    public String validateInsert(Usuario usuario) {
     
-    public boolean validate(Usuario usuario) {
-    
-        String user = usuario.getUsuario().trim(); 
+        String user = usuario.getUsuario().trim();
+        String dni = usuario.getDni().trim();
+        
         if ( user == "") {
-            return false;
+            return "Ingrese el Usuario";
         }
         else {
 
-            if(jdbc.getUsuarioValidacion(user) != null){
-                return false;
+            if(jdbc.getUsuarioValidacionInsertUsername(user) != null){
+                return "El Usuario ingresado ya se encuentra registrado.";
             }
+        }
+        
+        if ( dni == "") {
+            return "Ingrese el DNI del Usuario";
+        }
+        else {
 
+            if(jdbc.getUsuarioValidacionInsertDNI(dni) != null){
+                return "El DNI del Usuario ingresado ya se encuentra registrado.";
+            }
         }
 
         if (usuario.getNombres().trim() == "") {
-            return false;
+            return "Ingrese el nombre del usuario.";
         }
         
         if (usuario.getApellidos().trim() == "") {
-            return false;
+            return "Ingrese los apellidos del usuario.";
         }
         
         if (usuario.getPassword().trim() == "") {
-            return false;
+            return "Ingrese el Password del Usuario.";
+        }
+       
+        return "ok";
+    }
+    
+    
+    public String validateUpd(Usuario usuario, String id) {
+    
+        String dni = usuario.getDni().trim(); 
+        
+        if (dni == "") {
+            return "Ingrese el DNI del Usuario";
+        }
+        else {
+
+            if(jdbc.getUsuarioValidacionUpd(dni, id) != null){
+                return "El DNI del usuario ingresado ya se encuentra registrado.";
+            }
+        }
+
+        if (usuario.getUsuario().trim() == "") {
+            return "Ingrese el Usuario.";
         }
         
-        //validar que el Usuario no este insertada
-        return true;
+        if (usuario.getNombres().trim() == "") {
+            return "Ingrese el nombre del usuario.";
+        }
+        
+        if (usuario.getApellidos().trim() == "") {
+            return "Ingrese los apellidos del usuario.";
+        }
+       
+        return "ok";
     }
     
 }

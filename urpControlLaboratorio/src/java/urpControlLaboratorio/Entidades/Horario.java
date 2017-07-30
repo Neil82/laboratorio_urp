@@ -55,6 +55,13 @@ public class Horario {
     private String rep_viernes_docente;
     private String rep_sabado_docente;
     
+    private String rep_lunes_grupo;
+    private String rep_martes_grupo;
+    private String rep_miercoles_grupo;
+    private String rep_jueves_grupo;
+    private String rep_viernes_grupo;
+    private String rep_sabado_grupo;
+    
     private String msgError;
     
     public String getId() {
@@ -432,6 +439,54 @@ public class Horario {
 
     public void setRep_sabado_docente(String rep_sabado_docente) {
         this.rep_sabado_docente = rep_sabado_docente;
+    }
+
+    public String getRep_lunes_grupo() {
+        return rep_lunes_grupo;
+    }
+
+    public void setRep_lunes_grupo(String rep_lunes_grupo) {
+        this.rep_lunes_grupo = rep_lunes_grupo;
+    }
+
+    public String getRep_martes_grupo() {
+        return rep_martes_grupo;
+    }
+
+    public void setRep_martes_grupo(String rep_martes_grupo) {
+        this.rep_martes_grupo = rep_martes_grupo;
+    }
+
+    public String getRep_miercoles_grupo() {
+        return rep_miercoles_grupo;
+    }
+
+    public void setRep_miercoles_grupo(String rep_miercoles_grupo) {
+        this.rep_miercoles_grupo = rep_miercoles_grupo;
+    }
+
+    public String getRep_jueves_grupo() {
+        return rep_jueves_grupo;
+    }
+
+    public void setRep_jueves_grupo(String rep_jueves_grupo) {
+        this.rep_jueves_grupo = rep_jueves_grupo;
+    }
+
+    public String getRep_viernes_grupo() {
+        return rep_viernes_grupo;
+    }
+
+    public void setRep_viernes_grupo(String rep_viernes_grupo) {
+        this.rep_viernes_grupo = rep_viernes_grupo;
+    }
+
+    public String getRep_sabado_grupo() {
+        return rep_sabado_grupo;
+    }
+
+    public void setRep_sabado_grupo(String rep_sabado_grupo) {
+        this.rep_sabado_grupo = rep_sabado_grupo;
     }
 
 }

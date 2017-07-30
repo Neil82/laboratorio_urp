@@ -47,7 +47,6 @@ public class aulaController {
     
     @RequestMapping(value="insertarAula.htm",method= RequestMethod.POST)
     public ModelAndView insertarAula(HttpServletRequest request, Aula aula){ 
-        //Errors errors = null;
     
         Aula aula_form = new Aula();
         

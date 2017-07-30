@@ -38,7 +38,7 @@ public class cursosemestreController {
         this.cursoSemestresManager = cursoSemestresManager;
     } 
     
-    @RequestMapping("maestroCursoSemestre.htm")
+    @RequestMapping(value="maestroCursoSemestre.htm",method= RequestMethod.GET)
     public ModelAndView maestroCursoSemestres(HttpServletRequest request){ 
  
         List listAnios = this.aniosManager.getAnios(); 
@@ -154,7 +154,7 @@ public class cursosemestreController {
         List listDocentes = this.docentesManager.getDocentes();
 
          CursoSemestre cursosemestre = new CursoSemestre();
-         
+   
          cursosemestre.setSelAnio(cursoSemestre.getId_anio());
          cursosemestre.setSelSemestre(cursoSemestre.getId_semestre());
          cursosemestre.setSelCurso(cursoSemestre.getId_curso());
@@ -177,11 +177,53 @@ public class cursosemestreController {
         return new ModelAndView("cursoSemestre","model", cursosemestre);
     }
     
+    
+    
     @RequestMapping(value="editarCursoSemestre.htm",method= RequestMethod.POST)
     public ModelAndView editarCursoSemestre(CursoSemestre cursoSemestre, HttpServletRequest request){ 
         
-        cursoSemestresManager.updateCursoSemestre(cursoSemestre, request.getParameter("id"));
-        return new ModelAndView("redirect:/maestroCursoSemestre.htm");
+        CursoSemestre cursoSemestre_form = new CursoSemestre();
+        String resultado = cursoSemestresManager.updateCursoSemestre(cursoSemestre, request.getParameter("id"));
+        
+        if(resultado=="ok"){
+            
+            String anioS = request.getParameter("id_anio");
+            String semS = request.getParameter("id_semestre");
+            
+            return new ModelAndView("redirect:/maestroCursoSemestre.htm?selAnio="+anioS+"&selSemestre="+semS);
+            
+        } else{
+            
+            List listAnios = this.aniosManager.getAnios(); 
+            List listSemestres = this.semestresManager.getSemestres();
+            List listCursos = this.cursosManager.getCursos();
+            List listGrupos = this.gruposManager.getGrupos();
+            List listSubGrupos = this.subgruposManager.getSubGrupos();
+            List listDocentes = this.docentesManager.getDocentes();
+
+            cursoSemestre_form.setTipoAccion("Editar Datos del Curso-Semestre");
+            cursoSemestre_form.setBotonAccion("Actualizar");
+            cursoSemestre_form.setAccion("editarCursoSemestre.htm");
+         
+            cursoSemestre_form.setSelAnio(request.getParameter("id_anio"));
+            cursoSemestre_form.setSelSemestre(request.getParameter("id_semestre"));
+            
+            cursoSemestre_form.setSelCurso(request.getParameter("id_curso"));
+            cursoSemestre_form.setSelGrupo(request.getParameter("id_grupo"));
+            cursoSemestre_form.setSelSubgrupo(request.getParameter("id_subgrupo"));
+            cursoSemestre_form.setSelDocente(request.getParameter("id_docente"));
+            
+            cursoSemestre_form.setListAnio(listAnios);
+            cursoSemestre_form.setListSemestre(listSemestres);
+            cursoSemestre_form.setListCurso(listCursos);
+            cursoSemestre_form.setListGrupo(listGrupos);
+            cursoSemestre_form.setListSubGrupo(listSubGrupos);
+            cursoSemestre_form.setListDocente(listDocentes);
+            
+            cursoSemestre_form.setMsgError(resultado);
+            
+            return new ModelAndView("cursoSemestre","model", cursoSemestre_form);
+        }
     }
     
     

@@ -209,6 +209,9 @@ public class JdbcHorariosDao  {
                 
             }
             
+            if(cantidad > 0){
+                name="repetido";
+            }
             
             
             try {
@@ -420,6 +423,13 @@ public class JdbcHorariosDao  {
             horario.setRep_jueves_docente(rs.getString("jueves_profe"));
             horario.setRep_viernes_docente(rs.getString("viernes_profe"));
             horario.setRep_sabado_docente(rs.getString("sabado_profe"));
+            
+            horario.setRep_lunes_grupo(rs.getString("lunes_grupo"));
+            horario.setRep_martes_grupo(rs.getString("martes_grupo"));
+            horario.setRep_miercoles_grupo(rs.getString("miercoles_grupo"));
+            horario.setRep_jueves_grupo(rs.getString("jueves_grupo"));
+            horario.setRep_viernes_grupo(rs.getString("viernes_grupo"));
+            horario.setRep_sabado_grupo(rs.getString("sabado_grupo"));
             
             return horario;
         } 

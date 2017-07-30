@@ -11,6 +11,7 @@ public class MarcacionDocente {
     private String tipo = "";
     private String extemporanea = "";
     private String id_docente = "";
+    private String cod_docente = "";
     
     private String tipoAccion = "";
     private String botonAccion = "";
@@ -128,6 +129,14 @@ public class MarcacionDocente {
 
     public void setId_docente(String id_docente) {
         this.id_docente = id_docente;
+    }
+
+    public String getCod_docente() {
+        return cod_docente;
+    }
+
+    public void setCod_docente(String cod_docente) {
+        this.cod_docente = cod_docente;
     }
 
     

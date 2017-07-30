@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import urpControlLaboratorio.Entidades.Curso;
 import urpControlLaboratorio.Entidades.Docente;
 import urpControlLaboratorio.Negocio.DocenteNegocio;
 import urpControlLaboratorio.Negocio.DocenteValidator;
@@ -33,8 +32,6 @@ public class docenteController {
         myModel.put("docentes", this.docentesManager.getDocentes());         
         return new ModelAndView("maestroDocente","model", myModel);
     }
-    
-    
     
     
     @RequestMapping(value="insertarDocente.htm",method= RequestMethod.GET)

@@ -16,11 +16,11 @@
             <div class="container">
                 
                 <ol class="breadcrumb">
-                    <li><a href="<c:url value="/maestroUsuario.htm" />">Volver<a></li>
+                    <li><a href="<c:url value="/maestroUsuario.htm" />">Volver</a></li>
                 </ol>
                 
                 <div class="panel panel-primary panel-success">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> &nbsp;&nbsp;Ingresar Usuario</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;<c:out value="${model.tipoAccion}"/></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="well">  
@@ -29,7 +29,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">DNI</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
                                                 <form:input class="form-control" path="dni"/>
                                                 
                                         </div>
@@ -39,7 +39,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Usuario</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                                 <form:input class="form-control" path="usuario"/>
                                             
                                         </div>
@@ -51,7 +51,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Nombres</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                                 <form:input class="form-control" path="nombres"/>
                                             
                                         </div>
@@ -60,7 +60,7 @@
                                     <label class="control-label col-md-2" style="text-align: right">Apellidos</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                                 <form:input class="form-control" path="apellidos"/>
                                             
                                         </div>
@@ -71,19 +71,25 @@
                                     <label class="control-label col-md-2" style="text-align: right">Password</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></span>
                                                 <form:password class="form-control" path="password"/>
                                             
                                         </div>
                                     </div>
                                                 
+                                    <div class="col-md-3">            
+                                    </div>
+                                                
                                     <div class="col-md-2">
-                                        <input type="submit" class="form-control btn-primary" align="center" value="Ingresar">                                        
+                                        <input type="submit" class="form-control btn-primary" align="center" value="${model.botonAccion}">                                        
                                     </div>
                                         
                                 </div>
                                  
                                 <div class="row">
+                                    <br/>
+                                    <div id="msgerror" class="text-warning">${model.msgError}</div>
+                                    
                                     <div class="col-md-4">
                                         <form:errors path="dni" cssClass="error"/>   
                                         <form:errors path="usuario" cssClass="error"/>

@@ -31,6 +31,7 @@ public class CursoSemestre {
     
     private String msgError;
     
+    
     public String getId() {
         return id;
     }    

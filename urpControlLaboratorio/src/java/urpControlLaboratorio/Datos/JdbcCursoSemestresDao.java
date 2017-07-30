@@ -22,7 +22,7 @@ public class JdbcCursoSemestresDao  {
     public List<CursoSemestre> getCursoSemestres() {
 
         List<CursoSemestre> cursoSemestres = 
-                this.jdbctemplate.query("select cs.id, a.id as anio, s.descripcion as semestre, "
+                this.jdbctemplate.query("select cs.id, a.anio, s.descripcion as semestre, "
                 + "c.descripcion as curso, g.descripcion as grupo, sg.descripcion as subgrupo, "
                 + "concat(d.apellidos,' ',d.nombres) as docente "
                 + "from cursoSemestre cs left join anio a on a.id=cs.id_anio "
@@ -52,7 +52,8 @@ public class JdbcCursoSemestresDao  {
     public List<CursoSemestre> getCursoSemestreAjax(String id_anio, String id_semestre) {
 
         List<CursoSemestre> cursoSemestres = 
-                this.jdbctemplate.query("select cs.id, a.anio, s.descripcion as semestre,"
+                this.jdbctemplate.query("select cs.id, a.id as id_anio, a.anio, "
+                + "s.id as id_semestre, s.descripcion as semestre,"
                 + "c.descripcion as curso, g.descripcion as grupo, sg.descripcion as subgrupo,"
                 + "concat(d.apellidos,' ',d.nombres) as docente "
                 + "from cursoSemestre cs left join anio a on a.id=cs.id_anio "
@@ -61,7 +62,7 @@ public class JdbcCursoSemestresDao  {
                 + "left join grupo g on g.id=cs.id_grupo "
                 + "left join subgrupo sg on sg.id=cs.id_subgrupo "
                 + "left join docente d on d.id=id_docente "
-                + "where cs.id_anio='"+id_anio+"' and cs.id_semestre='"+id_semestre+"'", new JdbcCursoSemestresDao.CursoSemestreMapper());
+                + "where cs.id_anio='"+id_anio+"' and cs.id_semestre='"+id_semestre+"'", new JdbcCursoSemestresDao.CursoSemestreAjaxMapper());
         return cursoSemestres;
     } 
     
@@ -100,15 +101,15 @@ public class JdbcCursoSemestresDao  {
 	return name;
     } 
     
-    public String getCursoSemestreValidacionUpd(String id_anio, String id_semestre, String id_curso, String id_grupo, String id_subgrupo, String id) {
+    public String getCursoSemestreValidacionUpd(String id_anio, String id_semestre, String id_curso, String id_grupo, String id_subgrupo, String id_docente, String id) {
         
         String name;
         
         try {
             String sql = "select id_anio from cursoSemestre where id_anio = ? "
-                    + " and id_semestre = ? and id_curso = ? and id_grupo = ? and id_subgrupo = ? and id <> ?";
+                    + " and id_semestre = ? and id_curso = ? and id_grupo = ? and id_subgrupo = ? and id_docente = ? and id <> ? and estado=1";
             name = (String)this.jdbctemplate.queryForObject(
-			sql, new Object[] { id_anio, id_semestre, id_curso, id_grupo, id_subgrupo }, String.class);
+			sql, new Object[] { id_anio, id_semestre, id_curso, id_grupo, id_subgrupo, id_docente, id }, String.class);
         } catch (final EmptyResultDataAccessException e) {
 	  name = null;
         
@@ -137,9 +138,10 @@ public class JdbcCursoSemestresDao  {
                     + "id_grupo = ?, "
                     + "id_subgrupo = ?, "
                     + "id_docente = ? "
-                    + "where "
-                    + "id = ?", 
-                 cursoSemestre.getId_anio(), cursoSemestre.getId_semestre(), cursoSemestre.getId_curso(), cursoSemestre.getId_grupo(), cursoSemestre.getId_subgrupo(), cursoSemestre.getId_docente(), id);
+                    + "where id = ?", 
+                 cursoSemestre.getId_anio(), cursoSemestre.getId_semestre(), 
+                 cursoSemestre.getId_curso(), cursoSemestre.getId_grupo(), 
+                 cursoSemestre.getId_subgrupo(), cursoSemestre.getId_docente(), id);
         
     }    
     
@@ -166,7 +168,23 @@ public class JdbcCursoSemestresDao  {
             cursoSemestre.setId_docente(rs.getString("docente"));
             return cursoSemestre;
         } 
-    } 
+    }
+    
+    private static class CursoSemestreAjaxMapper implements ParameterizedRowMapper<CursoSemestre> { 
+        public CursoSemestre mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CursoSemestre cursoSemestre  = new CursoSemestre();
+            cursoSemestre.setId(rs.getString("id"));
+            cursoSemestre.setSelAnio(rs.getString("id_anio"));
+            cursoSemestre.setSelSemestre(rs.getString("id_semestre"));
+            cursoSemestre.setId_anio(rs.getString("anio"));
+            cursoSemestre.setId_semestre(rs.getString("semestre"));
+            cursoSemestre.setId_curso(rs.getString("curso"));
+            cursoSemestre.setId_grupo(rs.getString("grupo"));
+            cursoSemestre.setId_subgrupo(rs.getString("subgrupo"));
+            cursoSemestre.setId_docente(rs.getString("docente"));
+            return cursoSemestre;
+        } 
+    }
     
     private static class CursoSemestreFormMapper implements ParameterizedRowMapper<CursoSemestre> { 
         public CursoSemestre mapRow(ResultSet rs, int rowNum) throws SQLException {

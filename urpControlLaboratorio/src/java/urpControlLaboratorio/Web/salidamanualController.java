@@ -23,7 +23,7 @@ public class salidamanualController {
     public ModelAndView maestroSalidaManual(HttpServletRequest request){
  
         MarcacionDocente marcacion = new MarcacionDocente();
-        marcacion.setId_docente(request.getParameter("id"));
+        marcacion.setCod_docente(request.getParameter("coddoc"));
 
         return new ModelAndView("maestroSalidaManual","model", marcacion);
         

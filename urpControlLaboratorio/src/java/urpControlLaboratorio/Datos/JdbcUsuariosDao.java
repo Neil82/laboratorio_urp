@@ -35,49 +35,45 @@ public class JdbcUsuariosDao  {
         
     }
     
-    public String getUsuarioValidacion(String idusuario) {
-        
-        String name;
-        
-        try {
-            String sql = "select nombres from usuario where idusuario = ?";
-            name = (String)this.jdbctemplate.queryForObject(
-			sql, new Object[] { idusuario }, String.class);
-        } catch (final EmptyResultDataAccessException e) {
-	  name = null;
-        
-         }
-         
-	return name;
-    } 
+    
      
     public void insertUsuario(Usuario usuario) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "insert into usuario (dni, usuario, nombres, apellidos, password) values (?,?,?,?,?)", usuario.getDni(), usuario.getUsuario(), usuario.getNombres(), usuario.getApellidos(), usuario.getPassword());
         
-        //logger.info("Rows affected: " + count);
     }
     
     public void updateUsuario(Usuario usuario, String idusuario) {
-        //logger.info("Saving product: " + prod.getDescription());
         
-         this.jdbctemplate.update(
+        if(usuario.getPassword()!=""){
+            
+            this.jdbctemplate.update(
             "update usuario "
                     + "set usuario = ?, "
-                    + "set nombres = ?, "
-                    + "set apellidos = ?, "
-                    + "set password = ? "
+                    + "nombres = ?, "
+                    + "apellidos = ?, "
+                    + "password = ? "
                     + "where "
                     + "idusuario = ?", 
                  usuario.getUsuario(), usuario.getNombres(), usuario.getApellidos(), usuario.getPassword(), idusuario);
         
-        //logger.info("Rows affected: " + count);
+        } else{
+        
+            this.jdbctemplate.update(
+            "update usuario "
+                    + "set usuario = ?, "
+                    + "nombres = ?, "
+                    + "apellidos = ? "
+                    + "where "
+                    + "idusuario = ?", 
+                 usuario.getUsuario(), usuario.getNombres(), usuario.getApellidos(), idusuario);
+            
+        }
+        
     }    
     
     public void deleteUsuario(String idusuario) {
-        //logger.info("Saving product: " + prod.getDescription());
         
          this.jdbctemplate.update(
             "update usuario "
@@ -85,9 +81,57 @@ public class JdbcUsuariosDao  {
                     + "where "
                     + "idusuario = ?", 
                  idusuario);
-        
-        //logger.info("Rows affected: " + count);
+
     }
+    
+    
+    public String getUsuarioValidacionInsertDNI(String dniusuario) {
+        
+        String name;
+        
+        try {
+            String sql = "select dni from usuario where dni = ? and estado=1";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { dniusuario }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+        }
+         
+	return name;
+    } 
+    
+    public String getUsuarioValidacionInsertUsername(String usuario) {
+        
+        String name;
+        
+        try {
+            String sql = "select dni from usuario where usuario = ? and estado=1";
+            name = (String)this.jdbctemplate.queryForObject(
+			sql, new Object[] { usuario }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+        }
+         
+	return name;
+    } 
+    
+    public String getUsuarioValidacionUpd(String dniusuario, String id) {
+        
+        String name;
+        
+        try {
+            String sql = "select dni from usuario where dni = ? and idusuario <> ? and estado=1";
+            name = (String)this.jdbctemplate.queryForObject(
+                            sql, new Object[] { dniusuario, id }, String.class);
+        } catch (final EmptyResultDataAccessException e) {
+	  name = null;
+        
+        }
+         
+	return name;
+    } 
     
     private static class UsuarioMapper implements ParameterizedRowMapper<Usuario> { 
         public Usuario mapRow(ResultSet rs, int rowNum) throws SQLException {

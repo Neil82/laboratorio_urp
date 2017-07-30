@@ -289,6 +289,8 @@ $jb(function() {
     $jb(document).on('click', '.divEliminarCursoSemestre', function () {
 
         var id = $jb(this).attr('title');
+        var id_anio = $jb(this).attr('itemid');
+        var id_semestre = $jb(this).attr('itemprop');
 
         bootbox.confirm({
                 message: "\u00BFSeguro de Eliminar el Registro?",
@@ -322,7 +324,7 @@ $jb(function() {
                                 success: function(msg){
 
                                     dialog.modal('hide');
-                                    window.location.replace(urlW+"/urpControlLaboratorio/maestroCursoSemestre.htm");
+                                    window.location.replace(urlW+"/urpControlLaboratorio/maestroCursoSemestre.htm?selAnio="+id_anio+"&selSemestre="+id_semestre);
                                         
                                 },
                                 error:function(){
@@ -342,12 +344,13 @@ $jb(function() {
     $jb(document).on('click', '.divEliminarMarcacion', function () {
 
         var id = $jb(this).attr('title');
+        var coddoc = $jb(this).attr('itemid');
 
         bootbox.confirm({
                 message: "\u00BFSeguro de dar por culminada la Marcación?",
                 buttons: {
                         confirm: {
-                                label: 'Si, Eliminar',
+                                label: 'Si, Culminar',
                                 className: 'btn-success'
                         },
                         cancel: {
@@ -375,7 +378,7 @@ $jb(function() {
                                 success: function(msg){
 
                                     dialog.modal('hide');
-                                    window.location.replace(urlW+"/urpControlLaboratorio/maestroSalidaManual.htm?id="+id);
+                                    window.location.replace(urlW+"/urpControlLaboratorio/maestroSalidaManual.htm?id="+id+"&coddoc="+coddoc);
                                         
                                 },
                                 error:function(){
@@ -479,12 +482,14 @@ function showHorario() {
             }
         });
 
+    } else{
+        $jb('#txtHint').html("");
     }
 }
 
 function showMarcaciones() {
   
-    var selDocente = $jb("#id_docente").val();
+    var selDocente = $jb("#cod_docente").val();
 
     if(selDocente!=""){
 
@@ -498,4 +503,32 @@ function showMarcaciones() {
         });
 
     }
+}
+
+function validarAdddHorario(f) {
+	
+    var aula = $jb("#selAula").val();
+    var anio = $jb("#selAnio").val();
+    var semestre = $jb("#selSemestre").val();
+    
+    enviar=true;
+
+    if(aula=="-1" && enviar){
+            bootbox.alert("Seleccione el Aula.");
+            enviar=false;
+            return enviar;
+    }
+
+    if(anio=="-1" && enviar){
+            bootbox.alert("Seleccione el A\u00F1o.");
+            enviar=false;
+            return enviar;
+    } 
+
+    if(semestre=="-1" && enviar){
+            bootbox.alert("Seleccione el Semestre.");
+            enviar=false;
+            return enviar;
+    } 
+
 }

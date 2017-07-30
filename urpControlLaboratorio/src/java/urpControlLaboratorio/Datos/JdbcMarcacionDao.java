@@ -18,22 +18,22 @@ public class JdbcMarcacionDao  {
     
     public List<MarcacionDocente> getMarcaciones(String id) {
 
-        List<MarcacionDocente> marcacion =  this.jdbctemplate.query("select id_marcacion, aula, "
-                + "c.descripcion as curso, d.nombres as docente, s.descripcion as semestre,"
-                + "m.inicio, m.fin, m.tipo, "
+        List<MarcacionDocente> marcacion =  this.jdbctemplate.query("select id_marcacion, d.coddocente, aula, "
+                + "c.descripcion as curso, concat(d.apellidos,' ',d.nombres) as docente, "
+                + "s.descripcion as semestre, m.inicio, m.fin, m.tipo, "
                 + "m.extemporanea from marcacion m inner join aula a on a.id=m.id_aula "
                 + "inner join cursoSemestre cs on cs.id=m.id_cursoSemestre "
                 + "inner join curso c on c.id = cs.id_curso "
                 + "inner join docente d on d.id=cs.id_docente "
                 + "inner join semestre s on s.id=cs.id_semestre "
-                + "where m.id_marcacion='"+id+"'", new JdbcMarcacionDao.MarcacionMapper());
+                + "where d.coddocente = '"+id+"' and m.tipo='I' ", new JdbcMarcacionDao.MarcacionMapper());
         return marcacion;
     } 
     
     public void finalizarMarcacion(String id) {
         
          this.jdbctemplate.update(
-            "update marcacion set extemporanea = now() "
+            "update marcacion set tipo='E', extemporanea = now() "
                     + "where id_marcacion = ?", 
                  id);
     }
@@ -42,6 +42,7 @@ public class JdbcMarcacionDao  {
         public MarcacionDocente mapRow(ResultSet rs, int rowNum) throws SQLException {
             MarcacionDocente marcacion  = new MarcacionDocente();
             marcacion.setId_marcacion(rs.getString("id_marcacion"));
+            marcacion.setCod_docente(rs.getString("coddocente"));
             marcacion.setAula(rs.getString("aula"));    
             marcacion.setCurso(rs.getString("curso"));    
             marcacion.setDocente(rs.getString("docente"));    

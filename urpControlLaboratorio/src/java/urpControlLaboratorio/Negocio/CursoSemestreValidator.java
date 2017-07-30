@@ -81,8 +81,9 @@ public class CursoSemestreValidator {
         String id_grupo = cursoSemestre.getId_grupo().trim(); 
         String id_semestre = cursoSemestre.getId_semestre().trim(); 
         String id_subgrupo = cursoSemestre.getId_subgrupo().trim(); 
+        String id_docente = cursoSemestre.getId_docente().trim(); 
        
-        if(jdbc.getCursoSemestreValidacionUpd(id_anio,id_semestre,id_curso,id_grupo,id_subgrupo, id) != null){
+        if(jdbc.getCursoSemestreValidacionUpd(id_anio,id_semestre,id_curso,id_grupo,id_subgrupo,id_docente, id) != null){
             return "Ya se ha registrado la combinación de este Curso/Semestre.";
         }
 

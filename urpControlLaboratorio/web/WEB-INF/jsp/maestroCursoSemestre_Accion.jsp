@@ -25,7 +25,7 @@
             <button type="button" class="btn-sm btn-primary btnEditar"><a style="color:white" href="<c:url value="editarCursoSemestre.htm?id=${cursoSemestre.id}" />"><span class="glyphicon glyphicon-pencil"></span></a></button>
         </td>
         <td style="width: 20px;">
-            <div id="del" class="divEliminarCursoSemestre" title="${cursoSemestre.id}">
+            <div id="del" class="divEliminarCursoSemestre" title="${cursoSemestre.id}" itemid="${cursoSemestre.selAnio}" itemprop="${cursoSemestre.selSemestre}">
                 <button type="button" class="btn-sm btn-danger btnEliminar" ><a href="#" style="color:white"><span class="glyphicon glyphicon-remove"></span></a></button>
 
             </div>

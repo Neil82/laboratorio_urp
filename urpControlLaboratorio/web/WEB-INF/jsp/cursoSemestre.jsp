@@ -32,6 +32,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                               
+                                          
                                                  <form:select class="form-control" path="id_anio" >
                                                     
                                                     <c:forEach items="${model.listAnio}" var="lanios">
